@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 var HomeContainer = require('./components/home.jsx').HomeContainer;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var CreateEditContainer = require('./components/create_edit.jsx').CreateEditContainer;
-var ProfileDetailContainer = require('./components/profiile_detail.jsx').ProfileDetailContainer;
+var ProfileDetailContainer = require('./components/profile_detail.jsx').ProfileDetailContainer;
 
 var parse = require('./parse.js');
 

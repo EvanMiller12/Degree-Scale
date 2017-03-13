@@ -29,7 +29,7 @@ class HeaderNav extends React.Component{
                 <a href="#">How it Works</a>
               </li>
               <li>
-                <a href="#signup/" className="btn btn-primary" role="button">Signup</a>
+                <a href="#auth/" className="btn btn-primary" role="button">Signup</a>
               </li>
             </ul>
           </nav>
@@ -67,7 +67,7 @@ class Footer extends React.Component{
           <div className="footer-nav">
             <ul>
               <li><a href="#">Home</a></li>
-              <li><a href="#signup/">Signup</a></li>
+              <li><a href="#auth/">Signup</a></li>
               <li><a href="#">Write Review</a></li>
             </ul>
           </div>

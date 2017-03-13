@@ -3,15 +3,15 @@ var React = require('react');
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class CreateEditContainer extends React.Component {
-    render() {
-        return (
-            <BaseLayout>
-                <div class="row">
-                    <CreateEditForm/>
-                </div>
-            </BaseLayout>
-        )
-    }
+  render() {
+    return (
+      <BaseLayout>
+        <div class="row">
+          <CreateEditForm/>
+        </div>
+      </BaseLayout>
+    )
+  }
 }
 
 class CreateEditForm extends React.Component {

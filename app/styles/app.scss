@@ -20,19 +20,14 @@ img {
 * Home/top navbar styling
 */
 
-.home-nav-contain{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .home-nav{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #EEEEEE;
 
   li{
     list-style: none;
-    padding-left: 10px;
   }
 }
 
@@ -40,7 +35,7 @@ img {
 * Footer styling
 */
 
-footer{
+.footer{
   display: flex;
   align-items: center;
   justify-content: space-between;

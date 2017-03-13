@@ -30,14 +30,12 @@ var User = Backbone.Model.extend({
   current: function(){
     var user = localStorage.getItem('user');
 
-    // if no user in local storage, bail
     if(!user){
      return false;
     }
 
     var currentUser = new User(JSON.parse(user));
 
-   // If we don't have a token, bail
    if(!currentUser.get('sessionToken')){
      return false;
     }

@@ -8,11 +8,11 @@ class LoginContainer extends React.Component {
   render() {
     return (
       <BaseLayout>
-        <div class="col-md-4">
+        <div className="col-md-4">
           <h1>Login</h1>
           <LoginForm />
         </div>
-        <div class="col-md-4">
+        <div className="col-md-4">
           <h1>No Account? Sign Up!</h1>
           <SignupForm />
         </div>
@@ -25,15 +25,15 @@ class LoginForm extends React.Component {
   render() {
     return (
       <form id="login">
-         <div class="form-group">
-           <input class="form-control" name="email" id="email-login" type="email" placeholder="email" />
+         <div className="form-group">
+           <input className="form-control" name="email" id="email-login" type="email" placeholder="email" />
          </div>
 
-        <div class="form-group">
-           <input class="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
+        <div className="form-group">
+           <input className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
          </div>
 
-        <input class="btn btn-primary" type="submit" value="Login" />
+        <input className="btn btn-primary" type="submit" value="Login" />
        </form>
     )
   }

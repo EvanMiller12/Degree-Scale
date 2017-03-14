@@ -2,10 +2,10 @@ var React = require('react');
 
 var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
 
-class HomeContainer extends React.Component {
+class HomeContainer extends React.Component { 
   render(){
     return(
-      <HomeLayout>
+      <HomeLayout handleMenuToggle={ this.handleMenuToggle }>
         <div className="container">
           <div className="row">
             <div className="col-sm-6 col-md-4">

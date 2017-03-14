@@ -1,5 +1,10 @@
 var React = require('react');
 
+var NavDropdown = require('react-bootstrap').NavDropdown;
+var MenuItem = require('react-bootstrap').MenuItem;
+
+var User = require('../../models/user.js').User;
+
 class BaseLayout extends React.Component {
   render(){
     return(
@@ -14,6 +19,7 @@ class BaseLayout extends React.Component {
 
 class HeaderNav extends React.Component{
   render(){
+    console.log(User.current());
     return(
       <div className="container">
         <div className="row">
@@ -23,11 +29,11 @@ class HeaderNav extends React.Component{
                 <a className="navbar-brand" href="#">Navbar</a>
               </li>
               <li>
-                <a href="#">How it Works</a>
+                <span className="proj-info-nav">
+                  <a href="#">How it Works</a>
+                </span>
               </li>
-              <li>
-                <a href="#auth/" className="btn btn-primary" role="button">Signup</a>
-              </li>
+                 {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
             </ul>
           </nav>
         </div>
@@ -36,20 +42,43 @@ class HeaderNav extends React.Component{
   }
 }
 
+class SignupNavItem extends React.Component{
+  render(){
+    return(
+      <a href="#auth/" className="btn btn-primary" role="button">
+        Signup
+      </a>
+    )
+  }
+}
+
+class LoggedInNavItem extends React.Component{
+  render(){
+    return(
+      <NavDropdown title="username" id="nav-dropdown">
+        <MenuItem className="dropdown-item" href="#profile/">View Profile</MenuItem>
+        <MenuItem className="dropdown-item" href="#">Logout</MenuItem>
+      </NavDropdown>
+    )
+  }
+}
+
 class Footer extends React.Component{
   render(){
     return(
       <div clasName="container">
-        <div className="row footer">
-          <div className="footer-copyright">
-            <span>App Name,</span>
-            <span>an app built by <a href="#">Evan Miller</a></span>
-          </div>
-          <div className="footer-nav">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#auth/">Signup</a></li>
-              <li><a href="#">Write Review</a></li>
+        <div className="row">
+          <div className="footer">
+            <ul className="footer-nav">
+              <li>
+                <span>App Name,</span>
+                <span>an app built by <a href="#">Evan Miller</a></span>
+              </li>
+              <li>
+                <a href="#">Home</a>
+                <a href="#auth/">Signup</a>
+                <a href="#">Write Review</a>
+              </li>
             </ul>
           </div>
         </div>

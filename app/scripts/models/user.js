@@ -12,7 +12,7 @@ var User = Backbone.Model.extend({
   login: function(creds, callback){
     var url = parse.BASE_API_URL + '/login?' + $.param(creds);
     $.get(url).then(data => {
-      var newUser = new User(creds);
+      var newUser = new User(data);
       User.store(newUser);
       callback(newUser);
     });
@@ -29,7 +29,7 @@ var User = Backbone.Model.extend({
   },
   current: function(){
     var user = localStorage.getItem('user');
-
+    console.log(user);
     if(!user){
      return false;
     }

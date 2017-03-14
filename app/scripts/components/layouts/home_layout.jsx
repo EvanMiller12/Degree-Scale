@@ -5,7 +5,7 @@ var BaseLayout = require('./base.jsx').BaseLayout;
 class HomeLayout extends React.Component {
   render(){
     return(
-      <BaseLayout>
+      <BaseLayout {...this.props}>
         <Banner />
         {this.props.children}
       </BaseLayout>

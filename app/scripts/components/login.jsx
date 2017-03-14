@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 
 var User = require('../models/user.js').User;
 
-var BaseLayout = require('./layouts/base.jsx').BaseLayout;
+var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
 
 class LoginContainer extends React.Component {
   constructor(props){
@@ -24,22 +24,18 @@ class LoginContainer extends React.Component {
   }
   render() {
     return (
-      <BaseLayout>
-        <div className="col-md-4">
-          <h1>Login</h1>
+      <HomeLayout>
           <LoginForm
             action={this.login}
             submitBtn='Login'
+            title = 'Login'
             />
-        </div>
-        <div className="col-md-4">
-          <h1>No Account? Sign Up!</h1>
           <SignupForm
             action={this.createAccount}
             submitBtn='Signup'
+            title = 'Signup for Free'
             />
-        </div>
-      </BaseLayout>
+      </HomeLayout>
     );
   }
 }
@@ -69,17 +65,22 @@ class LoginForm extends React.Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit} id="login">
-         <div className="form-group">
-           <input onChange={this.updateEmail} value={this.state.username} className="form-control" name="email" id="user-login" type="email" placeholder="email" />
-         </div>
+      <div className="container">
+        <div className="col-sm-6 col-sm-offset-3">
+          <h3>{this.props.title}</h3>
+          <form onSubmit={this.handleSubmit} id="login">
+             <div className="form-group">
+               <input onChange={this.updateEmail} value={this.state.username} className="form-control" name="email" id="user-login" type="email" placeholder="email" />
+             </div>
 
-        <div className="form-group">
-           <input onChange={this.updatePassword} value={this.state.password} className="form-control" name="password" id="user-password" type="password" placeholder="Password Please" />
-         </div>
+            <div className="form-group">
+               <input onChange={this.updatePassword} value={this.state.password} className="form-control" name="password" id="user-password" type="password" placeholder="Password Please" />
+             </div>
 
-        <input value={this.props.submitBtn} className="btn btn-primary" type="submit" />
-       </form>
+            <input value={this.props.submitBtn} className="btn btn-primary" type="submit" />
+           </form>
+        </div>
+      </div>
     )
   }
 }

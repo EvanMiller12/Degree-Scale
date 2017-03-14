@@ -4,11 +4,8 @@ class BaseLayout extends React.Component {
   render(){
     return(
       <div>
-        <Banner />
         <HeaderNav />
-          <div className="container">
-            {this.props.children}
-          </div>
+          {this.props.children}
         <Footer />
       </div>
     )
@@ -33,22 +30,6 @@ class HeaderNav extends React.Component{
               </li>
             </ul>
           </nav>
-        </div>
-      </div>
-    )
-  }
-}
-
-class Banner extends React.Component{
-  render(){
-    return(
-      <div className="container-fluid">
-        <div className="row">
-          <div className="jumbotron">
-            <div className="mission-statement">
-              <h1>Mission Statement</h1>
-            </div>
-          </div>
         </div>
       </div>
     )

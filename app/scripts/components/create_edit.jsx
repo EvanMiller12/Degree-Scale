@@ -6,8 +6,10 @@ class CreateEditContainer extends React.Component {
   render() {
     return (
       <BaseLayout>
-        <div class="row">
-          <CreateEditForm/>
+        <div className="container">
+          <div class="row">
+            <CreateEditForm/>
+          </div>
         </div>
       </BaseLayout>
     )

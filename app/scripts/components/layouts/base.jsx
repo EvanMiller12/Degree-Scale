@@ -53,7 +53,7 @@ class SignupNavItem extends React.Component{
 }
 
 class LoggedInNavItem extends React.Component{
-  render(){
+  render(title){
     return(
       <NavDropdown title={localStorage.getItem('username')} id="nav-dropdown">
         <MenuItem className="dropdown-item" href="#profile/">View Profile</MenuItem>

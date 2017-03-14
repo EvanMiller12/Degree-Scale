@@ -5,36 +5,37 @@ var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 class ProfileDetailContainer extends React.Component{
   render(){
     return(
-      <div class="user-profile col-sm-6 col-sm-offset-3">
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3">
-            <div class="user-avatar">
-              <a name="file" type="file" class="avatar">
+      <div className="user-profile col-sm-6 col-sm-offset-3">
+        <div className="row">
+          <div className="col-sm-6 col-sm-offset-3">
+            <h2>Your Profile</h2>
+            <div className="user-avatar">
+              <a name="file" type="file" className="avatar">
                 <img src="http://placehold.it/250x250" alt="" />
               </a>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3">
-            <div class="user-profile-details">
-              <div class="users-name">
+        <div className="row">
+          <div className="col-sm-6 col-sm-offset-3">
+            <div className="user-profile-details">
+              <div className="users-name">
                 <span>Users Name</span>
               </div>
-              <div class="location">
+              <div className="location">
                 <span>user location</span>
               </div>
-              <div class="email">
+              <div className="email">
                 <span>user email</span>
               </div>
-              <div class="education">
+              <div className="education">
                 <span>users degrees</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="edit-profile-btn col-sm-6 col-sm-offset-3">
-         <a href='#' class="btn btn-primary">
+        <div className="edit-profile-btn col-sm-6 col-sm-offset-3">
+         <a href='#' className="btn btn-primary">
            Edit Profile
          </a>
         </div>

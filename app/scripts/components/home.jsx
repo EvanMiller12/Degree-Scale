@@ -2,7 +2,7 @@ var React = require('react');
 
 var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
 
-class HomeContainer extends React.Component { 
+class HomeContainer extends React.Component {
   render(){
     return(
       <HomeLayout handleMenuToggle={ this.handleMenuToggle }>
@@ -14,7 +14,7 @@ class HomeContainer extends React.Component {
                 <div className="caption">
                   <h3>Write Review</h3>
                   <p>Write a review to help potential students or current students better understand the value of the degree they are or will be earning.</p>
-                  <p><a href="#" className="btn btn-primary" role="button">Write Review</a></p>
+                  <p><a href="#review/create/" className="btn btn-primary" role="button">Write Review</a></p>
                 </div>
               </div>
             </div>

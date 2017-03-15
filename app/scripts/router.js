@@ -6,9 +6,10 @@ var HomeContainer = require('./components/home.jsx').HomeContainer;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var ProfileCreateEditContainer = require('./components/create_edit.jsx').ProfileCreateEditContainer;
 var ProfileDetailContainer = require('./components/profile_detail.jsx').ProfileDetailContainer;
-// var ReviewListContainer = require('./components/review_list.jsx').ReviewListContainer;
+var ReviewListContainer = require('./components/review_list.jsx').ReviewListContainer;
 var ReviewCreateEditContainer = require('./components/review_create_edit.jsx').ReviewCreateEditContainer;
 // var ReviewDetailContainer = require('./components/review_detail.jsx').ReviewDetailContainer;
+var DegreeStatListContainer = require('./components/degree_stat_list.jsx').DegreeStatListContainer;
 
 var parse = require('./parse.js');
 
@@ -23,6 +24,7 @@ var AppRouter = Backbone.Router.extend({
     'review/create/': 'reviewCreateEdit',
     'review/:id/edit/': 'reviewCreateEdit',
     'review/:id/': 'reviewDetail',
+    'degree/': 'degreeStatList',
   },
   initialize: function(){
     parse.setup({
@@ -53,12 +55,12 @@ var AppRouter = Backbone.Router.extend({
      document.getElementById('app')
     )
   },
-  // reviewList: function(){
-  //   ReactDOM.render(
-  //     React.createElement(ReviewListContainer),
-  //     document.getElementById('app')
-  //   );
-  // },
+  reviewList: function(){
+    ReactDOM.render(
+      React.createElement(ReviewListContainer),
+      document.getElementById('app')
+    );
+  },
   reviewCreateEdit: function(id){
     ReactDOM.render(
       React.createElement(ReviewCreateEditContainer, {id: id}),
@@ -71,6 +73,12 @@ var AppRouter = Backbone.Router.extend({
   //    document.getElementById('app')
   //   )
   // },
+  degreeStatList: function(){
+    ReactDOM.render(
+      React.createElement(DegreeStatListContainer),
+      document.getElementById('app')
+    );
+  },
 });
 
 

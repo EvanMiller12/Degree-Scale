@@ -19,7 +19,7 @@ class BaseLayout extends React.Component {
 
 class HeaderNav extends React.Component{
   render(){
-    console.log(User.current());
+    console.log(User.current('user'));
     return(
       <div className="container">
         <div className="row">
@@ -54,8 +54,10 @@ class SignupNavItem extends React.Component{
 
 class LoggedInNavItem extends React.Component{
   render(title){
+    var user = User.current()
+
     return(
-      <NavDropdown title={localStorage.getItem('username')} id="nav-dropdown">
+      <NavDropdown title={user.get('username')} id="nav-dropdown">
         <MenuItem className="dropdown-item" href="#profile/">View Profile</MenuItem>
         <MenuItem className="dropdown-item" href="#">Logout</MenuItem>
       </NavDropdown>

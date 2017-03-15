@@ -5782,6 +5782,8 @@ img {
   border-bottom: 1px solid #EEEEEE; }
   .home-nav li {
     list-style: none; }
+  .home-nav li > span {
+    padding-right: 20px; }
 
 /*
 *user Profile details styling
@@ -5803,9 +5805,44 @@ img {
   padding-bottom: 20px; }
 
 /*
+* Review create edit styling
+*/
+.review-form-contain {
+  border: 1px solid #EEEEEE;
+  padding: 50px; }
+  .review-form-contain p {
+    font-weight: bold; }
+
+.review-form-title {
+  text-align: center; }
+
+.select-degree-contain {
+  padding-top: 50px; }
+  .select-degree-contain span {
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: bold; }
+
+.checkbox {
+  margin-top: 30px; }
+  .checkbox h4 {
+    font-size: 16px;
+    font-weight: bold; }
+  .checkbox label {
+    padding-right: 8px; }
+
+.form-group {
+  margin-top: 30px; }
+
+/*
 * Footer styling
 */
 .footer {
+  border-top: 1px solid #EEEEEE;
+  padding: 50px;
+  margin-top: 50px; }
+
+.footer-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5815,9 +5852,10 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between; }
+  .footer-nav li {
+    display: inline-block;
+    list-style: none; }
+    .footer-nav li > a {
+      padding-left: 20px; }
 
-.footer-nav li {
-  display: inline-block;
-  list-style: none;
-  padding-left: 10px; }
 /*# sourceMappingURL=app.css.map */

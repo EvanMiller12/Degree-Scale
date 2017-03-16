@@ -1,14 +1,24 @@
 var React = require('react');
 
+var User = require('../models/user.js').User;
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class ProfileCreateEditContainer extends React.Component {
+  constructor(props){
+    super(props);
+
+    var user = User.current()
+
+    this.state = {
+      user
+    }
+  }
   render() {
     return (
       <BaseLayout>
         <div className="container">
           <div className="row">
-            <ProfileCreateEditForm/>
+            <ProfileCreateEditForm user={this.state.user}/>
           </div>
         </div>
       </BaseLayout>

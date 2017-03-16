@@ -2,12 +2,12 @@ var React = require('react');
 
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
-class ReviewListContainer extends React.Component{
+class DegreeSelectContainer extends React.Component{
   render(){
     return(
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
-          <h1>Review List Container</h1>
+          <h1>Degree Select Container</h1>
         </div>
       </div>
     )
@@ -15,5 +15,5 @@ class ReviewListContainer extends React.Component{
 }
 
 module.exports = {
-  ReviewListContainer
+  DegreeSelectContainer
 }

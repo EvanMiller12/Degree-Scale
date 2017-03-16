@@ -23,13 +23,14 @@ var User = Backbone.Model.extend({
       User.store(newUser);
       callback(newUser);
     });
+    return newUser;
   },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },
   current: function(){
     var user = localStorage.getItem('user');
-    console.log(user);
+    // console.log(user);
     if(!user){
      return false;
     }
@@ -40,7 +41,7 @@ var User = Backbone.Model.extend({
      return false;
     }
     return currentUser;
-  }
+  },
 });
 
 module.exports = {

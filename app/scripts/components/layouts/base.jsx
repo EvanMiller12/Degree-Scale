@@ -28,12 +28,7 @@ class HeaderNav extends React.Component{
               <li>
                 <a className="navbar-brand" href="#">Navbar</a>
               </li>
-              <li>
-                <span className="proj-info-nav">
-                  <a href="#">How it Works</a>
-                </span>
-              </li>
-                 {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
+                {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
             </ul>
           </nav>
         </div>
@@ -79,8 +74,6 @@ class Footer extends React.Component{
               </li>
               <li>
                 <a href="#">Home</a>
-                <a href="#auth/">Signup</a>
-                <a href="#">Write Review</a>
               </li>
             </ul>
           </div>

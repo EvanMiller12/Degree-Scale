@@ -7,8 +7,8 @@ var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
 class HomeContainer extends React.Component {
   render(){
     var writeReviewNav = User.current() ? "#review/create/" : "#auth/";
-    var readReviewNav = User.current() ? "#review/" : "#auth/";
-    var degreeStatsNav = User.current() ? "#degree/" : "#auth/";
+    var degreeSelectNav = User.current() ? "#degree/" : "#auth/";
+    var howItWorksNav = User.current() ? "#howitworks/" : "#auth/";
 
     return(
       <HomeLayout handleMenuToggle={ this.handleMenuToggle }>
@@ -28,9 +28,9 @@ class HomeContainer extends React.Component {
               <div className="thumbnail">
                 <img src="https://unsplash.it/400/?random" alt="..." />
                 <div className="caption">
-                  <h3>Read Reviews</h3>
-                  <p>Discover the value of different degrees from real people who have earned earned the degree.</p>
-                  <p><a href={readReviewNav} className="btn btn-primary" role="button">Read Reviews</a></p>
+                  <h3>View Degrees</h3>
+                  <p>Review the average salary information by degree for the top 20 schools with the highest salaries.</p>
+                  <p><a href={degreeSelectNav} className="btn btn-primary" role="button">View Degree</a></p>
                 </div>
               </div>
             </div>
@@ -38,9 +38,9 @@ class HomeContainer extends React.Component {
               <div className="thumbnail">
                 <img src="https://unsplash.it/400/?random" alt="..." />
                 <div className="caption">
-                  <h3>View Degree Information</h3>
-                  <p>View the statistics for different college degrees including salary by major.</p>
-                  <p><a href={degreeStatsNav} className="btn btn-primary" role="button">View Statistics</a></p>
+                  <h3>How It Works</h3>
+                  <p>Some catchy intro here</p>
+                  <p><a href={howItWorksNav} className="btn btn-primary" role="button">View Statistics</a></p>
                 </div>
               </div>
             </div>

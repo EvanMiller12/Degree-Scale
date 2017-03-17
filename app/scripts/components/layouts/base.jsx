@@ -1,3 +1,4 @@
+var Backbone = require('backbone');
 var React = require('react');
 
 var NavDropdown = require('react-bootstrap').NavDropdown;
@@ -48,6 +49,11 @@ class SignupNavItem extends React.Component{
 }
 
 class LoggedInNavItem extends React.Component{
+  handleLogout(){
+    User.logout();
+    localStorage.clear();
+    Backbone.history.navigate('auth/', {trigger: true});
+  }
   render(title){
     var user = User.current()
 
@@ -55,7 +61,7 @@ class LoggedInNavItem extends React.Component{
       <NavDropdown title={user.get('username')} id="nav-dropdown">
         <MenuItem className="dropdown-item" href={'#profile/' + user.get('objectId') + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href="#profile/create/">Edit Profile</MenuItem>
-        <MenuItem className="dropdown-item" href="#logout/">Logout</MenuItem>
+        <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>
       </NavDropdown>
     )
   }

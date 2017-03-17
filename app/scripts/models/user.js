@@ -25,6 +25,12 @@ var User = ParseModel.extend({
     });
     return newUser;
   },
+  logout: function() {
+    var url = parse.BASE_API_URL + '/logout?'
+    $.post(url).then(event=>{
+      console.log('user logged complete');
+    })
+  },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },

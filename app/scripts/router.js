@@ -32,12 +32,29 @@ var AppRouter = Backbone.Router.extend({
   },
   initialize: function(){
     var user = User.current();
-
-    parse.setup({
-      BASE_API_URL: 'https://hip-puppies.herokuapp.com',
-      sessionId: user.get('sessionToken')
-    });
+    if(user) {
+      parse.setup({
+        sessionId: user.get('sessionToken'),
+        BASE_API_URL: 'https://hip-puppies.herokuapp.com'
+      })
+    } else {
+      parse.setup({
+        BASE_API_URL: 'https://hip-puppies.herokuapp.com'
+      });
+    }
   },
+
+  execute: function(callback, args, name) {
+    var user = User.current();
+
+    if(!user && name != 'auth') {
+      this.navigate('auth/', { trigger: true });
+      return false;
+    }
+
+    return Backbone.Router.prototype.execute.apply(this, arguments);
+  },
+
   index: function(){
     ReactDOM.render(
       React.createElement(HomeContainer),
@@ -85,7 +102,7 @@ var AppRouter = Backbone.Router.extend({
       React.createElement(ReviewCreateEditContainer, {id: id}),
       document.getElementById('app')
     )
-  },
+  }
 });
 
 

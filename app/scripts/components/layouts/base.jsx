@@ -29,6 +29,9 @@ class HeaderNav extends React.Component{
               <li>
                 <a className="navbar-brand" href="#">Navbar</a>
               </li>
+              <li>
+                <a href="#">Home</a>
+              </li>
                 {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
             </ul>
           </nav>

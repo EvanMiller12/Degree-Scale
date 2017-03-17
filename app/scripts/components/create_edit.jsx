@@ -71,7 +71,7 @@ class ProfileCreateEditForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    this.setState(newProps.user.toJSON());
+    this.setState(newProps.userProfile.toJSON());
   }
   updateFirstName(e){
     this.setState({first_name: e.target.value});

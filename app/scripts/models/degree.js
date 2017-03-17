@@ -14,10 +14,13 @@ var DegreeCollection = Backbone.Collection.extend({
   parse: function(data){
     return data.results;
   }
-  average: function(){
-    
-  }
 });
+
+var degrees = new DegreeCollection();
+
+$.get('2012.earnings.10_yrs_after_entry.median')
+
+  console.log(program)
 
 
 module.exports = {

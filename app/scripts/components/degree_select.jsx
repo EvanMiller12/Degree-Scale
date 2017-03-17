@@ -1,10 +1,16 @@
 var React = require('react');
 
-var programData = require('./../program_data');
+var programNames = require('./../program_data');
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class DegreeSelectContainer extends React.Component{
+
+
   render(){
+    var programs = Object.keys(programNames).map(function(key, index){
+      return <option key={programNames[key]} value={programNames[key]}>{key}</option>
+    });
+
     return(
       <BaseLayout>
         <div className="container">
@@ -21,7 +27,8 @@ class DegreeSelectContainer extends React.Component{
                       Select Your Degree:
                     </span>
                     <select className="degree-select option1" name="degree-select">
-                      <option value="Degree">Degree Name</option>
+                      <option value="Degree">Select Degree Name</option>
+                      {programs}
                     </select>
                     </div>
                     <div className="view-salary-btn">

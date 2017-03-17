@@ -3,6 +3,8 @@ var React = require('react');
 var programNames = require('./../program_data');
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
+var DegreeCollection = require('../models/degree.js').DegreeCollection;
+
 class DegreeSelectContainer extends React.Component{
 
   render(){

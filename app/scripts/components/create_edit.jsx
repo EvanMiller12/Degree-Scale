@@ -33,6 +33,8 @@ class ProfileCreateEditContainer extends React.Component {
       'location': formData.location
     });
 
+    console.log('user', user);
+
     user.save().then(() => {
       Backbone.history.navigate('#profile/' + user.get('objectId') + '/', {trigger: true});
     });

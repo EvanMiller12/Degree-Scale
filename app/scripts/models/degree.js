@@ -1,4 +1,4 @@
-
+var $ = require('jquery');
 var Backbone = require('backbone');
 
 var Degree = Backbone.Model.extend({
@@ -9,18 +9,33 @@ var Degree = Backbone.Model.extend({
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
-    return 'https://www.localhost:3000'
+    return 'http://localhost:3000/v1/schools'
   },
   parse: function(data){
     return data.results;
+  },
+  average: function() {
+    var earnings = this.map(function(degree){
+      return degree.get('2012.earnings.10_yrs_after_entry.median');
+    });
+    console.log(earnings)
+    var average = earnings.reduce(function(a, b){
+      return a + b;
+    }, 0) / earnings.length;
+
+    return average;
   }
 });
 
 var degrees = new DegreeCollection();
+var associates = degrees.fetch().done(function(response){
+  console.log(degrees.average())
+  return degrees.average();
+});
 
-$.get('2012.earnings.10_yrs_after_entry.median')
-
-  console.log(program)
+// var componentData = average.then(function(data){
+//   return data.results
+// })
 
 
 module.exports = {

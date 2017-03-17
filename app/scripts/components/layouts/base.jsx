@@ -53,9 +53,9 @@ class LoggedInNavItem extends React.Component{
 
     return(
       <NavDropdown title={user.get('username')} id="nav-dropdown">
-        <MenuItem className="dropdown-item" href="#profile/">View Profile</MenuItem>
+        <MenuItem className="dropdown-item" href={'#profile/' + user.get('objectId') + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href="#profile/create/">Edit Profile</MenuItem>
-        <MenuItem className="dropdown-item" href="#">Logout</MenuItem>
+        <MenuItem className="dropdown-item" href="#logout/">Logout</MenuItem>
       </NavDropdown>
     )
   }

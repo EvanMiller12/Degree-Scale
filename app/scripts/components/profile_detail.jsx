@@ -1,9 +1,26 @@
 var React = require('react');
 
+var User = require('../models/user').User;
+
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class ProfileDetailContainer extends React.Component{
+  constructor(props){
+    super(props);
+
+    var user = new User();
+    user.set('objectId', props.id);
+    user.fetch().then(() => {
+      this.setState({user});
+    });
+
+    this.state = {
+      user
+    };
+  }
   render(){
+    var user = this.state.user;
+    var currentUser = User.current();
     return(
       <BaseLayout>
         <div className="container">
@@ -22,13 +39,14 @@ class ProfileDetailContainer extends React.Component{
               <div className="col-sm-6 col-sm-offset-3">
                 <div className="user-profile-details">
                   <div className="users-name">
-                    <span>Users Name</span>
+                    <span>{user.get('first_name')}</span>
+                    <span>{user.get('last_name')}</span>
                   </div>
                   <div className="location">
-                    <span>user location</span>
+                    <span>{user.get('location')}</span>
                   </div>
                   <div className="email">
-                    <span>user email</span>
+                    <span>{currentUser.get('username')}</span>
                   </div>
                   <div className="education">
                     <span>users degrees</span>
@@ -37,7 +55,7 @@ class ProfileDetailContainer extends React.Component{
               </div>
             </div>
             <div className="edit-profile-btn col-sm-6 col-sm-offset-3">
-             <a href='#' className="btn btn-primary">
+             <a href={'#profile/' + user.get('objectId') + '/edit/'} className="btn btn-primary">
                Edit Profile
              </a>
             </div>

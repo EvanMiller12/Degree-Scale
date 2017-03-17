@@ -11,7 +11,9 @@ var DegreeDetailContainer = require('./components/degree_detail.jsx').DegreeDeta
 var HowItWorksContainer = require('./components/how_it_works.jsx').HowItWorksContainer;
 var ReviewCreateEditContainer = require('./components/review_create_edit.jsx').ReviewCreateEditContainer;
 
-var parse = require('./parse.js');
+var User = require('./models/user').User;
+
+var parse = require('./parse_setup.js');
 
 var AppRouter = Backbone.Router.extend({
   routes: {
@@ -25,11 +27,15 @@ var AppRouter = Backbone.Router.extend({
     'howitworks/': 'howItWorks',
     'review/create/': 'reviewCreateEdit',
     'review/:id/edit/': 'reviewCreateEdit',
+    'logout/': 'logout',
 
   },
   initialize: function(){
+    var user = User.current();
+
     parse.setup({
-      BASE_API_URL: 'https://hip-puppies.herokuapp.com'
+      BASE_API_URL: 'https://hip-puppies.herokuapp.com',
+      sessionId: user.get('sessionToken')
     });
   },
   index: function(){

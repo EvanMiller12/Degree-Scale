@@ -3,6 +3,7 @@ var $ = require('jquery');
 var parse = {
   BASE_API_URL: '',
   setup: function(config){
+    console.log('config', config);
     if(config.BASE_API_URL){
       this.BASE_API_URL = config.BASE_API_URL;
     }
@@ -17,7 +18,16 @@ var parse = {
         }
       }
     });
+  },
+  deinitialize: function(){
+    $.ajaxSetup({
+      beforeSend: function(xhr){
+        xhr.setRequestHeader("X-Parse-Application-Id", null);
+        xhr.setRequestHeader("X-Parse-REST-API-Key", null);
+        xhr.setRequestHeader("X-Parse-Session-Token", null);
+      }
+    });
   }
-}
+};
 
-module.exports = parse;
+module.exports = parse

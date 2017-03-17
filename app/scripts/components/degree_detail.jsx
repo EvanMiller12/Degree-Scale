@@ -1,5 +1,7 @@
 var React = require('react');
 
+var User = ('../../models/user').User;
+
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class DegreeDetailContainer extends React.Component{

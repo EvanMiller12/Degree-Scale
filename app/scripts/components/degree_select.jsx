@@ -48,7 +48,7 @@ class DegreeSelectForm extends React.Component{
         </select>
         </div>
         <div className="view-salary-btn">
-          <a className="btn btn-success" href="#" role="button">
+          <a className="btn btn-success" href="#degree/detail/" role="button">
             View Salary
           </a>
         </div>

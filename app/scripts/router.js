@@ -44,16 +44,16 @@ var AppRouter = Backbone.Router.extend({
     }
   },
 
-  execute: function(callback, args, name) {
-    var user = User.current();
-
-    if(!user && name != 'auth') {
-      this.navigate('auth/', { trigger: true });
-      return false;
-    }
-
-    return Backbone.Router.prototype.execute.apply(this, arguments);
-  },
+  // execute: function(callback, args, name) {
+  //   var user = User.current();
+  //
+  //   if(!user && name != 'index') {
+  //     this.navigate('auth/', { trigger: true });
+  //     return false;
+  //   }
+  //
+  //   return Backbone.Router.prototype.execute.apply(this, arguments);
+  // },
 
   index: function(){
     ReactDOM.render(

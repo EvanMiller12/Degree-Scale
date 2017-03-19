@@ -30,7 +30,7 @@ class ProfileDetailContainer extends React.Component{
                 <h2>Your Profile</h2>
                 <div className="user-avatar">
                   <a name="file" type="file" className="avatar">
-                    <img src="http://placehold.it/250x250" alt="" />
+                    <img src={user.get('avatar_url')} alt="" />
                   </a>
                 </div>
               </div>

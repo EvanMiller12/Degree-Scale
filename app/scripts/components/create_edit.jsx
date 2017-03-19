@@ -1,12 +1,16 @@
 var React = require('react');
 var Backbone = require('backbone');
+var Dropzone = require('react-dropzone');
 
 var User = require('../models/user.js').User;
+var ParseFile = require('../models/parse.js').ParseFile;
+
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class ProfileCreateEditContainer extends React.Component {
   constructor(props){
     super(props);
+
     var userProfile = User.current();
 
     this.saveProfile = this.saveProfile.bind(this);
@@ -19,24 +23,22 @@ class ProfileCreateEditContainer extends React.Component {
     }
 
     this.state = {
-      userProfile
+      userProfile,
     }
-
   }
 
   saveProfile(formData){
-    var user = User.current();
+    var userProfile = this.state.userProfile;
 
-    user.set({
+    userProfile.set({
       'first_name': formData.first_name,
       'last_name': formData.last_name,
-      'location': formData.location
+      'location': formData.location,
+      'avatar_url': formData.avatar_url,
     });
 
-    console.log('user', user);
-
-    user.save().then(() => {
-      Backbone.history.navigate('#profile/' + user.get('objectId') + '/', {trigger: true});
+    userProfile.save().then(() => {
+      Backbone.history.navigate('#profile/' + userProfile.get('objectId') + '/', {trigger: true});
     });
   }
   render() {
@@ -59,6 +61,7 @@ class ProfileCreateEditForm extends React.Component {
   constructor(props){
     super(props);
 
+    this.updateImage = this.updateImage.bind(this);
     this.updateFirstName = this.updateFirstName.bind(this);
     this.updateLastName = this.updateLastName.bind(this);
     this.updateLocation = this.updateLocation.bind(this);
@@ -68,12 +71,16 @@ class ProfileCreateEditForm extends React.Component {
     this.state = {
       first_name: this.props.userProfile.get('first_name'),
       last_name: this.props.userProfile.get('last_name'),
-      location: this.props.userProfile.get('location')
+      location: this.props.userProfile.get('location'),
+      avatar_url: this.props.userProfile.get('avatar_url'),
     }
   }
 
   componentWillReceiveProps(newProps){
     this.setState(newProps.userProfile.toJSON());
+  }
+  updateImage(file){
+    this.setState({avatar_url: file})
   }
   updateFirstName(e){
     this.setState({first_name: e.target.value});
@@ -94,12 +101,7 @@ class ProfileCreateEditForm extends React.Component {
           <div className="row">
             <h1>{this.props.userProfile.isNew() ? 'Create' : 'Edit'} Profile</h1>
               <div className="col-xs-4 col-md-2">
-                <div className="thumbnail">
-                  <a name="file" type="file" className="add-image-thumbnail">
-                    <span className="glyphicon glyphicon-plus"></span>
-                    <h5>Add Image</h5>
-                  </a>
-                </div>
+                <PicDropzone updateImage={this.updateImage} />
               </div>
               <div className="col-xs-4 col-md-6">
                 <div className="form-group">
@@ -128,6 +130,46 @@ class ProfileCreateEditForm extends React.Component {
     )
   }
 }
+
+class PicDropzone extends React.Component{
+  constructor(props){
+   super(props);
+
+   this.state = {
+     preview: null,
+   };
+
+   this.handleImage = this.handleImage.bind(this);
+ }
+ onDrop(files){
+   console.log('file', files)
+   this.setState({files});
+ }
+
+  handleImage(e){
+   var file = e.target.files[0];
+   this.setState({pic: file});
+   var reader = new FileReader();
+   reader.onloadend = ()=>{
+    this.setState({preview: reader.result});
+    this.props.updateImage(this.state.pic);
+  };
+
+  reader.readAsDataURL(file);
+
+ }
+
+  render() {
+    return (
+      <div>
+        <p>click below to add image</p>
+        <Dropzone onChange={this.handleImage} onDrop={this.onDrop}>
+          <img src={this.state.preview} />
+        </Dropzone>
+      </div>
+    );
+  }
+};
 
 module.exports = {
     ProfileCreateEditContainer

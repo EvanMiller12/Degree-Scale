@@ -53,7 +53,14 @@ var ParseCollection = Backbone.Collection.extend({
   }
 });
 
+var ParseFile = ParseModel.extend({
+  urlRoot: function(){
+    return 'https://tiny-parse-server.herokuapp.com/files/' + this.get('name');
+  }
+});
+
 module.exports = {
   ParseModel,
-  ParseCollection
+  ParseCollection,
+  ParseFile
 }

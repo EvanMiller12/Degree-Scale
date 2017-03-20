@@ -3,7 +3,9 @@ var Backbone = require('backbone');
 var Dropzone = require('react-dropzone');
 
 var User = require('../models/user.js').User;
-var ParseFile = require('../models/parse.js').ParseFile;
+var UserDegree = require('../models/user_degree').UserDegree;
+var UserDegreeCollection = require('../models/user_degree').UserDegreeCollection;
+var Profile = require('../models/profile').Profile;
 
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
@@ -11,34 +13,37 @@ class ProfileCreateEditContainer extends React.Component {
   constructor(props){
     super(props);
 
-    var userProfile = User.current();
-
-    this.saveProfile = this.saveProfile.bind(this);
+    var profile = new Profile();
 
     if(this.props.id){
-      userProfile.set('objectId', this.props.id);
-      userProfile.fetch().then(() => {
-        this.setState({userProfile});
+      profile.set('objectId', this.props.id);
+      profile.fetch().then(() => {
+        this.setState({proflile});
       });
     }
 
+    this.saveProfile = this.saveProfile.bind(this);
+
     this.state = {
-      userProfile,
+      profile,
     }
   }
 
   saveProfile(formData){
-    var userProfile = this.state.userProfile;
+    var profile = this.state.profile;
+    var user = User.current();
 
-    userProfile.set({
-      'first_name': formData.first_name,
-      'last_name': formData.last_name,
-      'location': formData.location,
-      'avatar_url': formData.avatar_url,
+    profile.set({
+     'first_name': formData.first_name,
+     'last_name': formData.last_name,
+     'location': formData.location,
+     'avatar_url': formData.avatar_url,
+
     });
+    profile.setPointer('owner', '_User', profile.get('objectId'));
 
-    userProfile.save().then(() => {
-      Backbone.history.navigate('#profile/' + userProfile.get('objectId') + '/', {trigger: true});
+    profile.save().then(function(){
+      Backbone.history.navigate('#profile/' + profile.get('objectId') + '/', {trigger: true});
     });
   }
   render() {
@@ -47,8 +52,8 @@ class ProfileCreateEditContainer extends React.Component {
         <div className="container">
           <div className="row">
             <ProfileCreateEditForm
-              userProfile={this.state.userProfile}
               saveProfile={this.saveProfile}
+              profile={this.state.profile}
               />
           </div>
         </div>
@@ -60,27 +65,43 @@ class ProfileCreateEditContainer extends React.Component {
 class ProfileCreateEditForm extends React.Component {
   constructor(props){
     super(props);
+    var user = User.current();
 
     this.updateImage = this.updateImage.bind(this);
     this.updateFirstName = this.updateFirstName.bind(this);
     this.updateLastName = this.updateLastName.bind(this);
     this.updateLocation = this.updateLocation.bind(this);
+
+    this.updateSchool = this.updateSchool.bind(this);
+    this.updateDegreeType = this.updateDegreeType.bind(this);
+    this.updateMajor = this.updateMajor.bind(this);
+
+    this.handleCreateDegree = this.handleCreateDegree.bind(this);
+    this.deleteDegree = this.deleteDegree.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    // this.state = this.props.user.toJSON();
-    this.state = {
-      first_name: this.props.userProfile.get('first_name'),
-      last_name: this.props.userProfile.get('last_name'),
-      location: this.props.userProfile.get('location'),
-      avatar_url: this.props.userProfile.get('avatar_url'),
-    }
-  }
+    this.state = this.props.profile.toJSON();
 
-  componentWillReceiveProps(newProps){
-    this.setState(newProps.userProfile.toJSON());
   }
-  updateImage(file){
-    this.setState({avatar_url: file})
+  componentWillReceiveProps(newProps){
+   this.setState(newProps.profile.toJSON());
+ }
+ updateImage(e){
+    // step 1: get the file object from the form
+    var imageData = e.target.files[0];
+
+    // step 2: new parse model with the name set
+    var image = new ParseFile();
+    image.set({name: imageData.name});
+
+    // step 3: ajax request to save image to the server
+    image.save({}, {
+      data: imageData,
+      contentType: imageData.type
+    }).then(() => {
+      // step 4: save the image url to the recipe state
+      this.setState({avatar_url: image});
+    });
   }
   updateFirstName(e){
     this.setState({first_name: e.target.value});
@@ -91,17 +112,40 @@ class ProfileCreateEditForm extends React.Component {
   updateLocation(e){
     this.setState({location: e.target.value});
   }
+  updateSchool(e){
+   this.state.tempDegree.set('school', e.target.value);
+ }
+ updateDegreeType(e){
+   this.state.tempDegree.set('degree_type', e.target.value);
+ }
+ updateMajor(e){
+   this.state.tempDegree.set('major', e.target.value);
+ }
+ handleCreateDegree(e){
+   e.preventDefault();
+
+   var degrees = this.state.degrees;
+   degrees.add(this.state.tempDegree.clone());
+   this.setState({degrees: degrees});
+ }
+ deleteDegree(degree){
+   var updateDegreeList = this.state.degrees;
+   updateDegreeList.remove(degree);
+   this.setState({degrees: updateDegreeList});
+ }
   handleSubmit(e){
     e.preventDefault();
     this.props.saveProfile(this.state);
   }
   render() {
+    var user = User.current()
     return (
       <form onSubmit={this.handleSubmit} className="profile-form">
           <div className="row">
-            <h1>{this.props.userProfile.isNew() ? 'Create' : 'Edit'} Profile</h1>
+            <h1>{user.isNew() ? 'Create' : 'Edit'} Profile</h1>
               <div className="col-xs-4 col-md-2">
-                <PicDropzone updateImage={this.updateImage} />
+                <label htmlFor="image">Amazing Food Photography</label>
+                <input onChange={this.handleImageChange} filename={this.state.image} className="form-control" name="image" type="file" placeholder="Nice photo" />
               </div>
               <div className="col-xs-4 col-md-6">
                 <div className="form-group">
@@ -115,21 +159,63 @@ class ProfileCreateEditForm extends React.Component {
           </div>
           <div className='row'>
             <div className="col-md-8">
-              <input type="text" placeholder="College"/>
-              <input type="text" placeholder="Associate or Bachelor"/>
-              <input type="text" placeholder="Major"/>
+              <input onChange={this.updateSchool} type="text" placeholder="School"/>
+              <input onChange={this.updateDegreeType} type="text" placeholder="Associate or Bachelor"/>
+              <input onChange={this.updateMajor} type="text" placeholder="Major"/>
               <span>
-                  <button type="button" name="button">
+                  <button onClick={this.handleCreateDegree} type="button" name="button">
                     <span className="glyphicon glyphicon-plus"></span>
                   </button>
               </span>
             </div>
           </div>
+          <DegreeList degrees={this.state.degrees}
+                      deleteDegree={this.deleteDegree}
+                      />
             <input className="btn btn-success" type="submit" value='Save' />
       </form>
     )
   }
 }
+
+class DegreeList extends React.Component{
+  constructor(props){
+    super(props);
+    var degrees = new UserDegreeCollection();
+    this.state = {
+      degrees
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({degrees: this.props.degrees});
+  }
+  render(){
+    var self = this;
+    var newDegree = this.state.degrees.map(degree =>{
+      return (
+        <li key={degree.cid} className="list-group-item"> {degree.get('school')} {degree.get('degree_type')} {degree.get('major')}
+          <button onClick={function(e){
+            e.preventDefault();
+            self.props.deleteDegree(degree);}}
+            type="button" className="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+        </li>
+      )
+    });
+
+    return (
+      <div className="row">
+        <ul className="list-group">
+
+          {newDegree}
+
+        </ul>
+      </div>
+
+    )
+  }
+}
+
 
 class PicDropzone extends React.Component{
   constructor(props){

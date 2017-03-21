@@ -10,6 +10,7 @@ class ProfileDetailContainer extends React.Component{
     super(props);
 
     var profile = new Profile();
+
     profile.set('objectId', props.id);
     profile.fetch().then(() => {
       this.setState({profile});
@@ -21,6 +22,7 @@ class ProfileDetailContainer extends React.Component{
   }
   render(){
     var profile = this.state.profile;
+
     var user = User.current();
     return(
       <BaseLayout>
@@ -68,7 +70,6 @@ class ProfileDetailContainer extends React.Component{
 class DegreeList extends React.Component{
   render(){
     var degreeList = this.props.profile.get('degrees').map((degree) => {
-
       return (
         <li key={degree.cid}>
           {degree.get('school') + ' '}

@@ -6,9 +6,6 @@ var ParseModel = require('./parse').ParseModel;
 var UserDegreeCollection = require('./user_degree').UserDegreeCollection;
 
 var User = ParseModel.extend({
-  defaults: function(){
-    degrees: new UserDegreeCollection()
-  },
   urlRoot: function(){
     return parse.BASE_API_URL + '/users';
   }
@@ -39,8 +36,8 @@ var User = ParseModel.extend({
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },
   current: function(){
+
     var user = localStorage.getItem('user');
-    // console.log(user);
     if(!user){
      return false;
     }

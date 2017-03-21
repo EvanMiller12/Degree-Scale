@@ -16,15 +16,14 @@ class HomeLayout extends React.Component {
 class Banner extends React.Component{
   render(){
     return(
-      <div className="container-fluid">
-        <div className="row">
-          <div className="jumbotron">
-            <div className="mission-statement">
-              <h1>Mission Statement</h1>
-            </div>
+      <div className="row">
+        <div className="jumbotron">
+          <div className="mission-statement">
+            <h1>Mission Statement</h1>
           </div>
         </div>
       </div>
+
     )
   }
 }

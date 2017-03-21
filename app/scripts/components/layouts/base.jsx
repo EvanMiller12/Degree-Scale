@@ -22,20 +22,18 @@ class HeaderNav extends React.Component{
   render(){
     console.log(User.current('user'));
     return(
-      <div className="container">
-        <div className="row">
-          <nav className="navbar">
-            <ul className="home-nav">
-              <li>
-                <a className="navbar-brand" href="#">Navbar</a>
-              </li>
-              <li>
-                <a href="#">Home</a>
-              </li>
-                {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
-            </ul>
-          </nav>
-        </div>
+      <div className="row">
+        <nav className="navbar">
+          <ul className="home-nav">
+            <li>
+              <a className="navbar-brand" href="#">Navbar</a>
+            </li>
+            <li>
+              <a href="#">Home</a>
+            </li>
+              {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
+          </ul>
+        </nav>
       </div>
     )
   }
@@ -63,7 +61,7 @@ class LoggedInNavItem extends React.Component{
     return(
       <NavDropdown title={user.get('username')} id="nav-dropdown">
         <MenuItem className="dropdown-item" href={'#profile/' + user.get('objectId') + '/'}>View Profile</MenuItem>
-        <MenuItem className="dropdown-item" href="#profile/create/">Edit Profile</MenuItem>
+        <MenuItem className="dropdown-item" href={'#profile/create/' + user.get('objectId') + '/'}>Edit Profile</MenuItem>
         <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>
       </NavDropdown>
     )
@@ -73,19 +71,17 @@ class LoggedInNavItem extends React.Component{
 class Footer extends React.Component{
   render(){
     return(
-      <div clasName="container">
-        <div className="row">
-          <div className="footer">
-            <ul className="footer-nav">
-              <li>
-                <span>App Name,</span>
-                <span>an app built by <a href="#">Evan Miller</a></span>
-              </li>
-              <li>
-                <a href="#">Home</a>
-              </li>
-            </ul>
-          </div>
+      <div className="row">
+        <div className="footer">
+          <ul className="footer-nav">
+            <li>
+              <span>App Name,</span>
+              <span>an app built by <a href="#">Evan Miller</a></span>
+            </li>
+            <li>
+              <a href="#">Home</a>
+            </li>
+          </ul>
         </div>
       </div>
     )

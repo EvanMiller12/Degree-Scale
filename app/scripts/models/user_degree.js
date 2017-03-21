@@ -5,12 +5,12 @@ var ParseModel = require('./parse').ParseModel;
 var ParseCollection = require('./parse').ParseCollection;
 
 var UserDegree = ParseModel.extend({
-  // urlRoot: 'https://hip-puppies.herokuapp.com/classes/Profile'
+  urlRoot: 'https://hip-puppies.herokuapp.com/classes/Degrees'
 });
 
 var UserDegreeCollection = ParseCollection.extend({
-  model: UserDegree
-  // url:'https://hip-puppies.herokuapp.com/classes/Profile'
+  model: UserDegree,
+  url:'https://hip-puppies.herokuapp.com/classes/Degrees'
 });
 
 module.exports = {

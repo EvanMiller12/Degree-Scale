@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 
 var Degree = Backbone.Model.extend({
   idAttribute: 'objectId',
-
+// https://collegescorecard.ed.gov/search/?degree=b&major=agriculture&sort=advantage:desc
 });
 
 var DegreeCollection = Backbone.Collection.extend({
@@ -14,17 +14,17 @@ var DegreeCollection = Backbone.Collection.extend({
   parse: function(data){
     return data.results;
   },
-  // average: function() {
-  //   var earnings = this.map(function(degree){
-  //     return degree.get('2012.earnings.10_yrs_after_entry.median');
-  //   });
-  //   console.log(earnings)
-  //   var average = earnings.reduce(function(a, b){
-  //     return a + b;
-  //   }, 0) / earnings.length;
-  //
-  //   return average;
-  // }
+//   average: function() {
+//     var earnings = this.map(function(degree){
+//       return degree.get('2012.earnings.10_yrs_after_entry.median');
+//     });
+//     console.log(earnings)
+//     var average = earnings.reduce(function(a, b){
+//       return a + b;
+//     }, 0) / earnings.length;
+//
+//     return average;
+//   }
 });
 
 // var degrees = new DegreeCollection();

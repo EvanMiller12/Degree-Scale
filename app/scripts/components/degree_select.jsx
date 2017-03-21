@@ -33,7 +33,7 @@ class DegreeSelectContainer extends React.Component{
 class DegreeSelectForm extends React.Component{
   render(){
     var programs = Object.keys(programNames).map(function(key, index){
-      return <option key={programNames[key]} value={programNames[key]}>{key}</option>
+      return <option key={programNames[key]} value={key}>{programNames[key]}</option>
     });
 
     return(

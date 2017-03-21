@@ -19,8 +19,8 @@ var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'auth/': 'auth',
-    'profile/create/:id/': 'profileCreateEdit',
-    'profile/:id/edit/': 'profileCreateEdit',
+    'profile/create/': 'profileCreateEdit',
+    'profile/edit/:id/': 'profileCreateEdit',
     'profile/:id/': 'profileDetail',
     'degree/': 'degreeSelect',
     'degree/detail/': 'degreeDetail',

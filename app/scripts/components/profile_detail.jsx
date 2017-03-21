@@ -22,7 +22,7 @@ class ProfileDetailContainer extends React.Component{
   }
   render(){
     var profile = this.state.profile;
-
+    console.log('profile', this.state.profile)
     var user = User.current();
     return(
       <BaseLayout>
@@ -56,7 +56,7 @@ class ProfileDetailContainer extends React.Component{
               </div>
             </div>
             <div className="edit-profile-btn col-sm-6 col-sm-offset-3">
-             <a href={'#profile/' + profile.get('objectId') + '/edit/'} className="btn btn-primary">
+             <a href={'#profile/' + '/edit/' + profile.get('objectId')} className="btn btn-primary">
                Edit Profile
              </a>
             </div>
@@ -73,7 +73,7 @@ class DegreeList extends React.Component{
       return (
         <li key={degree.cid}>
           {degree.get('school') + ' '}
-          {degree.get('degree_type') + ' '}
+          {degree.get('degree') + ' '}
           {degree.get('major')}
         </li>
       )

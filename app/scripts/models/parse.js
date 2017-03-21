@@ -1,4 +1,6 @@
+var $ = require('jquery');
 var Backbone = require('backbone');
+
 
 var parse = require('../parse_setup').parse;
 
@@ -10,6 +12,7 @@ var ParseModel = Backbone.Model.extend({
 
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
+
   setPointer: function(field, parseClass, objectId){
     var pointerObject = {
       "__type": "Pointer",
@@ -26,6 +29,7 @@ var ParseModel = Backbone.Model.extend({
 var ParseCollection = Backbone.Collection.extend({
   whereClause: {},
   parseWhere: function(field, value, objectId){
+    // If an objectId is passed in then we are building a pointer where
     if(objectId){
       value = {
         field: field,
@@ -34,18 +38,17 @@ var ParseCollection = Backbone.Collection.extend({
         '__type': 'Pointer'
       };
     }
+
     this.whereClause[field] = value;
 
     return this;
   },
   url: function(){
-    var url = this.base;
-
+    var url = this.baseUrl;
     if(Object.keys(this.whereClause).length > 0){
       url += '?where=' + JSON.stringify(this.whereClause);
       this.whereClause = {};
     }
-
     return url;
   },
   parse: function(data){

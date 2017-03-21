@@ -18,7 +18,7 @@ var Profile = ParseModel.extend({
 
 var ProfileCollection = ParseCollection.extend({
   model: Profile,
-  url:'https://hip-puppies.herokuapp.com/classes/Profile'
+  baseUrl:'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 module.exports = {

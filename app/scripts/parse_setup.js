@@ -3,7 +3,7 @@ var $ = require('jquery');
 var parse = {
   BASE_API_URL: '',
   setup: function(config){
-    console.log('config', config);
+    // console.log('config', config);
     if(config.BASE_API_URL){
       this.BASE_API_URL = config.BASE_API_URL;
     }

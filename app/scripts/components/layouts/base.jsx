@@ -63,7 +63,6 @@ class LoggedInNavItem extends React.Component{
           var profileId = profileCollection.models[0].get('objectId');
           this.setState({ profileId: profileId });
       }
-      console.log(this.state);
     })
 
     this.state = {
@@ -79,11 +78,10 @@ class LoggedInNavItem extends React.Component{
 
   render(title){
     var user = User.current()
-    // console.log('nav', this.state);
 
     return(
       <NavDropdown title={user.get('username')} id="nav-dropdown">
-        <MenuItem className="dropdown-item" href={'#profile/' + (this.state.profileId) + '/'}>View Profile</MenuItem>
+        <MenuItem className="dropdown-item" href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
         <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>
       </NavDropdown>

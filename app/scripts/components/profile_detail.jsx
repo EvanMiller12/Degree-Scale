@@ -11,10 +11,12 @@ class ProfileDetailContainer extends React.Component{
 
     var profile = new Profile();
 
-    profile.set('objectId', props.id);
-    profile.fetch().then(() => {
-      this.setState({profile});
-    });
+    if(this.props.id){
+      profile.set('objectId', this.props.id);
+      profile.fetch().then(() => {
+        this.setState({ profile: profile });
+      });
+    }
 
     this.state = {
       profile
@@ -22,7 +24,7 @@ class ProfileDetailContainer extends React.Component{
   }
   render(){
     var profile = this.state.profile;
-    console.log('profile', this.state.profile)
+
     var user = User.current();
     return(
       <BaseLayout>
@@ -30,7 +32,7 @@ class ProfileDetailContainer extends React.Component{
           <div className="user-profile col-sm-6 col-sm-offset-3">
             <div className="row">
               <div className="col-sm-6 col-sm-offset-3">
-                <h2>Your Profile</h2>
+                <h2>{profile.get('first_name') + 's'}  Profile</h2>
                 <div className="user-avatar">
                   <a name="file" type="file" className="avatar">
                     <img src={profile.get('avatar_url')} alt="" />
@@ -42,21 +44,24 @@ class ProfileDetailContainer extends React.Component{
               <div className="col-sm-6 col-sm-offset-3">
                 <div className="user-profile-details">
                   <div className="users-name">
-                    <span>{profile.get('first_name')}</span>
+                    <span>{profile.get('first_name')} </span>
                     <span>{profile.get('last_name')}</span>
                   </div>
                   <div className="location">
+                    <span>Location: </span>
                     <span>{profile.get('location')}</span>
                   </div>
                   <div className="email">
+                    <span>Email: </span>
                     <span>{user.get('username')}</span>
                   </div>
+                  <label>Degrees</label>
                   <DegreeList profile={this.state.profile}/>
                 </div>
               </div>
             </div>
             <div className="edit-profile-btn col-sm-6 col-sm-offset-3">
-             <a href={'#profile/' + '/edit/' + profile.get('objectId')} className="btn btn-primary">
+             <a href={'#profile/edit/' + profile.get('objectId') + '/'} className="btn btn-primary">
                Edit Profile
              </a>
             </div>
@@ -68,20 +73,22 @@ class ProfileDetailContainer extends React.Component{
 }
 
 class DegreeList extends React.Component{
-  render(){
-    var degreeList = this.props.profile.get('degrees').map((degree) => {
-      return (
-        <li key={degree.cid}>
-          {degree.get('school') + ' '}
-          {degree.get('degree') + ' '}
-          {degree.get('major')}
-        </li>
-      )
-   });
-
+  render() {
+    var degrees = this.props.profile.get('degrees').length != 0 ? this.props.profile.get('degrees') : null
+    if (degrees) {
+      degrees = degrees.map(function(degree, index) {
+            return (
+              <li key={index}>
+                {degree.school + ' '}
+                {degree.degree + ' '}
+                {degree.major}
+              </li>
+            )
+      })
+    }
     return (
       <ul>
-       {degreeList}
+        { degrees }
       </ul>
     )
   }

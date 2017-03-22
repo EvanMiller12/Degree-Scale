@@ -23,7 +23,7 @@ class ProfileCreateEditContainer extends React.Component {
       profile.fetch().then(() => {
         var degrees = new UserDegreeCollection(profile.get('degrees'));
 
-        this.setState({ profile: profile });
+        this.setState({ profile: profile, first_name: profile.get('first_name'), last_name: profile.get('last_name'), location: profile.get('location') });
         this.setState({ preview: profile.get('avatar_url')});
         this.setState({ degrees: degrees });
       });
@@ -36,7 +36,10 @@ class ProfileCreateEditContainer extends React.Component {
       degree: null,
       major: null,
       preview: null,
-      pic: null
+      pic: null,
+      first_name: null,
+      last_name: null,
+      location: null
     }
 
     this.updateFirstName = this.updateFirstName.bind(this);
@@ -51,13 +54,16 @@ class ProfileCreateEditContainer extends React.Component {
   }
 
   updateFirstName(e) {
-    this.state.profile.set({'first_name': e.target.value});
+    this.setState({ first_name: e.target.value })
+    this.state.profile.set({first_name: e.target.value});
   }
   updateLastName(e) {
-    this.state.profile.set({'last_name': e.target.value});
+    this.setState({ last_name: e.target.value })
+    this.state.profile.set({last_name: e.target.value});
   }
   updateLocation(e) {
-    this.state.profile.set({'location': e.target.value});
+    this.setState({ location: e.target.value })
+    this.state.profile.set({location: e.target.value});
   }
   updateSchool(e) {
    this.setState({school: e.target.value})
@@ -79,21 +85,26 @@ class ProfileCreateEditContainer extends React.Component {
    this.setState({ degrees: this.state.degrees, school: null, degree: null, major: null })
  }
 
-  updateProfile(e) {
-    e.preventDefault();
+ updateProfile(e) {
+   e.preventDefault();
 
-    var profile = this.state.profile;
-    var image = new ParseFile(this.state.pic);
+   var profile = this.state.profile;
 
-    profile.set({degrees: this.state.degrees })
-    profile.setPointer('owner', '_User', User.current().get('objectId'));
+   var image = new ParseFile(this.state.pic);
 
-    image.save({}, {
-      data: this.state.pic
-      }).then((response)=>{
-      profile.set({'avatar_url': response.url});
-      profile.save()
-   });
+   profile.set({degrees: this.state.degrees })
+   profile.setPointer('owner', '_User', User.current().get('objectId'));
+
+   if(!profile.get('avatar_url')){
+     image.save({}, {
+       data: this.state.pic
+     }).then((response)=>{
+       profile.set({ 'avatar_url': response.url });
+     profile.save();
+     });
+   } else {
+     profile.save();
+   }
  }
 
  updateImage(e) {
@@ -103,6 +114,7 @@ class ProfileCreateEditContainer extends React.Component {
    var reader = new FileReader();
    reader.onloadend = ()=>{
    this.setState({ preview: reader.result });
+  //  this.updateImage(this.state.pic)
   }
   reader.readAsDataURL(file);
 }
@@ -137,11 +149,11 @@ class ProfileCreateEditContainer extends React.Component {
                 </div>
                 <div className="col-xs-4 col-md-6">
                   <div className="form-group">
-                    <input onChange={this.updateFirstName} value={this.state.profile.get('first_name')} className="form-control" type="text" placeholder="First Name"/>
-                    <input onChange={this.updateLastName} value={this.state.profile.get('last_name')} className="form-control" type="text" placeholder="Last Name"/>
+                    <input onChange={this.updateFirstName} value={this.state.first_name} className="form-control" type="text" placeholder="First Name"/>
+                    <input onChange={this.updateLastName} value={this.state.last_name} className="form-control" type="text" placeholder="Last Name"/>
                   </div>
                   <div className="form-group">
-                    <input onChange={this.updateLocation} value={this.state.profile.get('location')} className="form-control" type="text" placeholder="Location (state)"/>
+                    <input onChange={this.updateLocation} value={this.state.location} className="form-control" type="text" placeholder="Location (state)"/>
                   </div>
                 </div>
             </div>

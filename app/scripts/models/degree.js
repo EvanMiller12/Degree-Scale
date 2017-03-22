@@ -35,11 +35,11 @@ var DegreeCollection = Backbone.Collection.extend({
   }
 });
 
-var degrees = new DegreeCollection();
-var associates = degrees.fetch().done(function(response){
-  console.log(degrees.average())
-  return degrees.average();
-});
+// var degrees = new DegreeCollection();
+// var associates = degrees.fetch().done(function(response){
+//   console.log(degrees.average())
+//   return degrees.average();
+// });
 
 // var componentData = average.then(function(data){
 //   return data.results

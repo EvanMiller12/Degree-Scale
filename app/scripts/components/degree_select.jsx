@@ -8,23 +8,37 @@ var DegreeCollection = require('../models/degree.js').DegreeCollection;
 class DegreeSelectContainer extends React.Component{
   constructor(props){
     super(props);
-    
-  }
 
+    var degreeCollection = new DegreeCollection;
+
+    this.state = {
+      degreeCollection,
+      selectedMajor: null
+    }
+  }
+  updateDegreeDetail() {
+    var degreeCollection = this.state.degreeCollection;
+    var selectedMajor = this.state.selectedMajor;
+
+    degreeCollection.urlSetter(2, {selectedMajor});
+    degreeCollection.fetch().then(() =>
+    Backbone.history.navigate('#degree/detail/', {trigger: true})
+    )
+  }
   render(){
 
     return(
       <BaseLayout>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-              <div className="degree-select-contain">
-                <div className="degree-select-title">
-                <h1>Find Degree</h1>
-                </div>
-                <div className="degree-select-form">
-                  <DegreeSelectForm />
-                </div>
+        <div className="row">
+          <div className="col-sm-6 col-sm-offset-3">
+            <div className="degree-select-contain">
+              <div className="degree-select-title">
+              <h1>Find Degree</h1>
+              </div>
+              <div className="degree-select-form">
+                <DegreeSelect
+                  updateDegreeDetail={this.updateDegreeDetail}
+                />
               </div>
             </div>
           </div>
@@ -34,18 +48,24 @@ class DegreeSelectContainer extends React.Component{
   }
 }
 
-class DegreeSelectForm extends React.Component{
+class DegreeSelect extends React.Component{
   constructor(props){
     super(props);
 
     this.updateSelection = this.updateSelection.bind(this);
+
+    this.state = {
+      selectedMajor: ''
+    }
   }
   updateSelection(e){
-      this.setState({selected: e.target.value});
+      this.setState({selectedMajor: e.target.value});
   }
   handleSubmit(e){
     e.preventDefault();
+    var selectedMajor = this.state.selectedMajor;
 
+    this.props.updateDegreeDetail(this.state)
   }
   render(){
     var programs = Object.keys(programNames).map(function(key, index){

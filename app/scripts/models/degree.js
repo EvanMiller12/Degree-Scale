@@ -14,7 +14,6 @@ var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
     return 'http://localhost:3000/v1/schools/'
-    // '/search/?degree=b&major=agriculture&sort=advantage:desc'
   },
   parse: function(data){
     return data.results;
@@ -23,6 +22,7 @@ var DegreeCollection = Backbone.Collection.extend({
     this.url = 'http://localhost:3000/v1/schools/' + degree + '/' + major;
   },
   average: function() {
+    var count = 0;
     var earnings = this.map(function(degree){
       return degree.get('2012.earnings.10_yrs_after_entry.median');
     });

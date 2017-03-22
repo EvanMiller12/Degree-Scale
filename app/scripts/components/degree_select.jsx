@@ -6,6 +6,10 @@ var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 var DegreeCollection = require('../models/degree.js').DegreeCollection;
 
 class DegreeSelectContainer extends React.Component{
+  constructor(props){
+    super(props);
+    
+  }
 
   render(){
 
@@ -19,7 +23,7 @@ class DegreeSelectContainer extends React.Component{
                 <h1>Find Degree</h1>
                 </div>
                 <div className="degree-select-form">
-                  <DegreeSelectForm programs={this.programs}/>
+                  <DegreeSelectForm />
                 </div>
               </div>
             </div>
@@ -31,6 +35,18 @@ class DegreeSelectContainer extends React.Component{
 }
 
 class DegreeSelectForm extends React.Component{
+  constructor(props){
+    super(props);
+
+    this.updateSelection = this.updateSelection.bind(this);
+  }
+  updateSelection(e){
+      this.setState({selected: e.target.value});
+  }
+  handleSubmit(e){
+    e.preventDefault();
+
+  }
   render(){
     var programs = Object.keys(programNames).map(function(key, index){
       return <option key={programNames[key]} value={key}>{programNames[key]}</option>
@@ -42,7 +58,9 @@ class DegreeSelectForm extends React.Component{
         <span className="degree-select-label">
           Select Your Degree:
         </span>
-        <select className="degree-select option1" name="degree-select">
+        <select
+          onChange={this.updateSelection}
+          className="degree-select option1" name="degree-select">
           <option value="Degree">Select Degree Program</option>
           {programs}
         </select>

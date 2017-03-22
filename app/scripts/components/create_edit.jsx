@@ -101,81 +101,79 @@ class ProfileCreateEditContainer extends React.Component {
      }).then((response)=>{
        profile.set({ 'avatar_url': response.url });
      profile.save();
+     Backbone.history.navigate('#profile/' + profile.get('objectId') + '/', {trigger: true})
      });
    } else {
      profile.save();
+     Backbone.history.navigate('#profile/' + profile.get('objectId') + '/', {trigger: true})
    }
  }
 
- updateImage(e) {
-   e.preventDefault();
-   var file = e.target.files[0];
-   this.setState({ pic: file });
-   var reader = new FileReader();
-   reader.onloadend = ()=>{
-   this.setState({ preview: reader.result });
-  //  this.updateImage(this.state.pic)
+updateImage(e) {
+  e.preventDefault();
+  var file = e.target.files[0];
+  this.setState({ pic: file });
+  var reader = new FileReader();
+  reader.onloadend = ()=>{
+    this.setState({ preview: reader.result });
   }
   reader.readAsDataURL(file);
 }
 
-
-  render() {
-    var user = User.current();
-    var degrees = this.state.degrees.map(function(degree){
-      return (
-        <li key={degree.cid}>
-          {degree.get('school')}
-          {degree.get('degree')}
-          {degree.get('major')}
-        </li>
-      )
-    })
+render() {
+  var user = User.current();
+  var degrees = this.state.degrees.map(function(degree){
     return (
-      <BaseLayout>
-        <div className="row">
-          <form onSubmit={this.updateProfile} className="profile-form">
-            <div className="row">
-              <h1>{ user.isNew() ? 'Create' : 'Edit'} Profile</h1>
-                <div className="col-xs-4 col-md-2">
-
-                  <div>
-                    <p>click below to add image</p>
-                      <Dropzone onChange={ this.updateImage } onDrop={this.onDrop}>
-                        <img src={ this.state.preview } />
-                      </Dropzone>
-                  </div>
-
-                </div>
-                <div className="col-xs-4 col-md-6">
-                  <div className="form-group">
-                    <input onChange={this.updateFirstName} value={this.state.first_name} className="form-control" type="text" placeholder="First Name"/>
-                    <input onChange={this.updateLastName} value={this.state.last_name} className="form-control" type="text" placeholder="Last Name"/>
-                  </div>
-                  <div className="form-group">
-                    <input onChange={this.updateLocation} value={this.state.location} className="form-control" type="text" placeholder="Location (state)"/>
-                  </div>
-                </div>
-            </div>
-            <div className='row'>
-              <div className="col-md-8">
-                <input onChange={this.updateSchool} value={this.state.school} type="text" placeholder="School"/>
-                <input onChange={this.updateDegree} value={this.state.degree} type="text" placeholder="Associate or Bachelor"/>
-                <input onChange={this.updateMajor} value={this.state.major} type="text" placeholder="Major"/>
-                <span>
-                  <button onClick={this.addDegree} type="button" name="button">
-                    <span className="glyphicon glyphicon-plus"></span>
-                  </button>
-                </span>
-                <ul>
-                  {degrees}
-                </ul>
+      <li key={degree.cid}>
+        {degree.get('school') + ''}
+        {degree.get('degree') + ''}
+        {degree.get('major')}
+      </li>
+    )
+  })
+  return (
+    <BaseLayout>
+      <div className="row">
+        <form onSubmit={this.updateProfile} className="profile-form">
+          <div className="row">
+            <h1>{ user.isNew() ? 'Create' : 'Edit'} Profile</h1>
+            <div className="col-xs-4 col-md-2">
+              <div>
+                <p>click below to add image</p>
+                  <Dropzone onChange={ this.updateImage } onDrop={this.onDrop}>
+                    <img src={ this.state.preview } />
+                  </Dropzone>
               </div>
             </div>
-            <input className="btn btn-success" type="submit" value='Save' />
-          </form>
-        </div>
-      </BaseLayout>
+            <div className="col-xs-4 col-md-6">
+              <div className="form-group">
+                <input onChange={this.updateFirstName} value={this.state.first_name} className="form-control" type="text" placeholder="First Name"/>
+                <input onChange={this.updateLastName} value={this.state.last_name} className="form-control" type="text" placeholder="Last Name"/>
+              </div>
+              <div className="form-group">
+                <input onChange={this.updateLocation} value={this.state.location} className="form-control" type="text" placeholder="Location (state)"/>
+              </div>
+            </div>
+          </div>
+          <div className='row'>
+            <div className="col-md-8">
+              <input onChange={this.updateSchool} value={this.state.school} type="text" placeholder="School"/>
+              <input onChange={this.updateDegree} value={this.state.degree} type="text" placeholder="Associate or Bachelor"/>
+              <input onChange={this.updateMajor} value={this.state.major} type="text" placeholder="Major"/>
+              <span>
+                <button onClick={this.addDegree} type="button" name="button">
+                  <span className="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+              <ul>
+                {degrees}
+              </ul>
+            </div>
+          </div>
+          <input className="btn btn-success" type="submit" value='Save' />
+        </form>
+      </div>
+    </BaseLayout>
     )
   }
 }

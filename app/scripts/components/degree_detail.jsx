@@ -32,21 +32,21 @@ class DegreeDetail extends React.Component {
               </div>
             </div>
             <div className="col-sm-4">
-            <div className="program-level associate-level">
-              <h4>Associate's</h4>
+              <div className="program-level associate-level">
+                <h4>Associate's</h4>
+              </div>
+              <div className="avg-salary associate-salary">
+                <h5>{ this.props.ascAverage }</h5>
+              </div>
             </div>
-            <div className="avg-salary associate-salary">
-              <h5>{ this.props.ascAverage }</h5>
+            <div className="col-sm-4">
+              <div className="program-level bachelor-level">
+                <h4>Bachelor's</h4>
+              </div>
+              <div className="avg-salary bachelor-salary">
+                <h5>{ this.props.bacAverage }</h5>
+              </div>
             </div>
-          </div>
-          <div className="col-sm-4">
-            <div className="program-level bachelor-level">
-              <h4>Bachelor's</h4>
-            </div>
-            <div className="avg-salary bachelor-salary">
-              <h5>{ this.props.bacAverage }</h5>
-            </div>
-          </div>
           </div>
           <BarChart
             cerAverage={this.props.cerAverage}

@@ -17,25 +17,18 @@ class DegreeSelect extends React.Component {
             <h1>Find Degree</h1>
             </div>
             <div className="degree-select-form">
-              <div>
-                <div className="degree-select">
-                <span className="degree-select-label">
-                  Select Your Degree:
-                </span>
-                <select
-                  onClick={ this.props.handleShowResults }
-                  onChange={ this.props.updateSelection }
-                  value={ this.props.selectedMajor }
-                  className="degree-select option1" name="degree-select">
-                  <option value="Degree">Select Degree Program</option>
-                    { programs }
-                </select>
-                </div>
-                <div className="view-salary-btn">
-                  <a className="btn btn-success" href="#degree/detail/" role="button">
-                    View Salary
-                  </a>
-                </div>
+              <div className="degree-select">
+              <span className="degree-select-label">
+                Select degree to view Salary:
+              </span>
+              <select
+                onClick={ this.props.handleShowResults }
+                onChange={ this.props.updateSelection }
+                value={ this.props.selectedMajor }
+                className="degree-select form-control" name="degree-select">
+                <option value="Degree">Select Degree Program</option>
+                  { programs }
+              </select>
               </div>
             </div>
           </div>

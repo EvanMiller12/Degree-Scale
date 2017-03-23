@@ -133,12 +133,10 @@ render() {
   })
   return (
     <BaseLayout>
-      <div className="row">
         <form onSubmit={ this.updateProfile } className="profile-form">
           <div className="row">
             <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
-            <div className="col-xs-4 col-md-2">
-              <div>
+            <div className="col-xs-4 col-md-3">
                 <p>click below to add image</p>
                   <Dropzone
                     onChange={ this.updateImage }
@@ -147,8 +145,7 @@ render() {
                     <img src={ this.state.preview } />
                   </Dropzone>
               </div>
-            </div>
-            <div className="col-xs-4 col-md-6">
+            <div className="col-md-6">
               <div className="form-group">
                 <input onChange={ this.updateFirstName } value={ this.state.first_name } className="form-control" type="text" placeholder="First Name"/>
                 <input onChange={ this.updateLastName } value={ this.state.last_name } className="form-control" type="text" placeholder="Last Name"/>
@@ -159,7 +156,7 @@ render() {
             </div>
           </div>
           <div className='row'>
-            <div className="col-md-8">
+            <div className="col-xs-10 col-md-8">
               <input onChange={ this.updateSchool } value={ this.state.school } type="text" placeholder="School"/>
               <input onChange={ this.updateDegree } value={ this.state.degree } type="text" placeholder="Associate or Bachelor"/>
               <input onChange={ this.updateMajor } value={ this.state.major } type="text" placeholder="Major"/>
@@ -175,7 +172,6 @@ render() {
           </div>
           <input className="btn btn-success" type="submit" value='Save' />
         </form>
-      </div>
     </BaseLayout>
     )
   }

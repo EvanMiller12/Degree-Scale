@@ -133,6 +133,7 @@ render() {
   })
   return (
     <BaseLayout>
+      <div className="col-sm-6 col-sm-offset-3">
         <form onSubmit={ this.updateProfile } className="profile-form">
           <div className="row">
             <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
@@ -172,6 +173,7 @@ render() {
           </div>
           <input className="btn btn-success" type="submit" value='Save' />
         </form>
+      </div>  
     </BaseLayout>
     )
   }

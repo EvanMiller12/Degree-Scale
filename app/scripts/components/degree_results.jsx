@@ -36,7 +36,7 @@ class DegreeResultsContainer extends React.Component {
     e.preventDefault();
     var selectedMajor = e.target.value;
 
-    this.setState({ selectedMajor: selectedMajor });
+    this.setState({ selectedMajor: selectedMajor, showResults: true });
 
     this.updateResults(selectedMajor)
   }

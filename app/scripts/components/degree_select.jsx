@@ -5,8 +5,7 @@ var programNames = require('./../program_data');
 var DegreeCollection = require('../models/degree.js').DegreeCollection;
 
 class DegreeSelect extends React.Component {
-  render(){
-
+  render() {
     var programs = Object.keys(programNames).map(function(key, index){
       return <option key={programNames[key]} value={key}>{programNames[key]}</option>
     });

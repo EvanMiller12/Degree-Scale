@@ -12,14 +12,20 @@ class DegreeResultsContainer extends React.Component {
   constructor(props){
     super(props);
 
-    var degreeCollection = new DegreeCollection;
+    var certificateCollection = new DegreeCollection;
+    var associateCollection = new DegreeCollection;
+    var bachelorCollection = new DegreeCollection;
 
-    this.updateDegreeDetail = this.updateDegreeDetail.bind(this);
     this.updateSelection = this.updateSelection.bind(this);
+    this.updateCertResults = this.updateCertResults.bind(this);
+    this.updateAscResults = this.updateAscResults.bind(this);
+    this.updateBachResults = this.updateBachResults.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      degreeCollection,
+      certificateCollection,
+      associateCollection,
+      bachelorCollection,
       selectedMajor: null
     }
   }
@@ -30,27 +36,42 @@ class DegreeResultsContainer extends React.Component {
 
     this.setState({selectedMajor: selectedMajor});
 
-    this.updateDegreeDetail(selectedMajor);
+    this.updateCertResults(selectedMajor);
+    this.updateAscResults(selectedMajor);
+    this.updateBachResults(selectedMajor);
   }
 
-  updateDegreeDetail(selected) {
-    var selectedMajor = selected;
-    var degreeCollection = this.state.degreeCollection;
-    var url = degreeCollection.urlSetter(1, selectedMajor)
 
-    url.fetch().done((response) => {
-      this.setState({degreeCollection: degreeCollection});
-      console.log('url', degreeCollection);
-      url = degreeCollection.urlSetter(2, selectedMajor);
-      url.fetch().done((response) => {
-        this.setState({degreeCollection: degreeCollection});
-        console.log('url', degreeCollection)
-        url = degreeCollection.urlSetter(3, selectedMajor)
-        url.fetch().done((response) => {
-          this.setState({degreeCollection: degreeCollection});
-          console.log('url', degreeCollection)
-        });
+  updateCertResults(selected) {
+    var selectedMajor = selected;
+    var certificateCollection = this.state.certificateCollection;
+    var certificateData = certificateCollection.urlSetter(1, selectedMajor)
+
+    certificateData.fetch().done((response) => {
+      // this.setState({certificateCollection});
+      // console.log('cert', certificateCollection);
       });
+  }
+
+  updateAscResults(selected) {
+    var selectedMajor = selected;
+    var associateCollection = this.state.associateCollection;
+    var associateData = associateCollection.urlSetter(2, selectedMajor);
+
+    associateData.fetch().done((response) => {
+      // this.setState({associateCollection});
+      // console.log('A.S', associateCollection)
+    });
+  }
+
+  updateBachResults(selected) {
+    var selectedMajor = selected;
+    var bachelorCollection = this.state.bachelorCollection;
+    var bachelorData = bachelorCollection.urlSetter(3, selectedMajor);
+
+    bachelorData.fetch().done((response) => {
+      // this.setState({bachelorCollection});
+      // console.log('B.S', bachelorCollection)
     });
   }
   render(){
@@ -60,7 +81,11 @@ class DegreeResultsContainer extends React.Component {
           selectedMajor={this.state.selectedMajor}
           updateSelection={this.updateSelection}
           />
-        <DegreeDetail />
+        <DegreeDetail
+          certificateCollection={this.state.certificateCollection}
+          associateCollection={this.state.associateCollection}
+          bachelorCollection={this.state.bachelorCollection}
+        />
       </BaseLayout>
     )
   }

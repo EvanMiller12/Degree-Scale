@@ -7,19 +7,15 @@ var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 
 class DegreeDetail extends React.Component{
-  constructor(props){
+  constructor(props) {
     super(props);
-
-    var degrees = new DegreeCollection();
-    degrees.fetch()
-    // console.log(degrees)
-    this.state = {
-      degrees
-    }
   }
-  render(){
-    var degrees = this.state.degrees;
-    // console.log(degrees)
+
+  render() {
+    // console.log('cert', this.props.certificateCollection)
+    // console.log('a.s', this.props.associateCollection)
+    // console.log('bach', this.props.bachelorCollection)
+
     return(
       <div className="row">
         <div className="col-sm-12 degree-detail-contain">
@@ -61,9 +57,6 @@ class DegreeDetail extends React.Component{
             <div className="rate">
               <label>Rate: </label>
               <span>Clickable star rating system</span>
-            </div>
-            <div className="degree-select-nav">
-              <a href="#degree/">Select a different Degree</a>
             </div>
           </div>
         </div>

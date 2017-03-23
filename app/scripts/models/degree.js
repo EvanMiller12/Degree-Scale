@@ -23,23 +23,21 @@ var DegreeCollection = Backbone.Collection.extend({
     return this;
   },
   average: function() {
-    var count = 0;
     var earnings = this.map(function(degree){
       return degree.get('2012.earnings.10_yrs_after_entry.median');
     });
-    console.log(earnings)
     var average = earnings.reduce(function(a, b){
       return a + b;
     }, 0) / earnings.length;
-
     return average;
   }
 });
 
 // var degrees = new DegreeCollection();
-// var associates = degrees.fetch().done(function(response){
-//   console.log(degrees.average())
-//   return degrees.average();
+// var degreeData = degrees.urlSetter(1, 'computer')
+// degreeData.fetch().done(function(response){
+//   console.log(degreeData.average())
+//   return degreeData.average();
 // });
 
 // var componentData = average.then(function(data){

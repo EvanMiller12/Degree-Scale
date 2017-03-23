@@ -12,21 +12,18 @@ class DegreeResultsContainer extends React.Component {
   constructor(props){
     super(props);
 
-    var certificateCollection = new DegreeCollection;
-    var associateCollection = new DegreeCollection;
-    var bachelorCollection = new DegreeCollection;
+    var degreeCollection = new DegreeCollection();
 
     this.updateSelection = this.updateSelection.bind(this);
-    this.updateCertResults = this.updateCertResults.bind(this);
-    this.updateAscResults = this.updateAscResults.bind(this);
-    this.updateBachResults = this.updateBachResults.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateResults = this.updateResults.bind(this);
+
 
     this.state = {
-      certificateCollection,
-      associateCollection,
-      bachelorCollection,
-      selectedMajor: null
+      degreeCollection,
+      selectedMajor: null,
+      cerAverage: null,
+      ascAverage: null,
+      bacAverage: null
     }
   }
 
@@ -34,45 +31,30 @@ class DegreeResultsContainer extends React.Component {
     e.preventDefault();
     var selectedMajor = e.target.value;
 
-    this.setState({selectedMajor: selectedMajor});
+    this.setState({ selectedMajor: selectedMajor });
 
-    this.updateCertResults(selectedMajor);
-    this.updateAscResults(selectedMajor);
-    this.updateBachResults(selectedMajor);
+    this.updateResults(selectedMajor)
   }
 
-
-  updateCertResults(selected) {
-    var selectedMajor = selected;
-    var certificateCollection = this.state.certificateCollection;
-    var certificateData = certificateCollection.urlSetter(1, selectedMajor)
-
-    certificateData.fetch().done((response) => {
-      // this.setState({certificateCollection});
-      // console.log('cert', certificateCollection);
-      });
-  }
-
-  updateAscResults(selected) {
-    var selectedMajor = selected;
-    var associateCollection = this.state.associateCollection;
-    var associateData = associateCollection.urlSetter(2, selectedMajor);
-
-    associateData.fetch().done((response) => {
-      // this.setState({associateCollection});
-      // console.log('A.S', associateCollection)
-    });
-  }
-
-  updateBachResults(selected) {
-    var selectedMajor = selected;
-    var bachelorCollection = this.state.bachelorCollection;
-    var bachelorData = bachelorCollection.urlSetter(3, selectedMajor);
-
-    bachelorData.fetch().done((response) => {
-      // this.setState({bachelorCollection});
-      // console.log('B.S', bachelorCollection)
-    });
+  updateResults(selectedMajor) {
+    this.state.degreeCollection.urlSetter(1, selectedMajor);
+    this.state.degreeCollection.fetch().done((response) => {
+      console.log('cert school array', response);
+      this.setState({cerAverage: this.state.degreeCollection.average(response)});
+      this.state.degreeCollection.urlSetter(2, selectedMajor);
+      this.state.degreeCollection.fetch().done((response) => {
+        console.log('asc school array', response);
+        this.setState({ascAverage: this.state.degreeCollection.average(response)});
+        this.state.degreeCollection.urlSetter(3, selectedMajor);
+        this.state.degreeCollection.fetch().done((response) => {
+          console.log('bac school array', response);
+          this.setState({bacAverage: this.state.degreeCollection.average(response)});
+          console.log('cert average', this.state.cerAverage);
+          console.log('asco average', this.state.ascAverage);
+          console.log('bach average', this.state.bacAverage);
+        })
+      })
+    })
   }
   render(){
     return(
@@ -82,9 +64,10 @@ class DegreeResultsContainer extends React.Component {
           updateSelection={this.updateSelection}
           />
         <DegreeDetail
-          certificateCollection={this.state.certificateCollection}
-          associateCollection={this.state.associateCollection}
-          bachelorCollection={this.state.bachelorCollection}
+          selectedMajor={this.state.selectedMajor}
+          cerAverage={this.state.cerAverage}
+          ascAverage={this.state.ascAverage}
+          bacAverage={this.state.bacAverage}
         />
       </BaseLayout>
     )

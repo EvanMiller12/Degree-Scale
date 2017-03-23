@@ -7,14 +7,12 @@ var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 
 class DegreeDetail extends React.Component{
-  constructor(props) {
-    super(props);
-  }
-
+  
   render() {
-    // console.log('cert', this.props.certificateCollection)
-    // console.log('a.s', this.props.associateCollection)
-    // console.log('bach', this.props.bachelorCollection)
+
+    console.log('detail cer average', this.props.cerAverage);
+    console.log('detail asc average', this.props.ascAverage);
+    console.log('detail bac average', this.props.bacAverage);
 
     return(
       <div className="row">
@@ -29,7 +27,7 @@ class DegreeDetail extends React.Component{
                 <h4>Certificate</h4>
               </div>
               <div className="avg-salary certificate-salary">
-                <h5>Avg Salary</h5>
+                <h5>{this.props.cerAverage}</h5>
               </div>
             </div>
             <div className="col-sm-4">
@@ -37,7 +35,7 @@ class DegreeDetail extends React.Component{
               <h4>Associate's</h4>
             </div>
             <div className="avg-salary associate-salary">
-              <h5>Avg Salary</h5>
+              <h5>{this.props.ascAverage}</h5>
             </div>
           </div>
           <div className="col-sm-4">
@@ -45,7 +43,7 @@ class DegreeDetail extends React.Component{
               <h4>Bachelor's</h4>
             </div>
             <div className="avg-salary bachelor-salary">
-              <h5>Avg Salary</h5>
+              <h5>{this.props.bacAverage}</h5>
             </div>
           </div>
           </div>

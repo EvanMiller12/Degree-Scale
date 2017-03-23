@@ -14,11 +14,13 @@ class DegreeResultsContainer extends React.Component {
 
     var degreeCollection = new DegreeCollection();
 
+    this.handleShowResults = this.handleShowResults.bind(this);
     this.updateSelection = this.updateSelection.bind(this);
     this.updateResults = this.updateResults.bind(this);
 
 
     this.state = {
+      showResults: false,
       degreeCollection,
       selectedMajor: null,
       cerAverage: null,
@@ -26,7 +28,10 @@ class DegreeResultsContainer extends React.Component {
       bacAverage: null
     }
   }
-
+  handleShowResults(e){
+    e.preventDefault();
+    this.setState({ showResults: !this.state.showResults})
+  }
   updateSelection(e){
     e.preventDefault();
     var selectedMajor = e.target.value;
@@ -49,9 +54,6 @@ class DegreeResultsContainer extends React.Component {
         this.state.degreeCollection.fetch().done((response) => {
           console.log('bac school array', response);
           this.setState({bacAverage: this.state.degreeCollection.average(response)});
-          console.log('cert average', this.state.cerAverage);
-          console.log('asco average', this.state.ascAverage);
-          console.log('bach average', this.state.bacAverage);
         })
       })
     })
@@ -60,15 +62,16 @@ class DegreeResultsContainer extends React.Component {
     return(
       <BaseLayout>
         <DegreeSelect
-          selectedMajor={this.state.selectedMajor}
-          updateSelection={this.updateSelection}
+          handleShowResults={ this.handleShowResults }
+          selectedMajor={ this.state.selectedMajor }
+          updateSelection={ this.updateSelection }
           />
-        <DegreeDetail
-          selectedMajor={this.state.selectedMajor}
-          cerAverage={this.state.cerAverage}
-          ascAverage={this.state.ascAverage}
-          bacAverage={this.state.bacAverage}
-        />
+        { this.state.showResults ? <DegreeDetail
+          selectedMajor={ this.state.selectedMajor }
+          cerAverage={ this.state.cerAverage }
+          ascAverage={ this.state.ascAverage }
+          bacAverage={ this.state.bacAverage }
+        /> : null }
       </BaseLayout>
     )
   }

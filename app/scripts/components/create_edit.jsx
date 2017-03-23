@@ -59,20 +59,20 @@ class ProfileCreateEditContainer extends React.Component {
   }
   updateLastName(e) {
     this.setState({ last_name: e.target.value })
-    this.state.profile.set({last_name: e.target.value});
+    this.state.profile.set({ last_name: e.target.value });
   }
   updateLocation(e) {
     this.setState({ location: e.target.value })
-    this.state.profile.set({location: e.target.value});
+    this.state.profile.set({ location: e.target.value });
   }
   updateSchool(e) {
-   this.setState({school: e.target.value})
+   this.setState({ school: e.target.value })
   }
   updateDegree(e) {
-   this.setState({degree: e.target.value})
+   this.setState({ degree: e.target.value })
   }
   updateMajor(e) {
-   this.setState({major: e.target.value})
+   this.setState({ major: e.target.value })
   }
 
   addDegree(e) {
@@ -92,7 +92,7 @@ class ProfileCreateEditContainer extends React.Component {
 
    var image = new ParseFile(this.state.pic);
 
-   profile.set({degrees: this.state.degrees })
+   profile.set({ degrees: this.state.degrees })
    profile.setPointer('owner', '_User', User.current().get('objectId'));
 
    if(!profile.get('avatar_url')){
@@ -125,48 +125,51 @@ render() {
   var degrees = this.state.degrees.map(function(degree){
     return (
       <li key={degree.cid}>
-        {degree.get('school') + ''}
-        {degree.get('degree') + ''}
-        {degree.get('major')}
+        { degree.get('school') + '' }
+        { degree.get('degree') + '' }
+        { degree.get('major') }
       </li>
     )
   })
   return (
     <BaseLayout>
       <div className="row">
-        <form onSubmit={this.updateProfile} className="profile-form">
+        <form onSubmit={ this.updateProfile } className="profile-form">
           <div className="row">
-            <h1>{ user.isNew() ? 'Create' : 'Edit'} Profile</h1>
+            <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
             <div className="col-xs-4 col-md-2">
               <div>
                 <p>click below to add image</p>
-                  <Dropzone onChange={ this.updateImage } onDrop={this.onDrop}>
+                  <Dropzone
+                    onChange={ this.updateImage }
+                    onDrop={ this.onDrop }
+                  >
                     <img src={ this.state.preview } />
                   </Dropzone>
               </div>
             </div>
             <div className="col-xs-4 col-md-6">
               <div className="form-group">
-                <input onChange={this.updateFirstName} value={this.state.first_name} className="form-control" type="text" placeholder="First Name"/>
-                <input onChange={this.updateLastName} value={this.state.last_name} className="form-control" type="text" placeholder="Last Name"/>
+                <input onChange={ this.updateFirstName } value={ this.state.first_name } className="form-control" type="text" placeholder="First Name"/>
+                <input onChange={ this.updateLastName } value={ this.state.last_name } className="form-control" type="text" placeholder="Last Name"/>
               </div>
               <div className="form-group">
-                <input onChange={this.updateLocation} value={this.state.location} className="form-control" type="text" placeholder="Location (state)"/>
+                <input onChange={ this.updateLocation } value={ this.state.location } className="form-control" type="text" placeholder="Location (state)"/>
               </div>
             </div>
           </div>
           <div className='row'>
             <div className="col-md-8">
-              <input onChange={this.updateSchool} value={this.state.school} type="text" placeholder="School"/>
-              <input onChange={this.updateDegree} value={this.state.degree} type="text" placeholder="Associate or Bachelor"/>
-              <input onChange={this.updateMajor} value={this.state.major} type="text" placeholder="Major"/>
+              <input onChange={ this.updateSchool } value={ this.state.school } type="text" placeholder="School"/>
+              <input onChange={ this.updateDegree } value={ this.state.degree } type="text" placeholder="Associate or Bachelor"/>
+              <input onChange={ this.updateMajor } value={ this.state.major } type="text" placeholder="Major"/>
               <span>
-                <button onClick={this.addDegree} type="button" name="button">
+                <button onClick={ this.addDegree } type="button" name="button">
                   <span className="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
               <ul>
-                {degrees}
+                { degrees }
               </ul>
             </div>
           </div>

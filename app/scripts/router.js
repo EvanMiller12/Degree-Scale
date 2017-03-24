@@ -9,6 +9,7 @@ var ProfileDetailContainer = require('./components/profile_detail.jsx').ProfileD
 var DegreeResultsContainer = require('./components/degree_results.jsx').DegreeResultsContainer;
 var HowItWorksContainer = require('./components/how_it_works.jsx').HowItWorksContainer;
 var ReviewCreateEditContainer = require('./components/review_create_edit.jsx').ReviewCreateEditContainer;
+var ReviewResultsContainer = require('./components/review_results.jsx').ReviewResultsContainer;
 
 var User = require('./models/user').User;
 
@@ -23,6 +24,7 @@ var AppRouter = Backbone.Router.extend({
     'profile/:id/': 'profileDetail',
     'degree/': 'degreeResults',
     'howitworks/': 'howItWorks',
+    'review/': 'reviewResults',
     'review/create/': 'reviewCreateEdit',
     'review/:id/edit/': 'reviewCreateEdit',
     'logout/': 'logout',
@@ -86,6 +88,12 @@ var AppRouter = Backbone.Router.extend({
   howItWorks: function(){
     ReactDOM.render(
       React.createElement(HowItWorksContainer),
+      document.getElementById('app')
+    );
+  },
+  reviewResults: function(){
+    ReactDOM.render(
+      React.createElement(ReviewResultsContainer),
       document.getElementById('app')
     );
   },

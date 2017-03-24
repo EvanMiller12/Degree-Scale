@@ -18,6 +18,7 @@ class ReviewCreateEditContainer extends React.Component {
       employment: null,
       experience: null,
       salary: null,
+      recomend: null
     }
 
     this.updateDegree = this.updateDegree.bind(this);
@@ -25,25 +26,29 @@ class ReviewCreateEditContainer extends React.Component {
     this.updateEmployment = this.updateEmployment.bind(this);
     this.updateExperience = this.updateExperience.bind(this);
     this.updateSalary = this.updateSalary.bind(this);
+    this.updateRecomend - this.updateRecomend.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   updateDegree(e){
     this.setState({ degree: e.target.value })
   }
-  updateMajor(){
+  updateMajor(e){
     this.setState({ major: e.target.value })
   }
-  updateEmployment(){
+  updateEmployment(e){
     this.setState({ employment: e.target.value })
   }
-  updateExperience(){
+  updateExperience(e){
     this.setState({ experience: e.target.value })
   }
-  updateSalary(){
+  updateSalary(e){
     this.setState({ salary: e.target.value })
   }
-  handleSubmit(){
-
+  updateRecomend(e){
+    this.setState({ recomend: e.target.value })
+  }
+  handleSubmit(e){
+    e.preventDefault();
   }
   render() {
     var programs = Object.keys(programNames).map(function(key, index){
@@ -96,13 +101,13 @@ class ReviewCreateEditContainer extends React.Component {
                     <input onChange={this.updateSalary} value={this.state.salary} className="form-control" type="text" placeholder="$0.00"/>
                   </label>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="job-satisfaction">
-                    Job satisfaction in the field of your degree:
-                  </label>
-                  <h6>stars</h6>
+                <div className="input-group">
+                  <input onChange={this.updateRecomend} value='Recommend' className="btn btn-success" type="button" />
+                  <input onChange={this.updateRecomend} value='Not Recommendded' className="btn btn-success" type="button" />
                 </div>
-                  <input className="btn btn-success" type="submit" value="Submit Review"/>
+                <div className="review-submit pull-right">
+                  <input className="btn btn-primary" type="submit" value="Submit Review"/>
+                </div>
               </div>
             </div>
           </form>

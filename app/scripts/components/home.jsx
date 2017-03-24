@@ -8,7 +8,7 @@ class HomeContainer extends React.Component {
   render(){
     var writeReviewNav = User.current() ? "#review/create/" : "#auth/";
     var degreeSelectNav = User.current() ? "#degree/" : "#auth/";
-    var howItWorksNav = User.current() ? "#howitworks/" : "#auth/";
+    var reviewSearchNav = User.current() ? "#review/" : "#auth/";
 
     return(
       <HomeLayout handleMenuToggle={ this.handleMenuToggle }>
@@ -30,7 +30,7 @@ class HomeContainer extends React.Component {
                 <div className="caption">
                   <h3>View Degrees</h3>
                   <p>Review the average salary information by degree for the top 20 schools with the highest salaries.</p>
-                  <p><a href={degreeSelectNav} className="btn btn-primary" role="button">View Degree</a></p>
+                  <p><a href={degreeSelectNav} className="btn btn-primary" role="button">Find Degrees</a></p>
                 </div>
               </div>
             </div>
@@ -38,9 +38,9 @@ class HomeContainer extends React.Component {
               <div className="thumbnail">
                 <img src="https://unsplash.it/400/?random" alt="..." />
                 <div className="caption">
-                  <h3>How It Works</h3>
+                  <h3>View Reviews</h3>
                   <p>Some catchy intro here</p>
-                  <p><a href={howItWorksNav} className="btn btn-primary" role="button">View Statistics</a></p>
+                  <p><a href={reviewSearchNav} className="btn btn-primary" role="button">Find Reviews</a></p>
                 </div>
               </div>
             </div>

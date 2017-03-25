@@ -40,8 +40,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
   border-bottom: 2px solid #74AFAD;
+  background-color: inherit;
 
   li{
     list-style: none;
@@ -72,6 +72,10 @@ img {
 iframe{
   color: #ECECEA;
 }
+
+// .find-deg-contain{
+//   min-height: 430px;
+// }
 
 /*
 * Profile create edit styling

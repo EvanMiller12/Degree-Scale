@@ -25,8 +25,8 @@ class HeaderNav extends React.Component{
     // console.log(User.current('user'));
     return(
       <div className="row dark-teal-bkgrnd">
-        <nav className="col-sm-10 col-sm-offset-1">
-          <ul className="home-nav">
+        <nav className="navbar-fixed-top row dark-teal-bkgrnd">
+          <ul className="home-nav col-sm-10 col-sm-offset-1">
             <li>
               <a className="navbar-brand" href="#">Navbar</a>
             </li>
@@ -78,7 +78,7 @@ class LoggedInNavItem extends React.Component{
 
     return(
       <NavDropdown title={user.get('username')} id="nav-dropdown">
-        <MenuItem className="dropdown-item" href='#'>Home</MenuItem>
+        <MenuItem className="dropdown-item" href=''>Home</MenuItem>
         <MenuItem className="dropdown-item" href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
         <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>

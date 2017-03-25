@@ -11,7 +11,7 @@ var User = require('../../models/user.js').User;
 class BaseLayout extends React.Component {
   render(){
     return(
-      <div>
+      <div className="container-fluid">
         <HeaderNav />
           {this.props.children}
         <Footer />
@@ -24,14 +24,11 @@ class HeaderNav extends React.Component{
   render(){
     // console.log(User.current('user'));
     return(
-      <div className="row">
-        <nav className="navbar">
+      <div className="row dark-teal-bkgrnd">
+        <nav className="col-sm-10 col-sm-offset-1">
           <ul className="home-nav">
             <li>
               <a className="navbar-brand" href="#">Navbar</a>
-            </li>
-            <li>
-              <a href="#">Home</a>
             </li>
               {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
           </ul>
@@ -81,6 +78,7 @@ class LoggedInNavItem extends React.Component{
 
     return(
       <NavDropdown title={user.get('username')} id="nav-dropdown">
+        <MenuItem className="dropdown-item" href='#'>Home</MenuItem>
         <MenuItem className="dropdown-item" href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
         <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>
@@ -92,8 +90,8 @@ class LoggedInNavItem extends React.Component{
 class Footer extends React.Component{
   render(){
     return(
-      <div className="row">
-        <div className="footer">
+      <div className="row light-gray-bkgrnd">
+        <footer className="footer dark-teal-bkgrnd">
           <ul className="footer-nav">
             <li>
               <span>App Name,</span>
@@ -103,7 +101,7 @@ class Footer extends React.Component{
               <a href="#">Home</a>
             </li>
           </ul>
-        </div>
+        </footer>
       </div>
     )
   }

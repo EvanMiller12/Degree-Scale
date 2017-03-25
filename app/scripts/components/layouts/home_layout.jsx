@@ -16,8 +16,8 @@ class HomeLayout extends React.Component {
 class Banner extends React.Component{
   render(){
     return(
-      <div className="row">
-        <div className="jumbotron">
+      <div className="row light-gray-bkgrnd">
+        <div className="jumbotron home-banner dark-teal-bkgrnd">
           <div className="mission-statement">
             <h1>Mission Statement</h1>
           </div>

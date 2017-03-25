@@ -11,36 +11,58 @@ class HomeContainer extends React.Component {
     var reviewSearchNav = User.current() ? "#review/" : "#auth/";
 
     return(
-      <HomeLayout handleMenuToggle={ this.handleMenuToggle }>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6 col-md-4">
-              <div className="thumbnail">
-                <img src="https://unsplash.it/400/?random" alt="..." />
-                <div className="caption">
+      <HomeLayout>
+        <div className="light-gray-bkgrnd row">
+          <div className="col-sm-10 col-sm-offset-1">
+            <div className="row leave-rev-contain">
+              <div className="col-sm-6 col-md-6">
+                <div className="home-img">
+                  <img src="https://unsplash.it/400/?random" alt="..." />
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-6">
+                <div className="description">
                   <h3>Write Review</h3>
                   <p>Write a review to help potential students or current students better understand the value of the degree they are or will be earning.</p>
-                  <p><a href={writeReviewNav} className="btn btn-primary" role="button">Write Review</a></p>
+                  <div className="leave-rev-btn">
+                    <a href={writeReviewNav} className="btn btn-primary" role="button">Write Review</a>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="thumbnail">
-                <img src="https://unsplash.it/400/?random" alt="..." />
-                <div className="caption">
+            <div className="row find-deg-contain">
+              <div className="col-sm-6 col-md-6">
+                <div className="description">
                   <h3>View Degrees</h3>
                   <p>Review the average salary information by degree for the top 20 schools with the highest salaries.</p>
-                  <p><a href={degreeSelectNav} className="btn btn-primary" role="button">Find Degrees</a></p>
+                  <div className="find-degree-btn">
+                    <a href={degreeSelectNav} className="btn btn-primary" role="button">Find Degrees</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-6">
+                <div className="home-img">
+                  <img src="https://unsplash.it/400/?random" alt="..." />
                 </div>
               </div>
             </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="thumbnail">
-                <img src="https://unsplash.it/400/?random" alt="..." />
-                <div className="caption">
-                  <h3>View Reviews</h3>
-                  <p>Some catchy intro here</p>
-                  <p><a href={reviewSearchNav} className="btn btn-primary" role="button">Find Reviews</a></p>
+            <div className="row find-rev-contain">
+              <div className="col-sm-6 col-md-6">
+                <div className="home-img">
+                  <img src="https://unsplash.it/400/?random" alt="..." />
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-6">
+                <div className="description">
+                  <h3>Find Reviews</h3>
+                  <p>
+                    Find information includin salary, jobsatisfaction,
+                    and much more from reviews written by people who have earned
+                    a degree in the particular field of study.
+                  </p>
+                  <div className="find-rev-btn">
+                    <a href={reviewSearchNav} className="btn btn-primary" role="button">Find Reviews</a>
+                  </div>
                 </div>
               </div>
             </div>

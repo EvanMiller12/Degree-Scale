@@ -10,15 +10,13 @@ class ReviewCreateEditContainer extends React.Component {
   constructor(props){
     super(props);
 
-    var review = new Review();
-
     this.state = {
       degree: null,
       major: null,
       employment: null,
       experience: null,
       salary: null,
-      recomend: null
+      recommend: null
     }
 
     this.updateDegree = this.updateDegree.bind(this);
@@ -26,7 +24,7 @@ class ReviewCreateEditContainer extends React.Component {
     this.updateEmployment = this.updateEmployment.bind(this);
     this.updateExperience = this.updateExperience.bind(this);
     this.updateSalary = this.updateSalary.bind(this);
-    this.updateRecomend - this.updateRecomend.bind(this);
+    this.updateRecommend = this.updateRecommend.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   updateDegree(e){
@@ -36,7 +34,11 @@ class ReviewCreateEditContainer extends React.Component {
     this.setState({ major: e.target.value })
   }
   updateEmployment(e){
-    this.setState({ employment: e.target.value })
+    if(e.target.value == 'on') {
+      this.setState({ employment: 'Yes' })
+    } else {
+      this.setState({ employment: 'No' })
+    }
   }
   updateExperience(e){
     this.setState({ experience: e.target.value })
@@ -44,11 +46,19 @@ class ReviewCreateEditContainer extends React.Component {
   updateSalary(e){
     this.setState({ salary: e.target.value })
   }
-  updateRecomend(e){
-    this.setState({ recomend: e.target.value })
+  updateRecommend(e){
+    e.preventDefault();
+    if(e.target.value == 'Recommend') {
+      this.setState({ recommend: 'recommended' })
+    } else {
+      this.setState({ recommend: 'not recommended' })
+    }
   }
   handleSubmit(e){
     e.preventDefault();
+    var review = new Review(this.state);
+    console.log('review', review)
+    review.save()
   }
   render() {
     var programs = Object.keys(programNames).map(function(key, index){
@@ -70,9 +80,9 @@ class ReviewCreateEditContainer extends React.Component {
                   </label>
                   </div>
                   <select onChange={this.updateDegree} className="select-degree option1" name="select-degree">
-                    <option id="degree" value="degree">Certificate</option>
-                    <option id="degree" value="degree">Associates</option>
-                    <option id="degree" value="degree">Bachelors</option>
+                    <option id="degree" value="certificate">Certificate</option>
+                    <option id="degree" value="associates">Associates</option>
+                    <option id="degree" value="bachelors">Bachelors</option>
                   </select>
                   <select onChange={this.updateMajor} className="select-major option1" name="select-major">
                     {programs}
@@ -102,8 +112,8 @@ class ReviewCreateEditContainer extends React.Component {
                   </label>
                 </div>
                 <div className="input-group">
-                  <input onChange={this.updateRecomend} value='Recommend' className="btn btn-success" type="button" />
-                  <input onChange={this.updateRecomend} value='Not Recommendded' className="btn btn-success" type="button" />
+                  <input onClick={this.updateRecommend} value='Recommend' className="btn btn-success" type="button" />
+                  <input onClick={this.updateRecommend} value='Not Recommendded' className="btn btn-success" type="button" />
                 </div>
                 <div className="review-submit pull-right">
                   <input className="btn btn-primary" type="submit" value="Submit Review"/>

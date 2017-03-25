@@ -1,4 +1,5 @@
 var React = require('react');
+var _ = require('underscore');
 
 var Review = require('../models/review').Review;
 var ReviewCollection = require('../models/review').ReviewCollection;

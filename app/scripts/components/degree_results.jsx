@@ -23,7 +23,6 @@ class DegreeResultsContainer extends React.Component {
       showResults: false,
       degreeCollection,
       selectedMajor: null,
-      cerAverage: null,
       ascAverage: null,
       bacAverage: null
     }
@@ -42,19 +41,14 @@ class DegreeResultsContainer extends React.Component {
   }
 
   updateResults(selectedMajor) {
-    this.state.degreeCollection.urlSetter(1, selectedMajor);
+    this.state.degreeCollection.urlSetter('assoc', selectedMajor);
     this.state.degreeCollection.fetch().done((response) => {
-      console.log('cert school array', response);
-      this.setState({cerAverage: this.state.degreeCollection.average(response)});
-      this.state.degreeCollection.urlSetter(2, selectedMajor);
+      console.log('asc school array', response);
+      this.setState({ascAverage: this.state.degreeCollection.average(response)});
+      this.state.degreeCollection.urlSetter('bachelors', selectedMajor);
       this.state.degreeCollection.fetch().done((response) => {
-        console.log('asc school array', response);
-        this.setState({ascAverage: this.state.degreeCollection.average(response)});
-        this.state.degreeCollection.urlSetter(3, selectedMajor);
-        this.state.degreeCollection.fetch().done((response) => {
-          console.log('bac school array', response);
-          this.setState({bacAverage: this.state.degreeCollection.average(response)});
-        })
+        console.log('bac school array', response);
+        this.setState({bacAverage: this.state.degreeCollection.average(response)});
       })
     })
   }
@@ -68,7 +62,6 @@ class DegreeResultsContainer extends React.Component {
           />
         { this.state.showResults ? <DegreeDetail
           selectedMajor={ this.state.selectedMajor }
-          cerAverage={ this.state.cerAverage }
           ascAverage={ this.state.ascAverage }
           bacAverage={ this.state.bacAverage }
         /> : null }

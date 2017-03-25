@@ -24,14 +24,6 @@ class DegreeDetail extends React.Component {
           </div>
           <div className="row">
             <div className="col-sm-4">
-              <div className="program-level certificate-level">
-                <h4>Certificate</h4>
-              </div>
-              <div className="avg-salary certificate-salary">
-                <h5>{ this.props.cerAverage }</h5>
-              </div>
-            </div>
-            <div className="col-sm-4">
               <div className="program-level associate-level">
                 <h4>Associate's</h4>
               </div>
@@ -49,7 +41,6 @@ class DegreeDetail extends React.Component {
             </div>
           </div>
           <BarChart
-            cerAverage={this.props.cerAverage}
             ascAverage={this.props.ascAverage}
             bacAverage={this.props.bacAverage}
           />
@@ -72,10 +63,10 @@ class DegreeDetail extends React.Component {
 class BarChart extends React.Component {
   render() {
     var salaryData = {
-        labels: ["Certificate Salary", "Associate Salary", "Bachelors Salary"],
+        labels: ["Associate Salary", "Bachelors Salary"],
         datasets: [{
             label: "salary in U.S dollars",
-            data: [this.props.cerAverage, this.props.ascAverage, this.props.bacAverage],
+            data: [this.props.ascAverage, this.props.bacAverage],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

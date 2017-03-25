@@ -6,12 +6,12 @@ var ParseModel = require('./parse').ParseModel;
 var ParseCollection = require('./parse').ParseCollection;
 
 var Review = ParseModel.extend({
-
+  urlRoot: 'https://hip-puppies.herokuapp.com/classes/Reviews'
 });
 
 var ReviewCollection = ParseCollection.extend({
   model: Review,
-  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Reviews/'
+  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Reviews'
 });
 
 module.exports = {

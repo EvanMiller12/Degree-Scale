@@ -40,7 +40,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   border-bottom: 2px solid #74AFAD;
 
   li{
@@ -83,8 +83,14 @@ iframe{
 *user Profile details styling
 */
 
-.user-profile{
+.user-profile-contain{
   border: 1px solid #EEEEEE;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  h2{
+    text-align: center;
+  }
 }
 
 .user-avatar{

@@ -29,40 +29,38 @@ class ProfileDetailContainer extends React.Component{
     return(
       <BaseLayout>
         <div className=" row">
-          <div className="user-profile col-sm-6 col-sm-offset-3">
-            <div className="col-sm-6 col-sm-offset-3">
+          <div className="col-sm-6 col-sm-offset-3">
+            <div className="user-profile-contain">
               <h2>{profile.get('first_name') + 's'}  Profile</h2>
               <div className="user-avatar">
                 <a name="file" type="file" className="avatar">
                   <img src={profile.get('avatar_url')} alt="" />
                 </a>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-              <div className="user-profile-details">
-                <div className="users-name">
-                  <span>{profile.get('first_name')} </span>
-                  <span>{profile.get('last_name')}</span>
+              <div className="row">
+                <div className="user-profile-details">
+                  <div className="users-name">
+                    <span>{profile.get('first_name')} </span>
+                    <span>{profile.get('last_name')}</span>
+                  </div>
+                  <div className="location">
+                    <span>Location: </span>
+                    <span>{profile.get('location')}</span>
+                  </div>
+                  <div className="email">
+                    <span>Email: </span>
+                    <span>{user.get('username')}</span>
+                  </div>
+                  <label>Degrees</label>
+                  <DegreeList profile={this.state.profile}/>
                 </div>
-                <div className="location">
-                  <span>Location: </span>
-                  <span>{profile.get('location')}</span>
-                </div>
-                <div className="email">
-                  <span>Email: </span>
-                  <span>{user.get('username')}</span>
-                </div>
-                <label>Degrees</label>
-                <DegreeList profile={this.state.profile}/>
+              </div>
+              <div className="edit-profile-btn">
+               <a href={'#profile/edit/' + profile.get('objectId') + '/'} className="btn btn-primary">
+                 Edit Profile
+               </a>
               </div>
             </div>
-          </div>
-          <div className="edit-profile-btn col-sm-6 col-sm-offset-3">
-           <a href={'#profile/edit/' + profile.get('objectId') + '/'} className="btn btn-primary">
-             Edit Profile
-           </a>
           </div>
         </div>
       </BaseLayout>

@@ -3,6 +3,8 @@ var React = require('react');
 var User = require('../models/user.js').User;
 
 var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
+var ExBarChart = require('./ex_bar_chart.jsx').ExBarChart;
+
 
 class HomeContainer extends React.Component {
   render(){
@@ -48,8 +50,9 @@ class HomeContainer extends React.Component {
             </div>
             <div className="row find-rev-contain">
               <div className="col-sm-6 col-md-6">
-                <div className="home-img">
-                  <img src="https://unsplash.it/400/?random" alt="..." />
+                <div className="ex-bar-chart">
+                  <ExBarChart />
+                  <label>Average Salary for: History Major</label>
                 </div>
               </div>
               <div className="col-sm-6 col-md-6">

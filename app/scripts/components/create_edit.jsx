@@ -134,7 +134,7 @@ render() {
   return (
     <BaseLayout>
       <div className="row">
-        <div className="col-sm-6 col-sm-offset-3">
+        <div className="col-sm-8 col-sm-offset-2">
           <form onSubmit={ this.updateProfile } className="profile-form">
             <div className="row">
               <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
@@ -147,7 +147,7 @@ render() {
                       <img src={ this.state.preview } />
                     </Dropzone>
                 </div>
-              <div className="col-md-6">
+              <div className="col-md-6 col-md-offset-1">
                 <div className="form-group">
                   <input onChange={ this.updateFirstName } value={ this.state.first_name } className="form-control" type="text" placeholder="First Name"/>
                   <input onChange={ this.updateLastName } value={ this.state.last_name } className="form-control" type="text" placeholder="Last Name"/>

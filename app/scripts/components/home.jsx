@@ -19,7 +19,8 @@ class HomeContainer extends React.Component {
             <div className="row leave-rev-contain">
               <div className="col-sm-6 col-md-6">
                 <div className="home-img">
-                  <img src="https://unsplash.it/400/?random" alt="..." />
+                  <iframe src="//giphy.com/embed/mgzOCEjRXfguA" width="480" height="438.4" frameBorder="0" class="giphy-embed" allowFullScreen>
+                  </iframe>
                 </div>
               </div>
               <div className="col-sm-6 col-md-6">
@@ -35,7 +36,7 @@ class HomeContainer extends React.Component {
             <div className="row find-deg-contain">
               <div className="col-sm-6 col-md-6">
                 <div className="description">
-                  <h3>View Degrees</h3>
+                  <h3>Find Degrees</h3>
                   <p>Review the average salary information by degree for the top 20 schools with the highest salaries.</p>
                   <div className="find-degree-btn">
                     <a href={degreeSelectNav} className="btn btn-primary" role="button">Find Degrees</a>
@@ -43,16 +44,17 @@ class HomeContainer extends React.Component {
                 </div>
               </div>
               <div className="col-sm-6 col-md-6">
-                <div className="home-img">
-                  <img src="https://unsplash.it/400/?random" alt="..." />
+                <div className="ex-bar-chart">
+                  <ExBarChart />
+                  <label>Average Salary for: History Major</label>
                 </div>
               </div>
             </div>
             <div className="row find-rev-contain">
               <div className="col-sm-6 col-md-6">
-                <div className="ex-bar-chart">
-                  <ExBarChart />
-                  <label>Average Salary for: History Major</label>
+                <div className="home-img">
+                  <iframe src="//giphy.com/embed/tU5DNit6HJYWY" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen>
+                  </iframe>
                 </div>
               </div>
               <div className="col-sm-6 col-md-6">

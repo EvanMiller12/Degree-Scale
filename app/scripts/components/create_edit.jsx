@@ -133,47 +133,49 @@ render() {
   })
   return (
     <BaseLayout>
-      <div className="col-sm-6 col-sm-offset-3">
-        <form onSubmit={ this.updateProfile } className="profile-form">
-          <div className="row">
-            <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
-            <div className="col-xs-4 col-md-3">
-                <p>click below to add image</p>
-                  <Dropzone
-                    onChange={ this.updateImage }
-                    onDrop={ this.onDrop }
-                  >
-                    <img src={ this.state.preview } />
-                  </Dropzone>
-              </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <input onChange={ this.updateFirstName } value={ this.state.first_name } className="form-control" type="text" placeholder="First Name"/>
-                <input onChange={ this.updateLastName } value={ this.state.last_name } className="form-control" type="text" placeholder="Last Name"/>
-              </div>
-              <div className="form-group">
-                <input onChange={ this.updateLocation } value={ this.state.location } className="form-control" type="text" placeholder="Location (state)"/>
+      <div className="row">
+        <div className="col-sm-6 col-sm-offset-3">
+          <form onSubmit={ this.updateProfile } className="profile-form">
+            <div className="row">
+              <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
+              <div className="col-xs-4 col-md-3">
+                  <p>click below to add image</p>
+                    <Dropzone
+                      onChange={ this.updateImage }
+                      onDrop={ this.onDrop }
+                    >
+                      <img src={ this.state.preview } />
+                    </Dropzone>
+                </div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input onChange={ this.updateFirstName } value={ this.state.first_name } className="form-control" type="text" placeholder="First Name"/>
+                  <input onChange={ this.updateLastName } value={ this.state.last_name } className="form-control" type="text" placeholder="Last Name"/>
+                </div>
+                <div className="form-group">
+                  <input onChange={ this.updateLocation } value={ this.state.location } className="form-control" type="text" placeholder="Location (state)"/>
+                </div>
               </div>
             </div>
-          </div>
-          <div className='row'>
-            <div className="col-xs-10 col-md-8">
-              <input onChange={ this.updateSchool } value={ this.state.school } type="text" placeholder="School"/>
-              <input onChange={ this.updateDegree } value={ this.state.degree } type="text" placeholder="Associate or Bachelor"/>
-              <input onChange={ this.updateMajor } value={ this.state.major } type="text" placeholder="Major"/>
-              <span>
-                <button onClick={ this.addDegree } type="button" name="button">
-                  <span className="glyphicon glyphicon-plus"></span>
-                </button>
-              </span>
-              <ul>
-                { degrees }
-              </ul>
+            <div className='row'>
+              <div className="col-xs-10 col-md-8">
+                <input onChange={ this.updateSchool } value={ this.state.school } type="text" placeholder="School"/>
+                <input onChange={ this.updateDegree } value={ this.state.degree } type="text" placeholder="Associate or Bachelor"/>
+                <input onChange={ this.updateMajor } value={ this.state.major } type="text" placeholder="Major"/>
+                <span>
+                  <button onClick={ this.addDegree } type="button" name="button">
+                    <span className="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+                <ul>
+                  { degrees }
+                </ul>
+              </div>
             </div>
-          </div>
-          <input className="btn btn-success" type="submit" value='Save' />
-        </form>
-      </div>  
+            <input className="btn btn-success" type="submit" value='Save' />
+          </form>
+        </div>
+      </div>
     </BaseLayout>
     )
   }

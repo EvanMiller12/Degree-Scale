@@ -59,23 +59,28 @@ class ResultsList extends React.Component {
       return(
         <li>
           <div className="review-major">
-            <span>Field of Study:</span>
-            <span>Selected Major</span>
+            <label>Field of Study:</label>
+            <span>{review.get('major')}</span>
+          </div>
+          <div className="review-degree">
+            <label>Degree level:</label>
+            <span>{review.get('degree')}</span>
           </div>
           <div className="review-rating">
-            <span>Recomended:</span>
-            <span>Recomended Value</span>
+            <label>Recomended:</label>
+            <span>{review.get('recommend')}</span>
           </div>
           <div className="review-employ">
-            <span>The user was (not) able to get a job in this field</span>
+            <label>Got a job in the field of study:</label>
+            <span>{review.get('employment')}</span>
           </div>
           <div className="review-experience">
-            <span>Years in the field:</span>
-            <span>years value</span>
+            <label>Years in the field:</label>
+            <span>{review.get('experience')}</span>
           </div>
           <div className="review-salary">
-            <span>Salary:</span>
-            <span>$</span>
+            <label>Salary:</label>
+            <span>${review.get('salary')}</span>
           </div>
         </li>
       )

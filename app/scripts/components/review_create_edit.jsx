@@ -49,9 +49,9 @@ class ReviewCreateEditContainer extends React.Component {
   updateRecommend(e){
     e.preventDefault();
     if(e.target.value == 'Recommend') {
-      this.setState({ recommend: 'recommended' })
+      this.setState({ recommend: 'Yes' })
     } else {
-      this.setState({ recommend: 'not recommended' })
+      this.setState({ recommend: 'No' })
     }
   }
   handleSubmit(e){

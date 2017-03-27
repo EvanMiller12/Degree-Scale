@@ -26,7 +26,7 @@ var AppRouter = Backbone.Router.extend({
     'howitworks/': 'howItWorks',
     'review/': 'reviewResults',
     'review/create/': 'reviewCreateEdit',
-    'review/:id/edit/': 'reviewCreateEdit',
+    'review/edit/:id/': 'reviewCreateEdit',
     'logout/': 'logout',
 
   },

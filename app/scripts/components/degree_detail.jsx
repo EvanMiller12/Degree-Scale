@@ -41,8 +41,8 @@ class DegreeDetail extends React.Component {
             </div>
           </div>
           <BarChart
-            ascAverage={this.props.ascAverage}
-            bacAverage={this.props.bacAverage}
+            ascAverage={ this.props.ascAverage }
+            bacAverage={ this.props.bacAverage }
           />
           <div className="job-satisfaction-contain">
             <div className="job-satisfaction">

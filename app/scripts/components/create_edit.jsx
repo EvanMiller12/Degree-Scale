@@ -173,6 +173,7 @@ render() {
               </div>
             </div>
             <input className="btn btn-success" type="submit" value='Save' />
+            <a className="btn btn-danger" href="" >Skip for Now</a>
           </form>
         </div>
       </div>

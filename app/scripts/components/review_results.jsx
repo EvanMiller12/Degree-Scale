@@ -5,6 +5,8 @@ var Review = require('../models/review').Review;
 var ReviewCollection = require('../models/review').ReviewCollection;
 
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
+var UserReviewContainer = require('./user_review.jsx').UserReviewContainer;
+
 
 class ReviewResultsContainer extends React.Component {
   constructor(props){
@@ -37,12 +39,15 @@ class ReviewResultsContainer extends React.Component {
     return(
       <BaseLayout>
         <div className="row">
-          <div className="col-sm-8 col-sm-offset-2">
-            <h1>Search for A Major To See Reviews</h1>
-            <div className="review-search">
-               <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
+          <div className="col-sm-10 col-sm-offset-1">
+            <div className="col-sm-6">
+              <h1>Search for A Major To See Reviews</h1>
+              <div className="review-search">
+                 <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
+              </div>
+              <ResultsList reviewCollection={this.state.reviewCollection}/>
             </div>
-            <ResultsList reviewCollection={this.state.reviewCollection}/>
+            <UserReviewContainer />
           </div>
         </div>
       </BaseLayout>
@@ -53,18 +58,22 @@ class ReviewResultsContainer extends React.Component {
 class ResultsList extends React.Component {
   constructor(props){
     super(props);
+
   }
   render(){
     var reviews = this.props.reviewCollection.map((review) => {
       return(
-        <li>
+        <div key={review.cid} className="review-contain">
+          <div classsName="review-owner">
+            <span>Review owner</span>
+          </div>
           <div className="review-major">
             <label>Field of Study:</label>
             <span>{review.get('major')}</span>
-          </div>
-          <div className="review-degree">
-            <label>Degree level:</label>
-            <span>{review.get('degree')}</span>
+            <div className="review-major">
+              <label>Degree level:</label>
+              <span>{review.get('degree')}</span>
+            </div>
           </div>
           <div className="review-rating">
             <label>Recomended:</label>
@@ -82,17 +91,18 @@ class ResultsList extends React.Component {
             <label>Salary:</label>
             <span>${review.get('salary')}</span>
           </div>
-        </li>
+        </div>
       )
     })
 
     return (
-      <ul className="results">
+      <div className="results">
         {reviews}
-      </ul>
+      </div>
     );
   }
 }
+
 
 module.exports = {
   ReviewResultsContainer

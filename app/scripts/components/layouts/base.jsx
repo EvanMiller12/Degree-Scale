@@ -11,7 +11,7 @@ var User = require('../../models/user.js').User;
 class BaseLayout extends React.Component {
   render(){
     return(
-      <div className="container-fluid">
+      <div className="container-fluid light-gray-bkgrnd">
         <HeaderNav />
           {this.props.children}
         <Footer />
@@ -28,7 +28,7 @@ class HeaderNav extends React.Component{
         <nav className="navbar-fixed-top row dark-teal-bkgrnd">
           <ul className="home-nav col-sm-10 col-sm-offset-1">
             <li>
-              <a className="navbar-brand" href="#">Navbar</a>
+              <a className="navbar-brand" href="#">DegreeScale</a>
             </li>
               {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
           </ul>
@@ -78,7 +78,6 @@ class LoggedInNavItem extends React.Component{
 
     return(
       <NavDropdown title={user.get('username')} id="nav-dropdown">
-        <MenuItem className="dropdown-item" href=''>Home</MenuItem>
         <MenuItem className="dropdown-item" href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
         <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>

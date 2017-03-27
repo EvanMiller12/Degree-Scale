@@ -12,9 +12,14 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 
+body{
+  padding-top: 62px;
+}
+
 img {
   max-width: 100%;
 }
+
 
 /*
 * Background colors
@@ -155,6 +160,10 @@ iframe{
   margin-top: 30px;
 }
 
+.user-rev-list{
+  margin-top: 60px;
+}
+
 /*
 * Review Results styling
 */
@@ -166,6 +175,13 @@ iframe{
 .results{
   border: 1px solid #EEEEEE;
   padding: 20px;
+}
+.review-contain{
+  border: 1px solid black;
+}
+
+.review-owner{
+  border-bottom: 1px solid black;
 }
 
 .review-major{

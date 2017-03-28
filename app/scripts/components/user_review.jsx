@@ -42,7 +42,7 @@ class UserReviewList extends React.Component {
           <div className="review-major">
             <label>Field of Study:</label>
             <span>{review.get('major')}</span>
-            <div className="review-major">
+            <div className="review-degree">
               <label>Degree level:</label>
               <span>{review.get('degree')}</span>
             </div>

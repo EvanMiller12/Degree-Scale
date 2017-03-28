@@ -175,9 +175,9 @@ iframe{
   margin-bottom: 50px;
 }
 
-.results{
+.review-contain{
   border: 1px solid #EEEEEE;
-  padding: 20px;
+  padding-bottom: 50px;
 }
 .review-contain{
   border: 1px solid black;
@@ -189,6 +189,7 @@ iframe{
 
 .review-major{
   padding-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 .review-salary{
@@ -197,14 +198,17 @@ iframe{
 
 .review-rating{
   padding-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 .review-employ{
   padding-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 .review-experience{
   padding-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 .review-submit{

@@ -38,7 +38,7 @@ class UserReviewList extends React.Component {
     var userReviews = this.props.userReviews.map((review, index) => {
       console.log('review',review);
       return(
-        <li key={index}>
+        <div key={review.cid} className="review-contain">
           <div className="review-major">
             <label>Field of Study:</label>
             <span>{review.get('major')}</span>
@@ -47,13 +47,13 @@ class UserReviewList extends React.Component {
               <span>{review.get('degree')}</span>
             </div>
           </div>
+          <div className="review-employ">
+            <label>Got a job as a/an:</label>
+            <span>{review.get('employment')}</span>
+          </div>
           <div className="review-rating">
             <label>Recomended:</label>
             <span>{review.get('recommend')}</span>
-          </div>
-          <div className="review-employ">
-            <label>Got a job in the field of study:</label>
-            <span>{review.get('employment')}</span>
           </div>
           <div className="review-experience">
             <label>Years in the field:</label>
@@ -66,14 +66,14 @@ class UserReviewList extends React.Component {
           <a href={ '#review/edit/' + review.get('objectId') + '/'} className="btn btn-primary pull-right">
             Edit
           </a>
-        </li>
+        </div>
       )
     })
 
     return (
-      <ul className="results">
+      <div className="results">
         {userReviews}
-      </ul>
+      </div>
     );
   }
 }

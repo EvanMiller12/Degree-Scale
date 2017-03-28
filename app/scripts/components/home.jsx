@@ -8,9 +8,8 @@ var ExBarChart = require('./ex_bar_chart.jsx').ExBarChart;
 
 class HomeContainer extends React.Component {
   render(){
-    var writeReviewNav = User.current() ? "#review/create/" : "#auth/";
+
     var degreeSelectNav = User.current() ? "#degree/" : "#auth/";
-    var reviewSearchNav = User.current() ? "#review/" : "#auth/";
 
     return(
       <HomeLayout>
@@ -28,7 +27,7 @@ class HomeContainer extends React.Component {
                   <h3>Write Review</h3>
                   <p>Write a review to help potential students or current students better understand the value of the degree they are or will be earning.</p>
                   <div className="leave-rev-btn">
-                    <a href={writeReviewNav} className="btn btn-primary" role="button">Write Review</a>
+                    <a href="#review/create/" className="btn btn-primary" role="button">Write Review</a>
                   </div>
                 </div>
               </div>
@@ -66,7 +65,7 @@ class HomeContainer extends React.Component {
                     a degree in the particular field of study.
                   </p>
                   <div className="find-rev-btn">
-                    <a href={reviewSearchNav} className="btn btn-primary" role="button">Find Reviews</a>
+                    <a href="#review/" className="btn btn-primary" role="button">Find Reviews</a>
                   </div>
                 </div>
               </div>

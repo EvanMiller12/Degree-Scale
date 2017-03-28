@@ -11,24 +11,23 @@ class DegreeDetail extends React.Component {
 
   constructor(props) {
     super(props);
-  }
 
-  difference(){
-    var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
-    console.log(difference);
-    this.setState({difference});
 
   }
 
   render() {
+
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
+    var difAfterTen = difference * 10;
+    var associateAvg = parseInt(this.props.ascAverage).toFixed(2);
+    var bachelorsAvg = parseInt(this.props.bacAverage).toFixed(2);
 
     return(
       <div className="row">
         <div className="col-sm-12 degree-detail-contain">
           <div className="degree-detail-title">
             <h1>Average Salary</h1>
-            <p>of top 20 schools for major</p>
+            <p>of 20 schools for the selected major 10 years after entry</p>
           </div>
           <div className="row">
             <div className="col-sm-3 col-sm-offset-1">
@@ -36,15 +35,15 @@ class DegreeDetail extends React.Component {
                 <h4>Associate's Salary</h4>
               </div>
               <div className="avg-salary associate-salary">
-                <h5>{ this.props.ascAverage }</h5>
+                <h5>${ associateAvg }</h5>
               </div>
             </div>
             <div className="col-sm-3 col-sm-offset-1">
-              <div className="program-level associate-level">
-                <h4>Difference in Salaries</h4>
-              </div>
-              <div className="avg-salary associate-salary">
-                <h5>{difference}</h5>
+              <div className="dif-in-salaries">
+                <label>Difference in Salaries = </label>
+                <span>{ '-' + '$' + difference }</span>
+                <label>Difference after 10 years = </label>
+                <span>{ '-' + '$' + difAfterTen }</span>
               </div>
             </div>
             <div className="col-sm-3 col-sm-offset-1">
@@ -52,7 +51,7 @@ class DegreeDetail extends React.Component {
                 <h4>Bachelor's Salary</h4>
               </div>
               <div className="avg-salary bachelor-salary">
-                <h5>{ this.props.bacAverage }</h5>
+                <h5>${ bachelorsAvg }</h5>
               </div>
             </div>
           </div>

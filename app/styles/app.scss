@@ -257,6 +257,21 @@ iframe{
   text-align: center;
 }
 
+.dif-title{
+  text-align: center;
+}
+
+.dif-in-salaries{
+  text-align: center;
+  border: 1px solid black;
+  margin-bottom: 30px;
+
+  span{
+    color: red;
+    padding-left: 10px;
+  }
+}
+
 .avg-salary{
   text-align: center;
   border: 1px solid black;

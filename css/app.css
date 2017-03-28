@@ -5815,9 +5815,6 @@ img {
   font-size: 20px;
   background-color: #D9853B; }
 
-iframe {
-  color: #ECECEA; }
-
 /*
 * Profile create edit styling
 */
@@ -5848,7 +5845,8 @@ iframe {
 * Review create edit styling
 */
 .review-form-contain {
-  border: 1px solid #EEEEEE;
+  border: 1px solid black;
+  border-radius: 20px;
   padding: 50px; }
   .review-form-contain p {
     font-weight: bold; }
@@ -5882,32 +5880,41 @@ iframe {
   margin-bottom: 50px; }
 
 .review-contain {
-  border: 1px solid #EEEEEE;
-  padding-bottom: 50px; }
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 30px; }
+  .review-contain label {
+    padding-right: 10px; }
 
-.review-contain {
-  border: 1px solid black; }
+.my-reviews-title h2 {
+  font-size: 25px; }
+
+.search-title h2 {
+  font-size: 25px; }
 
 .review-owner {
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid black;
+  margin-bottom: 30px; }
+  .review-owner span {
+    font-size: 20px; }
 
 .review-major {
-  padding-bottom: 20px;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid black;
+  margin-bottom: 20px; }
 
 .review-salary {
-  padding-bottom: 20px; }
+  margin-bottom: 20px; }
 
 .review-rating {
-  padding-bottom: 20px;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid black;
+  margin-bottom: 20px; }
 
 .review-employ {
-  padding-bottom: 20px;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid black;
+  margin-bottom: 20px; }
 
 .review-experience {
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   border-bottom: 1px solid black; }
 
 .review-submit {
@@ -5920,6 +5927,7 @@ iframe {
 */
 .degree-select-contain {
   border: 1px solid black;
+  border-radius: 20px;
   padding: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -5945,6 +5953,17 @@ iframe {
 
 .program-level {
   text-align: center; }
+
+.dif-title {
+  text-align: center; }
+
+.dif-in-salaries {
+  text-align: center;
+  border: 1px solid black;
+  margin-bottom: 30px; }
+  .dif-in-salaries span {
+    color: red;
+    padding-left: 10px; }
 
 .avg-salary {
   text-align: center;
@@ -5977,4 +5996,5 @@ iframe {
     list-style: none; }
     .footer-nav li > a {
       padding-left: 20px; }
+
 /*# sourceMappingURL=app.css.map */

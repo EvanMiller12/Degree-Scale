@@ -210,38 +210,55 @@ class DegreeDetail extends React.Component {
   constructor(props) {
     super(props);
 
+
   }
 
   render() {
+
+    var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
+    var difAfterTen = difference * 10;
+    var associateAvg = parseInt(this.props.ascAverage).toFixed(2);
+    var bachelorsAvg = parseInt(this.props.bacAverage).toFixed(2);
+
     return(
       React.createElement("div", {className: "row"}, 
         React.createElement("div", {className: "col-sm-12 degree-detail-contain"}, 
           React.createElement("div", {className: "degree-detail-title"}, 
             React.createElement("h1", null, "Average Salary"), 
-            React.createElement("p", null, "of top 20 schools for major")
+            React.createElement("p", null, "of 20 schools for the selected major 10 years after entry")
           ), 
           React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "col-sm-4"}, 
+            React.createElement("div", {className: "col-sm-3 col-sm-offset-1"}, 
               React.createElement("div", {className: "program-level associate-level"}, 
-                React.createElement("h4", null, "Associate's")
+                React.createElement("h4", null, "Associate's Salary")
               ), 
               React.createElement("div", {className: "avg-salary associate-salary"}, 
-                React.createElement("h5", null,  this.props.ascAverage)
+                React.createElement("h5", null, "$",  associateAvg )
               )
             ), 
-            React.createElement("div", {className: "col-sm-4"}, 
+            React.createElement("div", {className: "col-sm-3 col-sm-offset-1"}, 
+              React.createElement("div", {className: "dif-in-salaries"}, 
+                React.createElement("label", null, "Difference in Salaries = "), 
+                React.createElement("span", null,  '-' + '$' + difference), 
+                React.createElement("label", null, "Difference after 10 years = "), 
+                React.createElement("span", null,  '-' + '$' + difAfterTen)
+              )
+            ), 
+            React.createElement("div", {className: "col-sm-3 col-sm-offset-1"}, 
               React.createElement("div", {className: "program-level bachelor-level"}, 
-                React.createElement("h4", null, "Bachelor's")
+                React.createElement("h4", null, "Bachelor's Salary")
               ), 
               React.createElement("div", {className: "avg-salary bachelor-salary"}, 
-                React.createElement("h5", null,  this.props.bacAverage)
+                React.createElement("h5", null, "$",  bachelorsAvg )
               )
             )
           ), 
+
           React.createElement(BarChart, {
             ascAverage:  this.props.ascAverage, 
             bacAverage:  this.props.bacAverage}
           ), 
+
           React.createElement("div", {className: "job-satisfaction-contain"}, 
             React.createElement("div", {className: "job-satisfaction"}, 
               React.createElement("label", null, "Job Satisfaction: "), 
@@ -390,7 +407,7 @@ class DegreeSelect extends React.Component {
         React.createElement("div", {className: "col-sm-6 col-sm-offset-3"}, 
           React.createElement("div", {className: "degree-select-contain"}, 
             React.createElement("div", {className: "degree-select-title"}, 
-            React.createElement("h1", null, "Find Degree")
+            React.createElement("h1", null, "Find Degrees")
             ), 
             React.createElement("div", {className: "degree-select-form"}, 
               React.createElement("div", {className: "degree-select"}, 
@@ -1039,10 +1056,10 @@ class ReviewCreateEditContainer extends React.Component {
       React.createElement(BaseLayout, null, 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-sm-8 col-sm-offset-2"}, 
-            React.createElement("div", {className: "review-form-contain"}, 
-              React.createElement("div", {className: "review-form-title"}, 
-                React.createElement("h1", null, "Leave A Review of Your Degree Below")
-              ), 
+            React.createElement("div", {className: "review-form-title"}, 
+              React.createElement("h1", null, "Leave A Review of Your Degree Below")
+            ), 
+            React.createElement("div", {className: "review-form-contain col-sm-offset-1"}, 
               React.createElement("form", {onSubmit:  this.handleSubmit}, 
                 React.createElement("div", {className: "select-degree-contain"}, 
                   React.createElement("div", {className: "select-degree-title"}, 
@@ -1187,14 +1204,19 @@ class ReviewResultsContainer extends React.Component {
       React.createElement(BaseLayout, null, 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-sm-10 col-sm-offset-1"}, 
-            React.createElement("div", {className: "col-sm-6"}, 
-              React.createElement("h1", null, "Search for A Major To See Reviews"), 
+            React.createElement("div", {className: "col-sm-5 search-title"}, 
+              React.createElement("h2", null, "Search for A Major To See Reviews"), 
               React.createElement("div", {className: "review-search"}, 
                 React.createElement("form", {onSubmit: this.handleSearch}, 
-                  React.createElement("div", {className: "form-group"}, 
-                   React.createElement("input", {onChange: this.updateSearch, type: "text", className: "form-control", placeholder: "Search"}), 
-                   React.createElement("input", {type: "submit", className: "btn btn-success", value: "search"})
-                 )
+                  React.createElement("div", {className: "input-group"}, 
+                    React.createElement("input", {onChange: this.updateSearch, type: "text", className: "form-control", placeholder: "Search"}), 
+                    React.createElement("span", {className: "input-group-btn"}, 
+                      React.createElement("button", {type: "submit", className: "btn btn-default"}, 
+                        React.createElement("span", {className: "glyphicon glyphicon-search", "aria-hidden": "true"}
+                        )
+                      )
+                    )
+                  )
                 )
               ), 
               React.createElement(ResultsList, {reviewCollection: this.state.reviewCollection})
@@ -1216,13 +1238,13 @@ class ResultsList extends React.Component {
     var reviews = this.props.reviewCollection.map((review) => {
       return(
         React.createElement("div", {key: review.cid, className: "review-contain"}, 
-          React.createElement("div", {classsName: "review-owner"}, 
+          React.createElement("div", {className: "review-owner"}, 
             React.createElement("span", null, "Review owner")
           ), 
           React.createElement("div", {className: "review-major"}, 
             React.createElement("label", null, "Field of Study:"), 
             React.createElement("span", null, review.get('major')), 
-            React.createElement("div", {className: "review-major"}, 
+            React.createElement("div", {className: "review-degree"}, 
               React.createElement("label", null, "Degree level:"), 
               React.createElement("span", null, review.get('degree'))
             )
@@ -1284,8 +1306,10 @@ class UserReviewContainer extends React.Component {
   }
   render(){
     return(
-      React.createElement("div", {className: "col-sm-4"}, 
-        React.createElement("h1", null, "My Reviews"), 
+      React.createElement("div", {className: "col-sm-4 col-sm-offset-1"}, 
+        React.createElement("div", {className: "my-reviews-title"}, 
+          React.createElement("h2", null, "My Reviews")
+        ), 
         React.createElement("div", {className: "user-rev-list"}, 
           React.createElement(UserReviewList, {userReviews: this.state.userReviews})
         )
@@ -1405,37 +1429,31 @@ var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
     return 'https://final-proxy-server.herokuapp.com/v1/schools/'
-
-    // https://localhost:3000
+    // return 'https://localhost:3000/v1/schools/'
   },
+
   parse: function(data){
     return data.results;
   },
+
   urlSetter: function(degree, major) {
     this.url = 'https://final-proxy-server.herokuapp.com/v1/schools/' + degree + '/' + major ;
+      // return 'https://localhost:3000/v1/schools/'
     return this;
   },
   average: function() {
     var earnings = this.map(function(degree){
       return degree.get('2012.earnings.10_yrs_after_entry.median');
     });
+
     var average = earnings.reduce(function(a, b){
       return a + b;
+
     }, 0) / earnings.length;
+
     return average;
-  }
+  },
 });
-
-// var degrees = new DegreeCollection();
-// var degreeData = degrees.urlSetter(1, 'computer')
-// degreeData.fetch().done(function(response){
-//   console.log(degreeData.average())
-//   return degreeData.average();
-// });
-
-// var componentData = average.then(function(data){
-//   return data.results
-// })
 
 
 module.exports = {

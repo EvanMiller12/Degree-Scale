@@ -13,13 +13,13 @@ var Degree = Backbone.Model.extend({
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
-    return 'http://localhost:3000/v1/schools/'
+    return 'https://localhost:3000/v1/schools/'
   },
   parse: function(data){
     return data.results;
   },
   urlSetter: function(degree, major) {
-    this.url = 'http://localhost:3000/v1/schools/' + degree + '/' + major ;
+    this.url = 'https://localhost:3000/v1/schools/' + degree + '/' + major ;
     return this;
   },
   average: function() {

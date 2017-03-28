@@ -32,7 +32,6 @@ var ParseCollection = Backbone.Collection.extend({
     // If an objectId is passed in then we are building a pointer where
     if(objectId){
       value = {
-        field: field,
         className: value,
         objectId: objectId,
         '__type': 'Pointer'

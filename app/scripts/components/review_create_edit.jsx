@@ -1,4 +1,5 @@
 var React = require('react');
+var Backbone = require('backbone');
 
 var programNames = require('./../program_data');
 
@@ -33,6 +34,7 @@ class ReviewCreateEditContainer extends React.Component {
       degree: null,
       major: null,
       employment: null,
+      showOptions: false,
       experience: null,
       salary: null,
       recommend: null,
@@ -42,6 +44,7 @@ class ReviewCreateEditContainer extends React.Component {
     this.updateDegree = this.updateDegree.bind(this);
     this.updateMajor = this.updateMajor.bind(this);
     this.updateEmployment = this.updateEmployment.bind(this);
+    this.handleShowOptions = this.handleShowOptions.bind(this);
     this.updateExperience = this.updateExperience.bind(this);
     this.updateSalary = this.updateSalary.bind(this);
     this.updateRecommend = this.updateRecommend.bind(this);
@@ -63,6 +66,7 @@ class ReviewCreateEditContainer extends React.Component {
       this.setState({ employment: 'No' })
     }
     // this.state.review.set({ employment: e.target.value == 'on' });
+
   }
   updateExperience(e){
     this.setState({ experience: e.target.value })
@@ -73,27 +77,39 @@ class ReviewCreateEditContainer extends React.Component {
     // this.state.review.set({ salary: e.target.value });
   }
   updateRecommend(e){
-    e.preventDefault();
-    if(e.target.value == 'Recommend') {
+    if(e.target.value == 'on') {
       this.setState({ recommend: 'Yes' })
     } else {
       this.setState({ recommend: 'No' })
     }
     // this.state.review.set({ recommend: e.target.value });
   }
+  handleShowOptions(e){
+    e.preventDefault();
+      this.setState({showOptions: !this.state.showOptions});
+  }
   handleSubmit(e){
     e.preventDefault();
-    // var review = this.state.review
-    var review = new Review(this.state)
 
-    //
-    review.setPointer('owner', '_User', User.current().get('objectId'));
+    var review = this.state.review;
 
-    console.log('review', review)
+    review.isNew() ? review.setPointer('owner', '_User', User.current().get('objectId')) : null
+    review.set({
+      degree: this.state.degree,
+      major: this.state.major,
+      employment: this.state.employment,
+      experience: this.state.experience,
+      salary: this.state.salary,
+      recommend: this.state.recommend
+    });
 
-    review.save()
+    review.save().then((response) => {
+      Backbone.history.navigate('#review/', { trigger: true })
+    });
   }
   render() {
+    console.log('current degree:', this.state.degree)
+    console.log('current major:', this.state.major)
     var programs = Object.keys(programNames).map(function(key, index){
       return <option key={key} value={programNames[key]}>{programNames[key]}</option>
     });
@@ -109,45 +125,40 @@ class ReviewCreateEditContainer extends React.Component {
                 <div className="select-degree-contain">
                   <div>
                   <label className="degree-select-label">
-                    Select Your Degree:
+                    Select Your Degree and Major:
                   </label>
                   </div>
-                  <select onChange={ this.updateDegree } className="select-degree option1" name="select-degree">
-                    <option id="select" value="select-degree">Select Degree</option>
+                  <select onChange={ this.updateDegree } className="select-degree option1" name="select-degree" value={this.state.degree}>
+                    <option id="select-deg" value="select-degree">Select Degree</option>
                     <option id="associates" value="associates">Associates</option>
                     <option id="bachelors" value="bachelors">Bachelors</option>
                   </select>
-                  <select onChange={ this.updateMajor } className="select-major option1" name="select-major">
+                  <select onChange={ this.updateMajor } className="select-major option1" name="select-major"  value={this.state.major}>
+                    <option id="select-maj" value="select-major">Select Major</option>
                     {programs}
                   </select>
                 </div>
                 <div className="checkbox">
                   <h5>Were you able to get a job in the field of this degree?</h5>
                   <label>
-                    <input onChange={ this.updateEmployment } type="checkbox"/>
+                    <input onChange={ this.updateEmployment }  type="checkbox" checked={this.state.employment === 'Yes' ? true : false}/>
                     Yes
                   </label>
                   <label>
-                    <input onChange={ this.updateEmployment } type="checkbox"/>
+                    <input onChange={ this.updateEmployment }  type="checkbox" checked={this.state.employment === 'No' ? true : false}/>
                     No
                   </label>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="experience">
-                    Number of years working in this field:
-                    <input onChange={ this.updateExperience } value={ this.state.experience } className="form-control" type="text" placeholder="years"/>
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="salary">
-                    Salary:
-                    <input onChange={ this.updateSalary } value={ this.state.salary } className="form-control" type="text" placeholder="$0.00"/>
-                  </label>
-                </div>
-                <div className="input-group">
-                  <input onClick={ this.updateRecommend } value='Recommend' className="btn btn-success" type="button" />
-                  <input onClick={ this.updateRecommend } value='Not Recommendded' className="btn btn-success" type="button" />
-                </div>
+                <a onClick={ this.handleShowOptions }>Next</a>
+                { this.state.showOptions ? <GotAJobForm
+                  experience={ this.state.experience }
+                  salary={ this.state.salary }
+                  recommend={ this.state.recommend }
+                  updateExperience={ this.updateExperience }
+                  updateSalary={ this.updateSalary }
+                  updateRecommend={ this.updateRecommend }
+                /> : null }
+
                 <div className="review-submit pull-right">
                   <input className="btn btn-primary" type="submit" value="Submit Review"/>
                 </div>
@@ -156,6 +167,37 @@ class ReviewCreateEditContainer extends React.Component {
           </form>
         </div>
       </BaseLayout>
+    )
+  }
+}
+
+class GotAJobForm extends React.Component {
+  render(){
+    return(
+      <div className="got-job-form">
+        <div className="form-group">
+          <label htmlFor="experience">
+            Number of years working in this field:
+            <input onChange={ this.props.updateExperience } value={ this.props.experience } className="form-control" type="text" placeholder="years"/>
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="salary">
+            Salary:
+            <input onChange={ this.props.updateSalary} value={ this.props.salary } className="form-control" type="text" placeholder="$0.00"/>
+          </label>
+        </div>
+        <div className="checkbox">
+          <label>
+            <input onChange={ this.props.updateRecommend }  type="checkbox" checked={ this.props.recommend === 'Yes' ? true : false } />
+            Recommend
+          </label>
+          <label>
+            <input onChange={ this.props.updateEmployment }  type="checkbox" checked={ this.props.recommend === 'No' ? true : false } />
+            Don't Recommend
+          </label>
+        </div>
+      </div>
     )
   }
 }

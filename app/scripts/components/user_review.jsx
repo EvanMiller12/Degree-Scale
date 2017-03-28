@@ -63,10 +63,9 @@ class UserReviewList extends React.Component {
             <label>Salary:</label>
             <span>${review.get('salary')}</span>
           </div>
-          <a href={ '#review/edit/' + review.get('objectId') + '/'} className="btn btn-primary">
+          <a href={ '#review/edit/' + review.get('objectId') + '/'} className="btn btn-primary pull-right">
             Edit
           </a>
-          <a href="#" className="btn btn-danger"></a>
         </li>
       )
     })

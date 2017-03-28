@@ -91,9 +91,15 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     );
   },
-  reviewResults: function(){
+  // reviewResults: function(){
+  //   ReactDOM.render(
+  //     React.createElement(ReviewResultsContainer),
+  //     document.getElementById('app')
+  //   );
+  // },
+  reviewResults: function(id){
     ReactDOM.render(
-      React.createElement(ReviewResultsContainer),
+      React.createElement(ReviewResultsContainer, {id:id}),
       document.getElementById('app')
     );
   },

@@ -85,6 +85,12 @@ class ProfileCreateEditContainer extends React.Component {
    this.setState({ degrees: this.state.degrees, school: null, degree: null, major: null })
  }
 
+  deleteDegree(degree){
+    var updatedList = this.state.degrees;
+    updatedList.remove(degree);
+    this.setState({degrees: updatedList});
+  }
+
  updateProfile(e) {
    e.preventDefault();
 
@@ -122,12 +128,16 @@ updateImage(e) {
 
 render() {
   var user = User.current();
-  var degrees = this.state.degrees.map(function(degree){
+  var degrees = this.state.degrees.map((degree) => {
     return (
       <li key={degree.cid}>
         { degree.get('school') + '' }
         { degree.get('degree') + '' }
         { degree.get('major') }
+        <button onClick={(e)=>{e.preventDefault(); this.deleteDegree(degree)}}
+          type="button" className="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </li>
     )
   })

@@ -26,15 +26,16 @@ class ReviewResultsContainer extends React.Component {
   }
   handleSearch(data) {
     var collection = this.state.reviewCollection;
-   collection.searchTerm = data;
+    collection.searchTerm = data;
 
      collection.fetch().done((response) => {
      this.setState({reviewCollection: collection});
    });
   }
   updateSearch(e){
-    this.handleSearch(e.target.value);;
+    this.handleSearch(e.target.value);
   }
+
   render(){
     return(
       <BaseLayout>
@@ -43,7 +44,7 @@ class ReviewResultsContainer extends React.Component {
             <div className="col-sm-6">
               <h1>Search for A Major To See Reviews</h1>
               <div className="review-search">
-                 <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
+                 <input onChange={this.updateSearch} id="searchTerm"  type="search" className="form-control" placeholder="Search" />
               </div>
               <ResultsList reviewCollection={this.state.reviewCollection}/>
             </div>

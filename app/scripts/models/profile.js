@@ -1,10 +1,10 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 
-var User = require('./user').User;
+// var User = require('./user').User;
 var ParseModel = require('./parse').ParseModel;
 var ParseCollection = require('./parse').ParseCollection;
-var UserDegree = require('./user_degree').UserDegree;
+// var UserDegree = require('./user_degree').UserDegree;
 var UserDegreeCollection = require('./user_degree').UserDegreeCollection;
 
 var Profile = ParseModel.extend({

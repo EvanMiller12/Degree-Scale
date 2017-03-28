@@ -24,7 +24,6 @@ var User = ParseModel.extend({
       User.store(newUser);
       callback(newUser);
     });
-    return newUser;
   },
   logout: function() {
     var url = parse.BASE_API_URL + '/logout?'

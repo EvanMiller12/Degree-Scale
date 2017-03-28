@@ -46,7 +46,6 @@ img {
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #74AFAD;
-  background-color: inherit;
 
   li{
     list-style: none;
@@ -55,6 +54,10 @@ img {
   li  a{
     color: #D9853B;
   }
+}
+
+.mission-statement{
+  color: #ECECEA;
 }
 
 .description{
@@ -206,6 +209,10 @@ iframe{
 
 .review-submit{
   margin-top: 20px;
+
+  a{
+    margin-left: 10px;
+  }
 }
 
 /*
@@ -214,6 +221,9 @@ iframe{
 
 .degree-select-contain{
   border: 1px solid black;
+  padding: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
 }
 

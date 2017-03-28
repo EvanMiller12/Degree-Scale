@@ -161,8 +161,9 @@ class ReviewCreateEditContainer extends React.Component {
                     Don't Recommend
                   </label>
                 </div>
-                <div className="review-submit pull-right">
+                <div className="review-submit">
                   <input className="btn btn-primary" type="submit" value="Submit Review"/>
+                  <a className="btn btn-danger" href="#">Maybe Later</a>
                 </div>
               </form>
 

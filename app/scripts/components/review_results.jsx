@@ -13,30 +13,34 @@ class ReviewResultsContainer extends React.Component {
     super(props);
 
     var reviewCollection = new ReviewCollection();
-    var search = '';
 
     this.state = {
-      search: '',
       results: [],
       reviewCollection
     }
 
+    this.handleSearch = this.handleSearch.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
-    this.handleSearch = _.debounce(this.handleSearch, 300).bind(this);;
   }
-  handleSearch(data) {
-    var collection = this.state.reviewCollection;
-    collection.searchTerm = data;
 
-     collection.fetch().done((response) => {
-     this.setState({reviewCollection: collection});
-   });
-  }
   updateSearch(e){
-    this.handleSearch(e.target.value);
+    this.setState({searchTerm: e.target.value})
+    // this.handleSearch(e.target.value)
   }
+  handleSearch(e){
+    e.preventDefault();
+    var reviewCollection = this.state.reviewCollection;
+    var searchTerm = this.state.searchTerm;
+    reviewCollection.whereClause = {};
+    reviewCollection.fetch().then(()=>{
+      var results = [];
+      var results = reviewCollection.where({major: searchTerm});
+      this.setState({reviewCollection: results})
+    });
+}
 
   render(){
+    console.log('reviewCollection state', this.state.reviewCollection)
     return(
       <BaseLayout>
         <div className="row">
@@ -44,7 +48,12 @@ class ReviewResultsContainer extends React.Component {
             <div className="col-sm-6">
               <h1>Search for A Major To See Reviews</h1>
               <div className="review-search">
-                 <input onChange={this.updateSearch} id="searchTerm"  type="search" className="form-control" placeholder="Search" />
+                <form onSubmit={this.handleSearch}>
+                  <div className="form-group">
+                   <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
+                   <input type="submit" className="btn btn-success" value="search" />
+                 </div>
+                </form>
               </div>
               <ResultsList reviewCollection={this.state.reviewCollection}/>
             </div>
@@ -76,13 +85,13 @@ class ResultsList extends React.Component {
               <span>{review.get('degree')}</span>
             </div>
           </div>
+          <div className="review-employ">
+            <label>Got a job as a/an:</label>
+            <span>{review.get('employment')}</span>
+          </div>
           <div className="review-rating">
             <label>Recomended:</label>
             <span>{review.get('recommend')}</span>
-          </div>
-          <div className="review-employ">
-            <label>Got a job in the field of study:</label>
-            <span>{review.get('employment')}</span>
           </div>
           <div className="review-experience">
             <label>Years in the field:</label>
@@ -95,7 +104,6 @@ class ResultsList extends React.Component {
         </div>
       )
     })
-
     return (
       <div className="results">
         {reviews}

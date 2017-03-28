@@ -19,8 +19,10 @@ class Banner extends React.Component{
       <div className="row light-gray-bkgrnd">
         <div className="jumbotron home-banner dark-teal-bkgrnd">
           <div className="mission-statement">
-            <h1>Mission Statement</h1>
+            <h1>Discover The Value of an Eduction</h1>
           </div>
+          <div className="col-md-6 col-md-offset-1"></div>
+            <p>From government statistics to real peoples opinions</p>
         </div>
       </div>
 

@@ -30,6 +30,7 @@ class DegreeSelect extends React.Component {
                   { programs }
               </select>
               </div>
+                <a className="btn btn-danger" href="#">Maybe Later</a>
             </div>
           </div>
         </div>

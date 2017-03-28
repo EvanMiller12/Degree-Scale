@@ -25,7 +25,7 @@ class HomeContainer extends React.Component {
               <div className="col-sm-6 col-md-6">
                 <div className="description">
                   <h3>Write Review</h3>
-                  <p>Write a review to help potential students or current students better understand the value of the degree they are or will be earning.</p>
+                  <p>Write a review to help potential students or current students better understand the value of the degree they will be earning.</p>
                   <div className="leave-rev-btn">
                     <a href="#review/create/" className="btn btn-primary" role="button">Write Review</a>
                   </div>

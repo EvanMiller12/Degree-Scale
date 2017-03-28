@@ -1404,13 +1404,15 @@ var Degree = Backbone.Model.extend({
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
-    return 'https://localhost:3000/v1/schools/'
+    return 'https://final-proxy-server.herokuapp.com/v1/schools/'
+
+    // https://localhost:3000
   },
   parse: function(data){
     return data.results;
   },
   urlSetter: function(degree, major) {
-    this.url = 'https://localhost:3000/v1/schools/' + degree + '/' + major ;
+    this.url = 'https://final-proxy-server.herokuapp.com/v1/schools/' + degree + '/' + major ;
     return this;
   },
   average: function() {

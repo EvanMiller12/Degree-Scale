@@ -11,10 +11,18 @@ class DegreeDetail extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  difference(){
+    var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
+    console.log(difference);
+    this.setState({difference});
 
   }
 
   render() {
+    var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
+
     return(
       <div className="row">
         <div className="col-sm-12 degree-detail-contain">
@@ -23,27 +31,37 @@ class DegreeDetail extends React.Component {
             <p>of top 20 schools for major</p>
           </div>
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-3 col-sm-offset-1">
               <div className="program-level associate-level">
-                <h4>Associate's</h4>
+                <h4>Associate's Salary</h4>
               </div>
               <div className="avg-salary associate-salary">
                 <h5>{ this.props.ascAverage }</h5>
               </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-3 col-sm-offset-1">
+              <div className="program-level associate-level">
+                <h4>Difference in Salaries</h4>
+              </div>
+              <div className="avg-salary associate-salary">
+                <h5>{difference}</h5>
+              </div>
+            </div>
+            <div className="col-sm-3 col-sm-offset-1">
               <div className="program-level bachelor-level">
-                <h4>Bachelor's</h4>
+                <h4>Bachelor's Salary</h4>
               </div>
               <div className="avg-salary bachelor-salary">
                 <h5>{ this.props.bacAverage }</h5>
               </div>
             </div>
           </div>
+
           <BarChart
             ascAverage={ this.props.ascAverage }
             bacAverage={ this.props.bacAverage }
           />
+
           <div className="job-satisfaction-contain">
             <div className="job-satisfaction">
               <label>Job Satisfaction: </label>

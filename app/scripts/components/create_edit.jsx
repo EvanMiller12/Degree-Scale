@@ -55,7 +55,7 @@ class ProfileCreateEditContainer extends React.Component {
 
   updateFirstName(e) {
     this.setState({ first_name: e.target.value })
-    this.state.profile.set({first_name: e.target.value});
+    this.state.profile.set({ first_name: e.target.value });
   }
   updateLastName(e) {
     this.setState({ last_name: e.target.value })
@@ -98,21 +98,16 @@ class ProfileCreateEditContainer extends React.Component {
 
    var image = new ParseFile(this.state.pic);
 
-   profile.set({ degrees: this.state.degrees })
-   profile.setPointer('owner', '_User', User.current().get('objectId'));
+   profile.isNew() ? profile.setPointer('owner', '_User', User.current().get('objectId')) : null
+   profile.set({ degrees: this.state.degrees });
 
-   if(!profile.get('avatar_url')){
-     image.save({}, {
-       data: this.state.pic
-     }).then((response)=>{
-       profile.set({ 'avatar_url': response.url });
-     profile.save();
-     Backbone.history.navigate('#profile/' + profile.get('objectId') + '/', {trigger: true})
-     });
-   } else {
-     profile.save();
-     Backbone.history.navigate('#profile/' + profile.get('objectId') + '/', {trigger: true})
-   }
+   image.save({}, {
+     data: this.state.pic
+   }).then((response)=>{
+     profile.set({ 'avatar_url': response.url });
+   profile.save();
+   Backbone.history.navigate('#profile/' + profile.get('objectId') + '/', {trigger: true})
+   });
  }
 
 updateImage(e) {

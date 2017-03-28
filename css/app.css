@@ -5881,9 +5881,9 @@ iframe {
 .review-search {
   margin-bottom: 50px; }
 
-.results {
+.review-contain {
   border: 1px solid #EEEEEE;
-  padding: 20px; }
+  padding-bottom: 50px; }
 
 .review-contain {
   border: 1px solid black; }
@@ -5892,19 +5892,23 @@ iframe {
   border-bottom: 1px solid black; }
 
 .review-major {
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  border-bottom: 1px solid black; }
 
 .review-salary {
   padding-bottom: 20px; }
 
 .review-rating {
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  border-bottom: 1px solid black; }
 
 .review-employ {
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  border-bottom: 1px solid black; }
 
 .review-experience {
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  border-bottom: 1px solid black; }
 
 .review-submit {
   margin-top: 20px; }
@@ -5973,4 +5977,5 @@ iframe {
     list-style: none; }
     .footer-nav li > a {
       padding-left: 20px; }
+
 /*# sourceMappingURL=app.css.map */

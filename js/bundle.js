@@ -1305,7 +1305,7 @@ class UserReviewList extends React.Component {
           React.createElement("div", {className: "review-major"}, 
             React.createElement("label", null, "Field of Study:"), 
             React.createElement("span", null, review.get('major')), 
-            React.createElement("div", {className: "review-major"}, 
+            React.createElement("div", {className: "review-degree"}, 
               React.createElement("label", null, "Degree level:"), 
               React.createElement("span", null, review.get('degree'))
             )
@@ -1404,13 +1404,13 @@ var Degree = Backbone.Model.extend({
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
-    return 'http://localhost:3000/v1/schools/'
+    return 'https://localhost:3000/v1/schools/'
   },
   parse: function(data){
     return data.results;
   },
   urlSetter: function(degree, major) {
-    this.url = 'http://localhost:3000/v1/schools/' + degree + '/' + major ;
+    this.url = 'https://localhost:3000/v1/schools/' + degree + '/' + major ;
     return this;
   },
   average: function() {

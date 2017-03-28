@@ -112,10 +112,10 @@ class ReviewCreateEditContainer extends React.Component {
       <BaseLayout>
         <div className="row">
           <div className="col-sm-8 col-sm-offset-2">
-            <div className="review-form-contain">
-              <div className="review-form-title">
-                <h1>Leave A Review of Your Degree Below</h1>
-              </div>
+            <div className="review-form-title">
+              <h1>Leave A Review of Your Degree Below</h1>
+            </div>
+            <div className="review-form-contain col-sm-offset-1">
               <form onSubmit={ this.handleSubmit }>
                 <div className="select-degree-contain">
                   <div className="select-degree-title">

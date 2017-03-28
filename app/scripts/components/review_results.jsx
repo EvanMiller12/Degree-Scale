@@ -45,14 +45,19 @@ class ReviewResultsContainer extends React.Component {
       <BaseLayout>
         <div className="row">
           <div className="col-sm-10 col-sm-offset-1">
-            <div className="col-sm-6">
-              <h1>Search for A Major To See Reviews</h1>
+            <div className="col-sm-5 search-title">
+              <h2>Search for A Major To See Reviews</h2>
               <div className="review-search">
                 <form onSubmit={this.handleSearch}>
-                  <div className="form-group">
-                   <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
-                   <input type="submit" className="btn btn-success" value="search" />
-                 </div>
+                  <div className="input-group">
+                    <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
+                    <span className="input-group-btn">
+                      <button type="submit" className="btn btn-default">
+                        <span className="glyphicon glyphicon-search" aria-hidden="true">
+                        </span>
+                      </button>
+                    </span>
+                  </div>
                 </form>
               </div>
               <ResultsList reviewCollection={this.state.reviewCollection}/>
@@ -74,13 +79,13 @@ class ResultsList extends React.Component {
     var reviews = this.props.reviewCollection.map((review) => {
       return(
         <div key={review.cid} className="review-contain">
-          <div classsName="review-owner">
+          <div className="review-owner">
             <span>Review owner</span>
           </div>
           <div className="review-major">
             <label>Field of Study:</label>
             <span>{review.get('major')}</span>
-            <div className="review-major">
+            <div className="review-degree">
               <label>Degree level:</label>
               <span>{review.get('degree')}</span>
             </div>

@@ -21,8 +21,10 @@ class UserReviewContainer extends React.Component {
   }
   render(){
     return(
-      <div className="col-sm-4">
-        <h1>My Reviews</h1>
+      <div className="col-sm-4 col-sm-offset-1">
+        <div className="my-reviews-title">
+          <h2>My Reviews</h2>
+        </div>
         <div className="user-rev-list">
           <UserReviewList userReviews={this.state.userReviews}/>
         </div>

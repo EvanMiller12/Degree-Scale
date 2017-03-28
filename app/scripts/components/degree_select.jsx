@@ -14,7 +14,7 @@ class DegreeSelect extends React.Component {
         <div className="col-sm-6 col-sm-offset-3">
           <div className="degree-select-contain">
             <div className="degree-select-title">
-            <h1>Find Degree</h1>
+            <h1>Find Degrees</h1>
             </div>
             <div className="degree-select-form">
               <div className="degree-select">

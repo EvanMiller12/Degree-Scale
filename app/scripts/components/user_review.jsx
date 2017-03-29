@@ -36,11 +36,15 @@ class UserReviewContainer extends React.Component {
 class UserReviewList extends React.Component {
 
   render(){
-    console.log('props', this.props.userReviews);
+
     var userReviews = this.props.userReviews.map((review, index) => {
-      console.log('review',review);
+
       return(
         <div key={review.cid} className="review-contain">
+          <div className="review-owner">
+            <span>Review Owner</span>
+            <p>{review.get('timestamp')}</p>
+          </div>
           <div className="review-major">
             <label>Field of Study:</label>
             <span>{review.get('major')}</span>

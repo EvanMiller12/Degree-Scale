@@ -80,7 +80,8 @@ class ResultsList extends React.Component {
       return(
         <div key={review.cid} className="review-contain">
           <div className="review-owner">
-            <span>Review owner</span>
+            <span>Review Owner</span>
+            <p>{review.get('timestamp')}</p>
           </div>
           <div className="review-major">
             <label>Field of Study:</label>

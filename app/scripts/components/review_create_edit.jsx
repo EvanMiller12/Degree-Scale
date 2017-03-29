@@ -25,7 +25,8 @@ class ReviewCreateEditContainer extends React.Component {
           employment: review.get('employment'),
           experience: review.get('experience'),
           salary: review.get('salary'),
-          recommend: review.get('recommend')
+          recommend: review.get('recommend'),
+          timestamp: review.get('timestamp')
         })
       })
     }
@@ -38,6 +39,7 @@ class ReviewCreateEditContainer extends React.Component {
       experience: null,
       salary: null,
       recommend: null,
+      timestamp: review.get('timestamp'),
       review
     }
 
@@ -62,7 +64,7 @@ class ReviewCreateEditContainer extends React.Component {
   updateEmployment(e){
     this.setState({ employment: e.target.value })
     // this.state.review.set({ employment: e.target.value == 'on' });
-
+    
   }
   updateExperience(e){
     this.setState({ experience: e.target.value })
@@ -96,7 +98,8 @@ class ReviewCreateEditContainer extends React.Component {
       employment: this.state.employment,
       experience: this.state.experience,
       salary: this.state.salary,
-      recommend: this.state.recommend
+      recommend: this.state.recommend,
+      timestamp: this.state.timestamp
     });
 
     review.save().then((response) => {

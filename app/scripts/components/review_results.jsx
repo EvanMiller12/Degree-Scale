@@ -1,6 +1,7 @@
 var React = require('react');
 var _ = require('underscore');
 
+var User = require('../models/user').User;
 var Review = require('../models/review').Review;
 var ReviewCollection = require('../models/review').ReviewCollection;
 
@@ -16,7 +17,7 @@ class ReviewResultsContainer extends React.Component {
 
     this.state = {
       results: [],
-      reviewCollection
+      reviewCollection,
     }
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -40,7 +41,7 @@ class ReviewResultsContainer extends React.Component {
 }
 
   render(){
-    console.log('reviewCollection state', this.state.reviewCollection)
+
     return(
       <BaseLayout>
         <div className="row">
@@ -76,11 +77,12 @@ class ResultsList extends React.Component {
 
   }
   render(){
+    var user = User.current();
     var reviews = this.props.reviewCollection.map((review) => {
       return(
         <div key={review.cid} className="review-contain">
           <div className="review-owner">
-            <span>Review Owner</span>
+            <span>{user.get('username')}</span>
             <p>{review.get('timestamp')}</p>
           </div>
           <div className="review-major">

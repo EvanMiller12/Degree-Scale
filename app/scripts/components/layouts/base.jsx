@@ -93,7 +93,7 @@ class Footer extends React.Component{
         <footer className="footer dark-teal-bkgrnd">
           <ul className="footer-nav">
             <li>
-              <span>DegreeScale,</span>
+              <img src="images/degree-scale-logo.png" className="navbar-brand" />
               <span>an app built by <a href="#">Evan Miller</a></span>
             </li>
             <li>

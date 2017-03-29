@@ -149,7 +149,7 @@ render() {
                       onChange={ this.updateImage }
                       onDrop={ this.onDrop }
                     >
-                      <img src={ this.state.preview } />
+                      <img className="img-preview" src={ this.state.preview } />
                     </Dropzone>
                 </div>
               <div className="col-md-6 col-md-offset-1">

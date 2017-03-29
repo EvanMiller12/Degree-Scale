@@ -42,7 +42,7 @@ class UserReviewList extends React.Component {
       return(
         <div key={review.cid} className="review-contain">
           <div className="review-owner">
-            <span>Review Owner</span>
+            <span>Your Review</span>
             <p>{review.get('timestamp')}</p>
           </div>
           <div className="review-major">

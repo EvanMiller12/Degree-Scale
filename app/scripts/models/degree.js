@@ -6,10 +6,6 @@ var Degree = Backbone.Model.extend({
 
 });
 
-// var degreeCollection = new DegreeCollection();
-// degreeCollection.urlSetter(2, 'agriculture');
-// this.state.collection = degreeCollection.fetch();
-
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){

@@ -12,11 +12,10 @@ class DegreeDetail extends React.Component {
   constructor(props) {
     super(props);
 
-
   }
 
   render() {
-
+    console.log('det', this.props.ascData)
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
     var difAfterTen = difference * 10;
     var associateAvg = parseInt(this.props.ascAverage).toFixed(2);
@@ -24,7 +23,7 @@ class DegreeDetail extends React.Component {
 
     return(
       <div className="row">
-        <div className="col-sm-12 degree-detail-contain">
+        <div className="col-sm-5 col-sm-offset-1 degree-detail-contain">
           <div className="degree-detail-title">
             <h1>Average Salary</h1>
             <p>of 20 schools for the selected major 10 years after entry</p>
@@ -72,10 +71,72 @@ class DegreeDetail extends React.Component {
             </div>
           </div>
         </div>
+        <div className="col-sm-5 col-sm-offset-1">
+          <div className="school-list-contain">
+            <div className="list-title">
+              <h1>Schools</h1>
+              <p>Schools that the salary data is coming from</p>
+            </div>
+            <SchoolList ascData={ this.props.ascData } />
+          </div>
+        </div>
       </div>
     )
   }
 }
+
+class SchoolList extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render(){
+    console.log("list", this.props.ascData)
+    var schoolList;
+
+    if(this.props.ascData) {
+      schoolList = this.props.ascData.map((data, index) => {
+
+        return(
+          <li key={index}>
+            <div className="school">
+              <h5>{data['school.name']}</h5>
+            </div>
+            <div className="school-data">
+              <div className="school-salary">
+                <label>Average Salary:</label>
+                <span>{data['2012.earnings.10_yrs_after_entry.median']}</span>
+              </div>
+              <div className="school-cost">
+                <label>Average Cost:</label>
+                <span>{data['2014.cost.avg_net_price.overall']}</span>
+              </div>
+              <div className="grad-rate">
+                <label>Graduation Rate:</label>
+                <span>{data['2014.completion.rate_suppressed.overall']}</span>
+              </div>
+              <div className="school-size">
+                <label>School Size:</label>
+                <span>{data['2014.student.size']}</span>
+              </div>
+            </div>
+          </li>
+        )
+      })
+    }
+
+
+    return(
+      <div className="school-list">
+        <ul>
+          {schoolList}
+        </ul>
+      </div>
+    )
+  }
+}
+
+
 
 class BarChart extends React.Component {
   render() {

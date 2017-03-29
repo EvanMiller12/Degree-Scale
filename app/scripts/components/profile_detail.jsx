@@ -31,7 +31,7 @@ class ProfileDetailContainer extends React.Component{
         <div className=" row">
           <div className="col-sm-6 col-sm-offset-3">
             <div className="user-profile-contain">
-              <h2>{profile.get('first_name') + 's'}  Profile</h2>
+              <h2>Hello {profile.get('first_name')}!</h2>
               <div className="user-avatar">
                 <a name="file" type="file" className="avatar">
                   <img src={profile.get('avatar_url')} alt="" />
@@ -39,19 +39,19 @@ class ProfileDetailContainer extends React.Component{
               </div>
               <div className="row">
                 <div className="user-profile-details">
-                  <div className="users-name">
+                  <div className="user-name">
                     <span>{profile.get('first_name')} </span>
                     <span>{profile.get('last_name')}</span>
                   </div>
                   <div className="location">
-                    <span>Location: </span>
+                    <label>Location: </label>
                     <span>{profile.get('location')}</span>
                   </div>
                   <div className="email">
-                    <span>Email: </span>
+                    <label>Email: </label>
                     <span>{user.get('username')}</span>
                   </div>
-                  <label>Degrees</label>
+                  <label>Degrees:</label>
                   <DegreeList profile={this.state.profile}/>
                 </div>
               </div>
@@ -83,7 +83,7 @@ class DegreeList extends React.Component{
       })
     }
     return (
-      <ul>
+      <ul className="user-degrees">
         { degrees }
       </ul>
     )

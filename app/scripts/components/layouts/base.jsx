@@ -93,7 +93,7 @@ class Footer extends React.Component{
         <footer className="footer dark-teal-bkgrnd">
           <ul className="footer-nav">
             <li>
-              <span>App Name,</span>
+              <span>DegreeScale,</span>
               <span>an app built by <a href="#">Evan Miller</a></span>
             </li>
             <li>

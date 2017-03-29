@@ -687,7 +687,7 @@ class Footer extends React.Component{
         React.createElement("footer", {className: "footer dark-teal-bkgrnd"}, 
           React.createElement("ul", {className: "footer-nav"}, 
             React.createElement("li", null, 
-              React.createElement("span", null, "App Name,"), 
+              React.createElement("span", null, "DegreeScale,"), 
               React.createElement("span", null, "an app built by ", React.createElement("a", {href: "#"}, "Evan Miller"))
             ), 
             React.createElement("li", null, 
@@ -877,7 +877,7 @@ class ProfileDetailContainer extends React.Component{
         React.createElement("div", {className: " row"}, 
           React.createElement("div", {className: "col-sm-6 col-sm-offset-3"}, 
             React.createElement("div", {className: "user-profile-contain"}, 
-              React.createElement("h2", null, profile.get('first_name') + 's', "  Profile"), 
+              React.createElement("h2", null, "Hello ", profile.get('first_name'), "!"), 
               React.createElement("div", {className: "user-avatar"}, 
                 React.createElement("a", {name: "file", type: "file", className: "avatar"}, 
                   React.createElement("img", {src: profile.get('avatar_url'), alt: ""})
@@ -885,19 +885,19 @@ class ProfileDetailContainer extends React.Component{
               ), 
               React.createElement("div", {className: "row"}, 
                 React.createElement("div", {className: "user-profile-details"}, 
-                  React.createElement("div", {className: "users-name"}, 
+                  React.createElement("div", {className: "user-name"}, 
                     React.createElement("span", null, profile.get('first_name'), " "), 
                     React.createElement("span", null, profile.get('last_name'))
                   ), 
                   React.createElement("div", {className: "location"}, 
-                    React.createElement("span", null, "Location: "), 
+                    React.createElement("label", null, "Location: "), 
                     React.createElement("span", null, profile.get('location'))
                   ), 
                   React.createElement("div", {className: "email"}, 
-                    React.createElement("span", null, "Email: "), 
+                    React.createElement("label", null, "Email: "), 
                     React.createElement("span", null, user.get('username'))
                   ), 
-                  React.createElement("label", null, "Degrees"), 
+                  React.createElement("label", null, "Degrees:"), 
                   React.createElement(DegreeList, {profile: this.state.profile})
                 )
               ), 
@@ -929,7 +929,7 @@ class DegreeList extends React.Component{
       })
     }
     return (
-      React.createElement("ul", null, 
+      React.createElement("ul", {className: "user-degrees"}, 
          degrees 
       )
     )

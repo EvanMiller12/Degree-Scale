@@ -5819,22 +5819,40 @@ img {
 * Profile create edit styling
 */
 /*
-*user Profile details styling
+*Profile details styling
 */
 .user-profile-contain {
-  border: 1px solid #EEEEEE;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 25px;
   margin-top: 50px;
   margin-bottom: 50px; }
   .user-profile-contain h2 {
     text-align: center; }
+  .user-profile-contain label {
+    padding-right: 8px; }
+
+.user-name {
+  margin-bottom: 20px; }
+  .user-name span {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid black; }
 
 .user-avatar {
   text-align: center;
   padding-top: 20px; }
+  .user-avatar img {
+    border-radius: 50%;
+    max-height: 225px;
+    max-width: 225px; }
 
 .user-profile-details {
   text-align: center;
   padding-top: 20px; }
+
+.user-degrees {
+  list-style: none; }
 
 .edit-profile-btn {
   text-align: center;
@@ -5998,4 +6016,7 @@ img {
     list-style: none; }
     .footer-nav li > a {
       padding-left: 20px; }
+    .footer-nav li a {
+      color: #D9853B; }
+
 /*# sourceMappingURL=app.css.map */

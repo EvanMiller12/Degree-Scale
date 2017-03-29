@@ -969,7 +969,8 @@ class ReviewCreateEditContainer extends React.Component {
           employment: review.get('employment'),
           experience: review.get('experience'),
           salary: review.get('salary'),
-          recommend: review.get('recommend')
+          recommend: review.get('recommend'),
+          timestamp: review.get('timestamp')
         })
       })
     }
@@ -982,6 +983,7 @@ class ReviewCreateEditContainer extends React.Component {
       experience: null,
       salary: null,
       recommend: null,
+      timestamp: review.get('timestamp'),
       review
     }
 
@@ -1006,7 +1008,7 @@ class ReviewCreateEditContainer extends React.Component {
   updateEmployment(e){
     this.setState({ employment: e.target.value })
     // this.state.review.set({ employment: e.target.value == 'on' });
-
+    
   }
   updateExperience(e){
     this.setState({ experience: e.target.value })
@@ -1040,7 +1042,8 @@ class ReviewCreateEditContainer extends React.Component {
       employment: this.state.employment,
       experience: this.state.experience,
       salary: this.state.salary,
-      recommend: this.state.recommend
+      recommend: this.state.recommend,
+      timestamp: this.state.timestamp
     });
 
     review.save().then((response) => {
@@ -1239,7 +1242,8 @@ class ResultsList extends React.Component {
       return(
         React.createElement("div", {key: review.cid, className: "review-contain"}, 
           React.createElement("div", {className: "review-owner"}, 
-            React.createElement("span", null, "Review owner")
+            React.createElement("span", null, "Review Owner"), 
+            React.createElement("p", null, review.get('timestamp'))
           ), 
           React.createElement("div", {className: "review-major"}, 
             React.createElement("label", null, "Field of Study:"), 
@@ -1321,11 +1325,15 @@ class UserReviewContainer extends React.Component {
 class UserReviewList extends React.Component {
 
   render(){
-    console.log('props', this.props.userReviews);
+
     var userReviews = this.props.userReviews.map((review, index) => {
-      console.log('review',review);
+
       return(
         React.createElement("div", {key: review.cid, className: "review-contain"}, 
+          React.createElement("div", {className: "review-owner"}, 
+            React.createElement("span", null, "Review Owner"), 
+            React.createElement("p", null, review.get('timestamp'))
+          ), 
           React.createElement("div", {className: "review-major"}, 
             React.createElement("label", null, "Field of Study:"), 
             React.createElement("span", null, review.get('major')), 
@@ -1566,18 +1574,23 @@ module.exports = {
 "use strict";
 var $ = require('jquery');
 var Backbone = require('backbone');
+var moment = require('moment');
 
 var User = require('./user').User;
 var ParseModel = require('./parse').ParseModel;
 var ParseCollection = require('./parse').ParseCollection;
 
 var Review = ParseModel.extend({
+  initialize: function(){
+    this.isNew() ? this.set('timestamp', moment().format('ll')) : this.set('timestamp', this.get('timestamp'));
+  },
   urlRoot: 'https://hip-puppies.herokuapp.com/classes/Reviews'
 });
 
 var ReviewCollection = ParseCollection.extend({
   model: Review,
-  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Reviews'
+  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Reviews',
+  comparator: -'timestamp'
 });
 
 module.exports = {
@@ -1585,7 +1598,7 @@ module.exports = {
   ReviewCollection
 }
 
-},{"./parse":18,"./user":21,"backbone":126,"jquery":233}],21:[function(require,module,exports){
+},{"./parse":18,"./user":21,"backbone":126,"jquery":233,"moment":236}],21:[function(require,module,exports){
 "use strict";
 var $ = require('jquery');
 var Backbone = require('backbone');

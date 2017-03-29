@@ -5897,6 +5897,8 @@ img {
   margin-bottom: 30px; }
   .review-owner span {
     font-size: 20px; }
+  .review-owner p {
+    float: right; }
 
 .review-major {
   border-bottom: 1px solid black;

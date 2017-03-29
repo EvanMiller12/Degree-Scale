@@ -25,8 +25,8 @@ class ReviewResultsContainer extends React.Component {
   }
 
   updateSearch(e){
-    this.setState({searchTerm: e.target.value})
-    // this.handleSearch(e.target.value)
+    this.setState({ searchTerm: e.target.value })
+
   }
   handleSearch(e){
     e.preventDefault();
@@ -35,8 +35,8 @@ class ReviewResultsContainer extends React.Component {
     reviewCollection.whereClause = {};
     reviewCollection.fetch().then(()=>{
       var results = [];
-      var results = reviewCollection.where({major: searchTerm});
-      this.setState({reviewCollection: results})
+      var results = reviewCollection.where({ major: searchTerm });
+      this.setState({ reviewCollection: results })
     });
 }
 
@@ -49,9 +49,9 @@ class ReviewResultsContainer extends React.Component {
             <div className="col-sm-5 search-title">
               <h2>Search for A Major To See Reviews</h2>
               <div className="review-search">
-                <form onSubmit={this.handleSearch}>
+                <form onSubmit={ this.handleSearch }>
                   <div className="input-group">
-                    <input onChange={this.updateSearch} type="text" className="form-control" placeholder="Search" />
+                    <input onChange={ this.updateSearch } type="text" className="form-control" placeholder="Search" />
                     <span className="input-group-btn">
                       <button type="submit" className="btn btn-default">
                         <span className="glyphicon glyphicon-search" aria-hidden="true">
@@ -61,7 +61,7 @@ class ReviewResultsContainer extends React.Component {
                   </div>
                 </form>
               </div>
-              <ResultsList reviewCollection={this.state.reviewCollection}/>
+              <ResultsList reviewCollection={ this.state.reviewCollection }/>
             </div>
             <UserReviewContainer />
           </div>
@@ -80,34 +80,34 @@ class ResultsList extends React.Component {
     var user = User.current();
     var reviews = this.props.reviewCollection.map((review) => {
       return(
-        <div key={review.cid} className="review-contain">
+        <div key={ review.cid } className="review-contain">
           <div className="review-owner">
-            <span>{user.get('username')}</span>
-            <p>{review.get('timestamp')}</p>
+            <span>{ user.get('username') }</span>
+            <p>{ review.get('timestamp') }</p>
           </div>
           <div className="review-major">
             <label>Field of Study:</label>
-            <span>{review.get('major')}</span>
+            <span>{ review.get('major') }</span>
             <div className="review-degree">
               <label>Degree level:</label>
-              <span>{review.get('degree')}</span>
+              <span>{ review.get('degree') }</span>
             </div>
           </div>
           <div className="review-employ">
             <label>Got a job as a/an:</label>
-            <span>{review.get('employment')}</span>
+            <span>{ review.get('employment') }</span>
           </div>
           <div className="review-rating">
             <label>Recomended:</label>
-            <span>{review.get('recommend')}</span>
+            <span>{ review.get('recommend') }</span>
           </div>
           <div className="review-experience">
             <label>Years in the field:</label>
-            <span>{review.get('experience')}</span>
+            <span>{ review.get('experience') }</span>
           </div>
           <div className="review-salary">
             <label>Salary:</label>
-            <span>${review.get('salary')}</span>
+            <span>${ review.get('salary') }</span>
           </div>
         </div>
       )

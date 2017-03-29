@@ -27,8 +27,8 @@ class ReviewCreateEditContainer extends React.Component {
           salary: review.get('salary'),
           recommend: review.get('recommend'),
           timestamp: review.get('timestamp')
-        })
-      })
+        });
+      });
     }
 
     this.state = {
@@ -53,26 +53,20 @@ class ReviewCreateEditContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   updateDegree(e){
-    // console.log('e', e.target.value);
-    this.setState({ degree: e.target.value })
-    // this.state.review.set({ degree: e.target.value });
+    this.setState({ degree: e.target.value });
   }
   updateMajor(e){
-    this.setState({ major: e.target.value })
-    // this.state.review.set({ major: e.target.value });
+    this.setState({ major: e.target.value });
   }
   updateEmployment(e){
-    this.setState({ employment: e.target.value })
-    // this.state.review.set({ employment: e.target.value == 'on' });
-    
+    this.setState({ employment: e.target.value });
   }
   updateExperience(e){
-    this.setState({ experience: e.target.value })
-    // this.state.review.set({ experience: e.target.value });
+    this.setState({ experience: e.target.value });
   }
   updateSalary(e){
-    this.setState({ salary: e.target.value })
-    // this.state.review.set({ salary: e.target.value });
+    this.setState({ salary: e.target.value });
+
   }
   updateRecommend(e){
     if(e.target.value == 'yes') {
@@ -84,7 +78,7 @@ class ReviewCreateEditContainer extends React.Component {
   }
   handleShowOptions(e){
     e.preventDefault();
-      this.setState({showOptions: !this.state.showOptions});
+      this.setState({ showOptions: !this.state.showOptions });
   }
   handleSubmit(e){
     e.preventDefault();
@@ -99,7 +93,7 @@ class ReviewCreateEditContainer extends React.Component {
       experience: this.state.experience,
       salary: this.state.salary,
       recommend: this.state.recommend,
-      timestamp: this.state.timestamp
+      timestamp: this.state.timestamp,
     });
 
     review.save().then((response) => {
@@ -178,37 +172,7 @@ class ReviewCreateEditContainer extends React.Component {
   }
 }
 
-// class GotAJobForm extends React.Component {
-//   render(){
-//     return(
-//       <div className="got-job-form">
-//         <div className="form-group">
-//           <label htmlFor="experience">
-//             Number of years working in this field:
-//             <input onChange={ this.props.updateExperience } value={ this.props.experience } className="form-control" type="text" placeholder="years"/>
-//           </label>
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="salary">
-//             Salary:
-//             <input onChange={ this.props.updateSalary} value={ this.props.salary } className="form-control" type="text" placeholder="$0.00"/>
-//           </label>
-//         </div>
-//         <div className="checkbox">
-//           <label>
-//
-//             <input value="yes" onChange={ this.props.updateRecommend }  type="checkbox" checked={ this.props.recommend === 'Yes' ? true : false } />
-//             Recommend
-//           </label>
-//           <label>
-//             <input value="no" onChange={ this.props.updateEmployment }  type="checkbox" checked={ this.props.recommend === 'No' ? true : false } />
-//             Don't Recommend
-//           </label>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
+
 
 module.exports = {
   ReviewCreateEditContainer

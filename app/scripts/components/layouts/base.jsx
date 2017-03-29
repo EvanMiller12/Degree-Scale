@@ -26,11 +26,14 @@ class HeaderNav extends React.Component{
     return(
       <div className="row dark-teal-bkgrnd">
         <nav className="navbar-fixed-top row dark-teal-bkgrnd">
-          <ul className="home-nav col-sm-10 col-sm-offset-1">
+          <ul className="home-nav nav col-sm-10 col-sm-offset-1">
             <li>
               <a className="navbar-brand" href="#">DegreeScale</a>
             </li>
-              {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
+            <li role="presentation" className="active"><a href="#">Home</a></li>
+            <li role="presentation" ><a href="#review/create/">Leave Review</a></li>
+            <li role="presentation" ><a href="#review/">Find Review</a></li>
+            {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
           </ul>
         </nav>
       </div>
@@ -77,7 +80,7 @@ class LoggedInNavItem extends React.Component{
     var user = User.current()
 
     return(
-      <NavDropdown title={user.get('username')} id="nav-dropdown">
+      <NavDropdown className="dropdown" title={user.get('username')} id="nav-dropdown">
         <MenuItem className="dropdown-item" href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
         <MenuItem className="dropdown-item" href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
         <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>

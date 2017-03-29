@@ -13,7 +13,7 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 body{
-  padding-top: 62px;
+  padding-top: 50px;
 }
 
 img {
@@ -69,6 +69,8 @@ img {
   p{
     font-size: 25px;
     color: #74AFAD;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 
@@ -77,9 +79,15 @@ img {
   background-color: #D9853B;
 }
 
-// .find-deg-contain{
-//   min-height: 430px;
-// }
+.leave-rev-contain{
+  margin-bottom: 30px;
+}
+
+.find-deg-contain{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
 
 /*
 * Profile create edit styling
@@ -335,7 +343,28 @@ img {
 }
 
 .school-list{
-  list-style: upper-roman;
+  list-style: decimal;
+
+  label{
+    padding-right: 5px;
+  }
+}
+
+.school{
+  h5{
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.school-data{
+  label{
+    font-size: 18px;
+  }
+
+  span{
+    font-size: 17px;
+  }
 }
 
 /*

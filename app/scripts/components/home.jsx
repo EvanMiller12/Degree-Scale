@@ -18,8 +18,7 @@ class HomeContainer extends React.Component {
             <div className="row leave-rev-contain">
               <div className="col-sm-6 col-md-6">
                 <div className="home-img">
-                  <iframe src="//giphy.com/embed/mgzOCEjRXfguA" width="480" height="438.4" frameBorder="0" className="giphy-embed" allowFullScreen>
-                  </iframe>
+                  <img src="images/world-logo.png" />
                 </div>
               </div>
               <div className="col-sm-6 col-md-6">
@@ -52,8 +51,7 @@ class HomeContainer extends React.Component {
             <div className="row find-rev-contain">
               <div className="col-sm-6 col-md-6">
                 <div className="home-img">
-                  <iframe src="//giphy.com/embed/tU5DNit6HJYWY" width="480" height="480" frameBorder="0" className="giphy-embed" allowFullScreen>
-                  </iframe>
+                  <img src="images/check-list-logo.png" />
                 </div>
               </div>
               <div className="col-sm-6 col-md-6">

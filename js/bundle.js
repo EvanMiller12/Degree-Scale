@@ -592,9 +592,10 @@ class ExBarChart extends React.Component {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
-        }]
-    }
+            borderWidth: 1,
+        }],
+      }
+
     return(
       React.createElement(Bar, {data: salaryData})
     )
@@ -627,8 +628,7 @@ class HomeContainer extends React.Component {
             React.createElement("div", {className: "row leave-rev-contain"}, 
               React.createElement("div", {className: "col-sm-6 col-md-6"}, 
                 React.createElement("div", {className: "home-img"}, 
-                  React.createElement("iframe", {src: "//giphy.com/embed/mgzOCEjRXfguA", width: "480", height: "438.4", frameBorder: "0", className: "giphy-embed", allowFullScreen: true}
-                  )
+                  React.createElement("img", {src: "images/world-logo.png"})
                 )
               ), 
               React.createElement("div", {className: "col-sm-6 col-md-6"}, 
@@ -661,8 +661,7 @@ class HomeContainer extends React.Component {
             React.createElement("div", {className: "row find-rev-contain"}, 
               React.createElement("div", {className: "col-sm-6 col-md-6"}, 
                 React.createElement("div", {className: "home-img"}, 
-                  React.createElement("iframe", {src: "//giphy.com/embed/tU5DNit6HJYWY", width: "480", height: "480", frameBorder: "0", className: "giphy-embed", allowFullScreen: true}
-                  )
+                  React.createElement("img", {src: "images/check-list-logo.png"})
                 )
               ), 
               React.createElement("div", {className: "col-sm-6 col-md-6"}, 
@@ -745,11 +744,14 @@ class HeaderNav extends React.Component{
     return(
       React.createElement("div", {className: "row dark-teal-bkgrnd"}, 
         React.createElement("nav", {className: "navbar-fixed-top row dark-teal-bkgrnd"}, 
-          React.createElement("ul", {className: "home-nav col-sm-10 col-sm-offset-1"}, 
+          React.createElement("ul", {className: "home-nav nav col-sm-10 col-sm-offset-1"}, 
             React.createElement("li", null, 
               React.createElement("a", {className: "navbar-brand", href: "#"}, "DegreeScale")
             ), 
-              User.current() ? React.createElement(LoggedInNavItem, null) : React.createElement(SignupNavItem, null)
+            React.createElement("li", {role: "presentation", className: "active"}, React.createElement("a", {href: "#"}, "Home")), 
+            React.createElement("li", {role: "presentation"}, React.createElement("a", {href: "#review/create/"}, "Leave Review")), 
+            React.createElement("li", {role: "presentation"}, React.createElement("a", {href: "#review/"}, "Find Review")), 
+            User.current() ? React.createElement(LoggedInNavItem, null) : React.createElement(SignupNavItem, null)
           )
         )
       )
@@ -796,7 +798,7 @@ class LoggedInNavItem extends React.Component{
     var user = User.current()
 
     return(
-      React.createElement(NavDropdown, {title: user.get('username'), id: "nav-dropdown"}, 
+      React.createElement(NavDropdown, {className: "dropdown", title: user.get('username'), id: "nav-dropdown"}, 
         React.createElement(MenuItem, {className: "dropdown-item", href: '#profile/' + this.state.profileId + '/'}, "View Profile"), 
         React.createElement(MenuItem, {className: "dropdown-item", href:  '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'},  this.state.profileId ? 'Edit Profile' : 'Create Profile'), 
         React.createElement(MenuItem, {className: "dropdown-item", onClick: this.handleLogout}, "Logout")
@@ -853,7 +855,7 @@ class Banner extends React.Component{
         React.createElement("div", {className: "jumbotron home-banner dark-teal-bkgrnd"}, 
           React.createElement("div", {className: "mission-statement"}, 
             React.createElement("img", {src: "images/degree-scale-logo.png"}), 
-            React.createElement("h1", null, "Discover The Value of an Eduction")
+            React.createElement("h1", null, "Discover The Value of an Education")
           ), 
           React.createElement("div", {className: "col-md-6 col-md-offset-1"}), 
             React.createElement("p", null, "From government statistics to real peoples opinions")
@@ -1097,8 +1099,8 @@ class ReviewCreateEditContainer extends React.Component {
           salary: review.get('salary'),
           recommend: review.get('recommend'),
           timestamp: review.get('timestamp')
-        })
-      })
+        });
+      });
     }
 
     this.state = {
@@ -1123,26 +1125,20 @@ class ReviewCreateEditContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   updateDegree(e){
-    // console.log('e', e.target.value);
-    this.setState({ degree: e.target.value })
-    // this.state.review.set({ degree: e.target.value });
+    this.setState({ degree: e.target.value });
   }
   updateMajor(e){
-    this.setState({ major: e.target.value })
-    // this.state.review.set({ major: e.target.value });
+    this.setState({ major: e.target.value });
   }
   updateEmployment(e){
-    this.setState({ employment: e.target.value })
-    // this.state.review.set({ employment: e.target.value == 'on' });
-    
+    this.setState({ employment: e.target.value });
   }
   updateExperience(e){
-    this.setState({ experience: e.target.value })
-    // this.state.review.set({ experience: e.target.value });
+    this.setState({ experience: e.target.value });
   }
   updateSalary(e){
-    this.setState({ salary: e.target.value })
-    // this.state.review.set({ salary: e.target.value });
+    this.setState({ salary: e.target.value });
+
   }
   updateRecommend(e){
     if(e.target.value == 'yes') {
@@ -1154,7 +1150,7 @@ class ReviewCreateEditContainer extends React.Component {
   }
   handleShowOptions(e){
     e.preventDefault();
-      this.setState({showOptions: !this.state.showOptions});
+      this.setState({ showOptions: !this.state.showOptions });
   }
   handleSubmit(e){
     e.preventDefault();
@@ -1169,7 +1165,7 @@ class ReviewCreateEditContainer extends React.Component {
       experience: this.state.experience,
       salary: this.state.salary,
       recommend: this.state.recommend,
-      timestamp: this.state.timestamp
+      timestamp: this.state.timestamp,
     });
 
     review.save().then((response) => {
@@ -1248,37 +1244,7 @@ class ReviewCreateEditContainer extends React.Component {
   }
 }
 
-// class GotAJobForm extends React.Component {
-//   render(){
-//     return(
-//       <div className="got-job-form">
-//         <div className="form-group">
-//           <label htmlFor="experience">
-//             Number of years working in this field:
-//             <input onChange={ this.props.updateExperience } value={ this.props.experience } className="form-control" type="text" placeholder="years"/>
-//           </label>
-//         </div>
-//         <div className="form-group">
-//           <label htmlFor="salary">
-//             Salary:
-//             <input onChange={ this.props.updateSalary} value={ this.props.salary } className="form-control" type="text" placeholder="$0.00"/>
-//           </label>
-//         </div>
-//         <div className="checkbox">
-//           <label>
-//
-//             <input value="yes" onChange={ this.props.updateRecommend }  type="checkbox" checked={ this.props.recommend === 'Yes' ? true : false } />
-//             Recommend
-//           </label>
-//           <label>
-//             <input value="no" onChange={ this.props.updateEmployment }  type="checkbox" checked={ this.props.recommend === 'No' ? true : false } />
-//             Don't Recommend
-//           </label>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
+
 
 module.exports = {
   ReviewCreateEditContainer
@@ -1313,8 +1279,8 @@ class ReviewResultsContainer extends React.Component {
   }
 
   updateSearch(e){
-    this.setState({searchTerm: e.target.value})
-    // this.handleSearch(e.target.value)
+    this.setState({ searchTerm: e.target.value })
+
   }
   handleSearch(e){
     e.preventDefault();
@@ -1323,8 +1289,8 @@ class ReviewResultsContainer extends React.Component {
     reviewCollection.whereClause = {};
     reviewCollection.fetch().then(()=>{
       var results = [];
-      var results = reviewCollection.where({major: searchTerm});
-      this.setState({reviewCollection: results})
+      var results = reviewCollection.where({ major: searchTerm });
+      this.setState({ reviewCollection: results })
     });
 }
 
@@ -1337,9 +1303,9 @@ class ReviewResultsContainer extends React.Component {
             React.createElement("div", {className: "col-sm-5 search-title"}, 
               React.createElement("h2", null, "Search for A Major To See Reviews"), 
               React.createElement("div", {className: "review-search"}, 
-                React.createElement("form", {onSubmit: this.handleSearch}, 
+                React.createElement("form", {onSubmit:  this.handleSearch}, 
                   React.createElement("div", {className: "input-group"}, 
-                    React.createElement("input", {onChange: this.updateSearch, type: "text", className: "form-control", placeholder: "Search"}), 
+                    React.createElement("input", {onChange:  this.updateSearch, type: "text", className: "form-control", placeholder: "Search"}), 
                     React.createElement("span", {className: "input-group-btn"}, 
                       React.createElement("button", {type: "submit", className: "btn btn-default"}, 
                         React.createElement("span", {className: "glyphicon glyphicon-search", "aria-hidden": "true"}
@@ -1349,7 +1315,7 @@ class ReviewResultsContainer extends React.Component {
                   )
                 )
               ), 
-              React.createElement(ResultsList, {reviewCollection: this.state.reviewCollection})
+              React.createElement(ResultsList, {reviewCollection:  this.state.reviewCollection})
             ), 
             React.createElement(UserReviewContainer, null)
           )
@@ -1368,34 +1334,34 @@ class ResultsList extends React.Component {
     var user = User.current();
     var reviews = this.props.reviewCollection.map((review) => {
       return(
-        React.createElement("div", {key: review.cid, className: "review-contain"}, 
+        React.createElement("div", {key:  review.cid, className: "review-contain"}, 
           React.createElement("div", {className: "review-owner"}, 
-            React.createElement("span", null, user.get('username')), 
-            React.createElement("p", null, review.get('timestamp'))
+            React.createElement("span", null,  user.get('username') ), 
+            React.createElement("p", null,  review.get('timestamp') )
           ), 
           React.createElement("div", {className: "review-major"}, 
             React.createElement("label", null, "Field of Study:"), 
-            React.createElement("span", null, review.get('major')), 
+            React.createElement("span", null,  review.get('major') ), 
             React.createElement("div", {className: "review-degree"}, 
               React.createElement("label", null, "Degree level:"), 
-              React.createElement("span", null, review.get('degree'))
+              React.createElement("span", null,  review.get('degree') )
             )
           ), 
           React.createElement("div", {className: "review-employ"}, 
             React.createElement("label", null, "Got a job as a/an:"), 
-            React.createElement("span", null, review.get('employment'))
+            React.createElement("span", null,  review.get('employment') )
           ), 
           React.createElement("div", {className: "review-rating"}, 
             React.createElement("label", null, "Recomended:"), 
-            React.createElement("span", null, review.get('recommend'))
+            React.createElement("span", null,  review.get('recommend') )
           ), 
           React.createElement("div", {className: "review-experience"}, 
             React.createElement("label", null, "Years in the field:"), 
-            React.createElement("span", null, review.get('experience'))
+            React.createElement("span", null,  review.get('experience') )
           ), 
           React.createElement("div", {className: "review-salary"}, 
             React.createElement("label", null, "Salary:"), 
-            React.createElement("span", null, "$", review.get('salary'))
+            React.createElement("span", null, "$",  review.get('salary') )
           )
         )
       )

@@ -5764,7 +5764,7 @@ button.close {
   box-sizing: border-box; }
 
 body {
-  padding-top: 62px; }
+  padding-top: 50px; }
 
 img {
   max-width: 100%; }
@@ -5809,11 +5809,21 @@ img {
   color: #558C89; }
 .description p {
   font-size: 25px;
-  color: #74AFAD; }
+  color: #74AFAD;
+  padding-top: 30px;
+  padding-bottom: 30px; }
 
 .btn-primary {
   font-size: 20px;
   background-color: #D9853B; }
+
+.leave-rev-contain {
+  margin-bottom: 30px; }
+
+.find-deg-contain {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px; }
 
 /*
 * Profile create edit styling
@@ -5999,7 +6009,18 @@ img {
   text-align: right; }
 
 .school-list {
-  list-style: upper-roman; }
+  list-style: decimal; }
+  .school-list label {
+    padding-right: 5px; }
+
+.school h5 {
+  font-size: 20px;
+  font-weight: bold; }
+
+.school-data label {
+  font-size: 18px; }
+.school-data span {
+  font-size: 17px; }
 
 /*
 * Footer styling

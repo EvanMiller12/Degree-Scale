@@ -221,7 +221,7 @@ class DegreeDetail extends React.Component {
 
     return(
       React.createElement("div", {className: "row"}, 
-        React.createElement("div", {className: "col-sm-5 col-sm-offset-1 degree-detail-contain"}, 
+        React.createElement("div", {className: "col-sm-8 col-sm-offset-2 degree-detail-contain"}, 
           React.createElement("div", {className: "degree-detail-title"}, 
             React.createElement("h1", null, "Average Salary"), 
             React.createElement("p", null, "of 20 schools for the selected major 10 years after entry")
@@ -270,12 +270,21 @@ class DegreeDetail extends React.Component {
           )
         ), 
         React.createElement("div", {className: "col-sm-5 col-sm-offset-1"}, 
-          React.createElement("div", {className: "school-list-contain"}, 
+          React.createElement("div", {className: "school-contain"}, 
             React.createElement("div", {className: "list-title"}, 
-              React.createElement("h1", null, "Schools"), 
-              React.createElement("p", null, "Schools that the salary data is coming from")
+              React.createElement("h1", null, "Associate School Data"), 
+              React.createElement("p", null, "These are schools that the salary data is coming from")
             ), 
-            React.createElement(SchoolList, {ascData:  this.props.ascData})
+            React.createElement(AscSchoolList, {ascData:  this.props.ascData})
+          )
+        ), 
+        React.createElement("div", {className: "col-sm-5 col-sm-offset-1"}, 
+          React.createElement("div", {className: "school-contain"}, 
+            React.createElement("div", {className: "list-title"}, 
+              React.createElement("h1", null, "Bachelor School Data"), 
+              React.createElement("p", null, "These are schools that the salary data is coming from")
+            ), 
+            React.createElement(BacSchoolList, {bacData:  this.props.bacData})
           )
         )
       )
@@ -283,13 +292,13 @@ class DegreeDetail extends React.Component {
   }
 }
 
-class SchoolList extends React.Component {
+class AscSchoolList extends React.Component {
   constructor(props) {
     super(props);
 
   }
   render(){
-    console.log("list", this.props.ascData)
+
     var schoolList;
 
     if(this.props.ascData) {
@@ -325,11 +334,62 @@ class SchoolList extends React.Component {
 
 
     return(
-      React.createElement("div", {className: "school-list"}, 
-        React.createElement("ul", null, 
+      React.createElement("div", {className: "school-list-contain"}, 
+        React.createElement("ul", {className: "school-list"}, 
           schoolList
         )
       )
+    )
+  }
+}
+
+class BacSchoolList extends React.Component {
+  constructor(props){
+    super(props);
+
+  }
+  render(){
+    var bacSchoolList;
+
+    if(this.props.bacData) {
+      bacSchoolList = this.props.bacData.map((data, index) => {
+
+        return(
+          React.createElement("li", {key: index}, 
+            React.createElement("div", {className: "school"}, 
+              React.createElement("h5", null, data['school.name'])
+            ), 
+            React.createElement("div", {className: "school-data"}, 
+              React.createElement("div", {className: "school-salary"}, 
+                React.createElement("label", null, "Average Salary:"), 
+                React.createElement("span", null, data['2012.earnings.10_yrs_after_entry.median'])
+              ), 
+              React.createElement("div", {className: "school-cost"}, 
+                React.createElement("label", null, "Average Cost:"), 
+                React.createElement("span", null, data['2014.cost.avg_net_price.overall'])
+              ), 
+              React.createElement("div", {className: "grad-rate"}, 
+                React.createElement("label", null, "Graduation Rate:"), 
+                React.createElement("span", null, data['2014.completion.rate_suppressed.overall'])
+              ), 
+              React.createElement("div", {className: "school-size"}, 
+                React.createElement("label", null, "School Size:"), 
+                React.createElement("span", null, data['2014.student.size'])
+              )
+            )
+          )
+        )
+      })
+    }
+
+
+    return(
+      React.createElement("div", {className: "school-list-contain"}, 
+        React.createElement("ul", {className: "school-list"}, 
+          bacSchoolList
+        )
+      )
+
     )
   }
 }
@@ -401,6 +461,7 @@ class DegreeResultsContainer extends React.Component {
       selectedMajor: null,
       ascData: null,
       ascAverage: null,
+      bacData: null,
       bacAverage: null
     }
   }
@@ -423,9 +484,9 @@ class DegreeResultsContainer extends React.Component {
       console.log('asc school array', data.results);
       this.setState({ascAverage: this.state.degreeCollection.average(data), ascData: data.results});
       this.state.degreeCollection.urlSetter('bachelors', selectedMajor);
-      this.state.degreeCollection.fetch().done((response) => {
-        console.log('bac school array', response);
-        this.setState({bacAverage: this.state.degreeCollection.average(response)});
+      this.state.degreeCollection.fetch().done((data) => {
+        console.log('bac school array', data);
+        this.setState({bacAverage: this.state.degreeCollection.average(data), bacData: data.results});
       })
     })
   }
@@ -441,6 +502,7 @@ class DegreeResultsContainer extends React.Component {
           selectedMajor:  this.state.selectedMajor, 
           ascAverage:  this.state.ascAverage, 
           ascData:  this.state.ascData, 
+          bacData:  this.state.bacData, 
           bacAverage:  this.state.bacAverage}
         ) : null
       )

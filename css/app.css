@@ -5818,6 +5818,10 @@ img {
 /*
 * Profile create edit styling
 */
+.img-preview {
+  width: 200px;
+  height: 200px; }
+
 /*
 *Profile details styling
 */
@@ -5889,7 +5893,7 @@ img {
   margin-top: 30px; }
 
 .user-rev-list {
-  margin-top: 60px; }
+  margin-top: 90px; }
 
 /*
 * Review Results styling
@@ -5900,7 +5904,8 @@ img {
 .review-contain {
   border: 1px solid black;
   border-radius: 20px;
-  padding: 30px; }
+  padding: 30px;
+  margin-bottom: 30px; }
   .review-contain label {
     padding-right: 10px; }
 

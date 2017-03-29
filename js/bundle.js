@@ -151,7 +151,7 @@ render() {
                       onChange:  this.updateImage, 
                       onDrop:  this.onDrop
                     }, 
-                      React.createElement("img", {src:  this.state.preview})
+                      React.createElement("img", {className: "img-preview", src:  this.state.preview})
                     )
                 ), 
               React.createElement("div", {className: "col-md-6 col-md-offset-1"}, 
@@ -210,11 +210,10 @@ class DegreeDetail extends React.Component {
   constructor(props) {
     super(props);
 
-
   }
 
   render() {
-
+    console.log('det', this.props.ascData)
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
     var difAfterTen = difference * 10;
     var associateAvg = parseInt(this.props.ascAverage).toFixed(2);
@@ -222,7 +221,7 @@ class DegreeDetail extends React.Component {
 
     return(
       React.createElement("div", {className: "row"}, 
-        React.createElement("div", {className: "col-sm-12 degree-detail-contain"}, 
+        React.createElement("div", {className: "col-sm-5 col-sm-offset-1 degree-detail-contain"}, 
           React.createElement("div", {className: "degree-detail-title"}, 
             React.createElement("h1", null, "Average Salary"), 
             React.createElement("p", null, "of 20 schools for the selected major 10 years after entry")
@@ -269,11 +268,73 @@ class DegreeDetail extends React.Component {
               React.createElement("span", null, "Clickable star rating system")
             )
           )
+        ), 
+        React.createElement("div", {className: "col-sm-5 col-sm-offset-1"}, 
+          React.createElement("div", {className: "school-list-contain"}, 
+            React.createElement("div", {className: "list-title"}, 
+              React.createElement("h1", null, "Schools"), 
+              React.createElement("p", null, "Schools that the salary data is coming from")
+            ), 
+            React.createElement(SchoolList, {ascData:  this.props.ascData})
+          )
         )
       )
     )
   }
 }
+
+class SchoolList extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render(){
+    console.log("list", this.props.ascData)
+    var schoolList;
+
+    if(this.props.ascData) {
+      schoolList = this.props.ascData.map((data, index) => {
+
+        return(
+          React.createElement("li", {key: index}, 
+            React.createElement("div", {className: "school"}, 
+              React.createElement("h5", null, data['school.name'])
+            ), 
+            React.createElement("div", {className: "school-data"}, 
+              React.createElement("div", {className: "school-salary"}, 
+                React.createElement("label", null, "Average Salary:"), 
+                React.createElement("span", null, data['2012.earnings.10_yrs_after_entry.median'])
+              ), 
+              React.createElement("div", {className: "school-cost"}, 
+                React.createElement("label", null, "Average Cost:"), 
+                React.createElement("span", null, data['2014.cost.avg_net_price.overall'])
+              ), 
+              React.createElement("div", {className: "grad-rate"}, 
+                React.createElement("label", null, "Graduation Rate:"), 
+                React.createElement("span", null, data['2014.completion.rate_suppressed.overall'])
+              ), 
+              React.createElement("div", {className: "school-size"}, 
+                React.createElement("label", null, "School Size:"), 
+                React.createElement("span", null, data['2014.student.size'])
+              )
+            )
+          )
+        )
+      })
+    }
+
+
+    return(
+      React.createElement("div", {className: "school-list"}, 
+        React.createElement("ul", null, 
+          schoolList
+        )
+      )
+    )
+  }
+}
+
+
 
 class BarChart extends React.Component {
   render() {
@@ -338,6 +399,7 @@ class DegreeResultsContainer extends React.Component {
       showResults: false,
       degreeCollection,
       selectedMajor: null,
+      ascData: null,
       ascAverage: null,
       bacAverage: null
     }
@@ -357,9 +419,9 @@ class DegreeResultsContainer extends React.Component {
 
   updateResults(selectedMajor) {
     this.state.degreeCollection.urlSetter('assoc', selectedMajor);
-    this.state.degreeCollection.fetch().done((response) => {
-      console.log('asc school array', response);
-      this.setState({ascAverage: this.state.degreeCollection.average(response)});
+    this.state.degreeCollection.fetch().done((data) => {
+      console.log('asc school array', data.results);
+      this.setState({ascAverage: this.state.degreeCollection.average(data), ascData: data.results});
       this.state.degreeCollection.urlSetter('bachelors', selectedMajor);
       this.state.degreeCollection.fetch().done((response) => {
         console.log('bac school array', response);
@@ -378,6 +440,7 @@ class DegreeResultsContainer extends React.Component {
          this.state.showResults ? React.createElement(DegreeDetail, {
           selectedMajor:  this.state.selectedMajor, 
           ascAverage:  this.state.ascAverage, 
+          ascData:  this.state.ascData, 
           bacAverage:  this.state.bacAverage}
         ) : null
       )
@@ -387,7 +450,7 @@ class DegreeResultsContainer extends React.Component {
 
 module.exports = {
   DegreeResultsContainer
-}
+};
 
 },{"../models/degree.js":17,"./../program_data":24,"./degree_detail.jsx":2,"./degree_select.jsx":4,"./layouts/base.jsx":8,"react":485}],4:[function(require,module,exports){
 "use strict";
@@ -687,7 +750,7 @@ class Footer extends React.Component{
         React.createElement("footer", {className: "footer dark-teal-bkgrnd"}, 
           React.createElement("ul", {className: "footer-nav"}, 
             React.createElement("li", null, 
-              React.createElement("span", null, "DegreeScale,"), 
+              React.createElement("img", {src: "images/degree-scale-logo.png", className: "navbar-brand"}), 
               React.createElement("span", null, "an app built by ", React.createElement("a", {href: "#"}, "Evan Miller"))
             ), 
             React.createElement("li", null, 
@@ -727,6 +790,7 @@ class Banner extends React.Component{
       React.createElement("div", {className: "row light-gray-bkgrnd"}, 
         React.createElement("div", {className: "jumbotron home-banner dark-teal-bkgrnd"}, 
           React.createElement("div", {className: "mission-statement"}, 
+            React.createElement("img", {src: "images/degree-scale-logo.png"}), 
             React.createElement("h1", null, "Discover The Value of an Eduction")
           ), 
           React.createElement("div", {className: "col-md-6 col-md-offset-1"}), 
@@ -1163,6 +1227,7 @@ module.exports = {
 var React = require('react');
 var _ = require('underscore');
 
+var User = require('../models/user').User;
 var Review = require('../models/review').Review;
 var ReviewCollection = require('../models/review').ReviewCollection;
 
@@ -1178,7 +1243,7 @@ class ReviewResultsContainer extends React.Component {
 
     this.state = {
       results: [],
-      reviewCollection
+      reviewCollection,
     }
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -1202,7 +1267,7 @@ class ReviewResultsContainer extends React.Component {
 }
 
   render(){
-    console.log('reviewCollection state', this.state.reviewCollection)
+
     return(
       React.createElement(BaseLayout, null, 
         React.createElement("div", {className: "row"}, 
@@ -1238,11 +1303,12 @@ class ResultsList extends React.Component {
 
   }
   render(){
+    var user = User.current();
     var reviews = this.props.reviewCollection.map((review) => {
       return(
         React.createElement("div", {key: review.cid, className: "review-contain"}, 
           React.createElement("div", {className: "review-owner"}, 
-            React.createElement("span", null, "Review Owner"), 
+            React.createElement("span", null, user.get('username')), 
             React.createElement("p", null, review.get('timestamp'))
           ), 
           React.createElement("div", {className: "review-major"}, 
@@ -1285,7 +1351,7 @@ module.exports = {
   ReviewResultsContainer
 }
 
-},{"../models/review":20,"./layouts/base.jsx":8,"./user_review.jsx":14,"react":485,"underscore":489}],14:[function(require,module,exports){
+},{"../models/review":20,"../models/user":21,"./layouts/base.jsx":8,"./user_review.jsx":14,"react":485,"underscore":489}],14:[function(require,module,exports){
 "use strict";
 var React = require('react');
 
@@ -1331,7 +1397,7 @@ class UserReviewList extends React.Component {
       return(
         React.createElement("div", {key: review.cid, className: "review-contain"}, 
           React.createElement("div", {className: "review-owner"}, 
-            React.createElement("span", null, "Review Owner"), 
+            React.createElement("span", null, "Your Review"), 
             React.createElement("p", null, review.get('timestamp'))
           ), 
           React.createElement("div", {className: "review-major"}, 
@@ -1428,10 +1494,6 @@ var Degree = Backbone.Model.extend({
   idAttribute: 'objectId',
 
 });
-
-// var degreeCollection = new DegreeCollection();
-// degreeCollection.urlSetter(2, 'agriculture');
-// this.state.collection = degreeCollection.fetch();
 
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,

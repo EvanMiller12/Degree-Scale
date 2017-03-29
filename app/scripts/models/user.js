@@ -26,25 +26,25 @@ var User = ParseModel.extend({
     });
   },
   logout: function() {
-    var url = parse.BASE_API_URL + '/logout?'
+    var url = parse.BASE_API_URL + '/logout?';
     $.post(url).then(event=>{
       console.log('user logout complete');
-    })
+    });
   },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },
   current: function(){
-
     var user = localStorage.getItem('user');
-    if(!user){
-     return false;
+
+    if (!user){
+      return false;
     }
 
     var currentUser = new User(JSON.parse(user));
 
-   if(!currentUser.get('sessionToken')){
-     return false;
+    if (!currentUser.get('sessionToken')){
+      return false;
     }
     return currentUser;
   },
@@ -52,4 +52,4 @@ var User = ParseModel.extend({
 
 module.exports = {
   User
-}
+};

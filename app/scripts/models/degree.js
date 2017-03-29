@@ -13,7 +13,7 @@ var Degree = Backbone.Model.extend({
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
-    return 'https://final-proxy-server.herokuapp.com/v1/schools/'
+    return 'https://final-proxy-server.herokuapp.com/v1/schools/';
     // return 'https://localhost:3000/v1/schools/'
   },
 
@@ -44,4 +44,4 @@ var DegreeCollection = Backbone.Collection.extend({
 module.exports = {
   Degree,
   DegreeCollection
-}
+};

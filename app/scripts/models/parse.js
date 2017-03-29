@@ -15,9 +15,9 @@ var ParseModel = Backbone.Model.extend({
 
   setPointer: function(field, parseClass, objectId){
     var pointerObject = {
-      "__type": "Pointer",
-      "className": parseClass,
-      "objectId": objectId
+      '__type': 'Pointer',
+      'className': parseClass,
+      'objectId': objectId
     };
 
     this.set(field, pointerObject);
@@ -30,7 +30,7 @@ var ParseCollection = Backbone.Collection.extend({
   whereClause: {},
   parseWhere: function(field, value, objectId){
     // If an objectId is passed in then we are building a pointer where
-    if(objectId){
+    if (objectId){
       value = {
         className: value,
         objectId: objectId,
@@ -44,7 +44,8 @@ var ParseCollection = Backbone.Collection.extend({
   },
   url: function(){
     var url = this.baseUrl;
-    if(Object.keys(this.whereClause).length > 0){
+
+    if (Object.keys(this.whereClause).length > 0){
       url += '?where=' + JSON.stringify(this.whereClause);
       this.whereClause = {};
     }
@@ -65,4 +66,4 @@ module.exports = {
   ParseModel,
   ParseCollection,
   ParseFile
-}
+};

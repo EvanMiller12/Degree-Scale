@@ -7,10 +7,11 @@ var ParseModel = require('./parse').ParseModel;
 var ParseCollection = require('./parse').ParseCollection;
 
 var Review = ParseModel.extend({
+  urlRoot: 'https://hip-puppies.herokuapp.com/classes/Reviews',
+
   initialize: function(){
     this.isNew() ? this.set('timestamp', moment().format('ll')) : this.set('timestamp', this.get('timestamp'));
-  },
-  urlRoot: 'https://hip-puppies.herokuapp.com/classes/Reviews'
+  }
 });
 
 var ReviewCollection = ParseCollection.extend({
@@ -22,4 +23,4 @@ var ReviewCollection = ParseCollection.extend({
 module.exports = {
   Review,
   ReviewCollection
-}
+};

@@ -10,10 +10,10 @@ var UserDegree = ParseModel.extend({
 
 var UserDegreeCollection = ParseCollection.extend({
   model: UserDegree,
-  url:'https://hip-puppies.herokuapp.com/classes/Degrees'
+  url: 'https://hip-puppies.herokuapp.com/classes/Degrees'
 });
 
 module.exports = {
   UserDegree,
   UserDegreeCollection
-}
+};

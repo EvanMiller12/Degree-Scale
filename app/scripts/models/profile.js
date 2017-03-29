@@ -11,17 +11,17 @@ var Profile = ParseModel.extend({
   defaults: function() {
     return {
       degrees: new UserDegreeCollection()
-    }
+    };
   },
   urlRoot: 'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 var ProfileCollection = ParseCollection.extend({
   model: Profile,
-  baseUrl:'https://hip-puppies.herokuapp.com/classes/Profile'
+  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 module.exports = {
   Profile,
   ProfileCollection
-}
+};

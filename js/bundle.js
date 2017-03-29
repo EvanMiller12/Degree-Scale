@@ -1404,20 +1404,20 @@ var Profile = ParseModel.extend({
   defaults: function() {
     return {
       degrees: new UserDegreeCollection()
-    }
+    };
   },
   urlRoot: 'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 var ProfileCollection = ParseCollection.extend({
   model: Profile,
-  baseUrl:'https://hip-puppies.herokuapp.com/classes/Profile'
+  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 module.exports = {
   Profile,
   ProfileCollection
-}
+};
 
 },{"./parse":18,"./user_degree":22,"backbone":126,"jquery":233}],17:[function(require,module,exports){
 "use strict";
@@ -1436,7 +1436,7 @@ var Degree = Backbone.Model.extend({
 var DegreeCollection = Backbone.Collection.extend({
   model: Degree,
   url: function(){
-    return 'https://final-proxy-server.herokuapp.com/v1/schools/'
+    return 'https://final-proxy-server.herokuapp.com/v1/schools/';
     // return 'https://localhost:3000/v1/schools/'
   },
 
@@ -1467,7 +1467,7 @@ var DegreeCollection = Backbone.Collection.extend({
 module.exports = {
   Degree,
   DegreeCollection
-}
+};
 
 },{"backbone":126,"jquery":233}],18:[function(require,module,exports){
 "use strict";
@@ -1488,9 +1488,9 @@ var ParseModel = Backbone.Model.extend({
 
   setPointer: function(field, parseClass, objectId){
     var pointerObject = {
-      "__type": "Pointer",
-      "className": parseClass,
-      "objectId": objectId
+      '__type': 'Pointer',
+      'className': parseClass,
+      'objectId': objectId
     };
 
     this.set(field, pointerObject);
@@ -1503,7 +1503,7 @@ var ParseCollection = Backbone.Collection.extend({
   whereClause: {},
   parseWhere: function(field, value, objectId){
     // If an objectId is passed in then we are building a pointer where
-    if(objectId){
+    if (objectId){
       value = {
         className: value,
         objectId: objectId,
@@ -1517,7 +1517,8 @@ var ParseCollection = Backbone.Collection.extend({
   },
   url: function(){
     var url = this.baseUrl;
-    if(Object.keys(this.whereClause).length > 0){
+
+    if (Object.keys(this.whereClause).length > 0){
       url += '?where=' + JSON.stringify(this.whereClause);
       this.whereClause = {};
     }
@@ -1538,7 +1539,7 @@ module.exports = {
   ParseModel,
   ParseCollection,
   ParseFile
-}
+};
 
 },{"../parse_setup":23,"backbone":126,"jquery":233}],19:[function(require,module,exports){
 "use strict";
@@ -1555,20 +1556,20 @@ var Profile = ParseModel.extend({
   defaults: function() {
     return {
       degrees: new UserDegreeCollection()
-    }
+    };
   },
   urlRoot: 'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 var ProfileCollection = ParseCollection.extend({
   model: Profile,
-  baseUrl:'https://hip-puppies.herokuapp.com/classes/Profile'
+  baseUrl: 'https://hip-puppies.herokuapp.com/classes/Profile'
 });
 
 module.exports = {
   Profile,
   ProfileCollection
-}
+};
 
 },{"./parse":18,"./user_degree":22,"backbone":126,"jquery":233}],20:[function(require,module,exports){
 "use strict";
@@ -1581,10 +1582,11 @@ var ParseModel = require('./parse').ParseModel;
 var ParseCollection = require('./parse').ParseCollection;
 
 var Review = ParseModel.extend({
+  urlRoot: 'https://hip-puppies.herokuapp.com/classes/Reviews',
+
   initialize: function(){
     this.isNew() ? this.set('timestamp', moment().format('ll')) : this.set('timestamp', this.get('timestamp'));
-  },
-  urlRoot: 'https://hip-puppies.herokuapp.com/classes/Reviews'
+  }
 });
 
 var ReviewCollection = ParseCollection.extend({
@@ -1596,7 +1598,7 @@ var ReviewCollection = ParseCollection.extend({
 module.exports = {
   Review,
   ReviewCollection
-}
+};
 
 },{"./parse":18,"./user":21,"backbone":126,"jquery":233,"moment":236}],21:[function(require,module,exports){
 "use strict";
@@ -1628,25 +1630,25 @@ var User = ParseModel.extend({
     });
   },
   logout: function() {
-    var url = parse.BASE_API_URL + '/logout?'
+    var url = parse.BASE_API_URL + '/logout?';
     $.post(url).then(event=>{
       console.log('user logout complete');
-    })
+    });
   },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },
   current: function(){
-
     var user = localStorage.getItem('user');
-    if(!user){
-     return false;
+
+    if (!user){
+      return false;
     }
 
     var currentUser = new User(JSON.parse(user));
 
-   if(!currentUser.get('sessionToken')){
-     return false;
+    if (!currentUser.get('sessionToken')){
+      return false;
     }
     return currentUser;
   },
@@ -1654,7 +1656,7 @@ var User = ParseModel.extend({
 
 module.exports = {
   User
-}
+};
 
 },{"../parse_setup":23,"./parse":18,"./user_degree":22,"backbone":126,"jquery":233}],22:[function(require,module,exports){
 "use strict";
@@ -1670,13 +1672,13 @@ var UserDegree = ParseModel.extend({
 
 var UserDegreeCollection = ParseCollection.extend({
   model: UserDegree,
-  url:'https://hip-puppies.herokuapp.com/classes/Degrees'
+  url: 'https://hip-puppies.herokuapp.com/classes/Degrees'
 });
 
 module.exports = {
   UserDegree,
   UserDegreeCollection
-}
+};
 
 },{"./parse":18,"backbone":126,"jquery":233}],23:[function(require,module,exports){
 "use strict";
@@ -1686,17 +1688,17 @@ var parse = {
   BASE_API_URL: '',
   setup: function(config){
     // console.log('config', config);
-    if(config.BASE_API_URL){
+    if (config.BASE_API_URL){
       this.BASE_API_URL = config.BASE_API_URL;
     }
 
     $.ajaxSetup({
       beforeSend: function(xhr){
-        xhr.setRequestHeader("X-Parse-Application-Id", "tiygvl");
-        xhr.setRequestHeader("X-Parse-REST-API-Key", "somevalue");
+        xhr.setRequestHeader('X-Parse-Application-Id', 'tiygvl');
+        xhr.setRequestHeader('X-Parse-REST-API-Key', 'somevalue');
 
-        if(config.sessionId){
-          xhr.setRequestHeader("X-Parse-Session-Token", config.sessionId);
+        if (config.sessionId){
+          xhr.setRequestHeader('X-Parse-Session-Token', config.sessionId);
         }
       }
     });
@@ -1704,61 +1706,61 @@ var parse = {
   deinitialize: function(){
     $.ajaxSetup({
       beforeSend: function(xhr){
-        xhr.setRequestHeader("X-Parse-Application-Id", null);
-        xhr.setRequestHeader("X-Parse-REST-API-Key", null);
-        xhr.setRequestHeader("X-Parse-Session-Token", null);
+        xhr.setRequestHeader('X-Parse-Application-Id', null);
+        xhr.setRequestHeader('X-Parse-REST-API-Key', null);
+        xhr.setRequestHeader('X-Parse-Session-Token', null);
       }
     });
   }
 };
 
-module.exports = parse
+module.exports = parse;
 
 },{"jquery":233}],24:[function(require,module,exports){
 "use strict";
 
 var programNames = {
-'agriculture': 'Agriculture, Agriculture Operations, and Related Sciences',
-'architecture': 'Architecture and Related Services',
-'ethnic_cultural_gender': 'Area, Ethnic, Cultural, Gender, and Group Studies',
-'biological': 'Biological and Biomedical Sciences',
-'business_marketing': 'Business, Management, Marketing, and Related Support Services',
-'communication': 'Communication, Journalism, and Related Programs',
-'communications_technology': 'Communications Technologies/Technicians and Support Services',
-'computer': 'Computer and Information Sciences and Support Services',
-'construction': 'Construction Trades',
-'education': 'Education',
-'engineering': 'Engineering',
-'engineering_technology': 'Engineering Technologies and Engineering-Related Fields',
-'english': 'English Language and Literature/Letters',
-'family_consumer_science': 'Family and Consumer Sciences/Human Sciences',
-'language': 'Foreign Languages, Literatures, and Linguistics',
-'health': 'Health Professions and Related Programs',
-'history': 'History',
-'security_law_enforcement': 'Homeland Security, Law Enforcement, Firefighting and Related Protective Services',
-'legal': 'Legal Professions and Studies',
-'humanities': 'Liberal Arts and Sciences, General Studies and Humanities',
-'library': 'Library Science',
-'mathematics': 'Mathematics and Statistics',
-'mechanic_repair_technology': 'Mechanic and Repair Technologies/Technicians',
-'military': 'Military Technologies and Applied Sciences',
-'multidiscipline': 'Multi/Interdisciplinary Studies',
-'resources': 'Natural Resources and Conservation',
-'parks_recreation_fitness': 'Parks, Recreation, Leisure, and Fitness Studies',
-'personal_culinary': 'Personal and Culinary Services',
-'philosophy_religious': 'Philosophy and Religious Studies',
-'physical_science': 'Physical Sciences',
-'precision_production': 'Precision Production',
-'psychology': 'Psychology',
-'public_administration_social_service': 'Public Administration and Social Service Professions',
-'science_technology': 'Science Technologies/Technicians',
-'social_science': 'Social Sciences',
-'theology_religious_vocation': 'Theology and Religious Vocations',
-'transportation': 'Transportation and Materials Moving',
-'visual_performing': 'Visual and Performing Arts',
-}
+  'agriculture': 'Agriculture, Agriculture Operations, and Related Sciences',
+  'architecture': 'Architecture and Related Services',
+  'ethnic_cultural_gender': 'Area, Ethnic, Cultural, Gender, and Group Studies',
+  'biological': 'Biological and Biomedical Sciences',
+  'business_marketing': 'Business, Management, Marketing, and Related Support Services',
+  'communication': 'Communication, Journalism, and Related Programs',
+  'communications_technology': 'Communications Technologies/Technicians and Support Services',
+  'computer': 'Computer and Information Sciences and Support Services',
+  'construction': 'Construction Trades',
+  'education': 'Education',
+  'engineering': 'Engineering',
+  'engineering_technology': 'Engineering Technologies and Engineering-Related Fields',
+  'english': 'English Language and Literature/Letters',
+  'family_consumer_science': 'Family and Consumer Sciences/Human Sciences',
+  'language': 'Foreign Languages, Literatures, and Linguistics',
+  'health': 'Health Professions and Related Programs',
+  'history': 'History',
+  'security_law_enforcement': 'Homeland Security, Law Enforcement, Firefighting and Related Protective Services',
+  'legal': 'Legal Professions and Studies',
+  'humanities': 'Liberal Arts and Sciences, General Studies and Humanities',
+  'library': 'Library Science',
+  'mathematics': 'Mathematics and Statistics',
+  'mechanic_repair_technology': 'Mechanic and Repair Technologies/Technicians',
+  'military': 'Military Technologies and Applied Sciences',
+  'multidiscipline': 'Multi/Interdisciplinary Studies',
+  'resources': 'Natural Resources and Conservation',
+  'parks_recreation_fitness': 'Parks, Recreation, Leisure, and Fitness Studies',
+  'personal_culinary': 'Personal and Culinary Services',
+  'philosophy_religious': 'Philosophy and Religious Studies',
+  'physical_science': 'Physical Sciences',
+  'precision_production': 'Precision Production',
+  'psychology': 'Psychology',
+  'public_administration_social_service': 'Public Administration and Social Service Professions',
+  'science_technology': 'Science Technologies/Technicians',
+  'social_science': 'Social Sciences',
+  'theology_religious_vocation': 'Theology and Religious Vocations',
+  'transportation': 'Transportation and Materials Moving',
+  'visual_performing': 'Visual and Performing Arts',
+};
 
-module.exports = programNames
+module.exports = programNames;
 
 },{}],25:[function(require,module,exports){
 "use strict";
@@ -1796,11 +1798,12 @@ var AppRouter = Backbone.Router.extend({
   },
   initialize: function(){
     var user = User.current();
-    if(user) {
+
+    if (user) {
       parse.setup({
         sessionId: user.get('sessionToken'),
         BASE_API_URL: 'https://hip-puppies.herokuapp.com'
-      })
+      });
     } else {
       parse.setup({
         BASE_API_URL: 'https://hip-puppies.herokuapp.com'
@@ -1835,13 +1838,13 @@ var AppRouter = Backbone.Router.extend({
     ReactDOM.render(
       React.createElement(ProfileCreateEditContainer, {id: id}),
       document.getElementById('app')
-    )
+    );
   },
   profileDetail: function(id){
     ReactDOM.render(
      React.createElement(ProfileDetailContainer, {id: id}),
      document.getElementById('app')
-    )
+   );
   },
   degreeResults: function(){
     ReactDOM.render(
@@ -1863,7 +1866,7 @@ var AppRouter = Backbone.Router.extend({
   // },
   reviewResults: function(id){
     ReactDOM.render(
-      React.createElement(ReviewResultsContainer, {id:id}),
+      React.createElement(ReviewResultsContainer, { id: id }),
       document.getElementById('app')
     );
   },
@@ -1871,7 +1874,7 @@ var AppRouter = Backbone.Router.extend({
     ReactDOM.render(
       React.createElement(ReviewCreateEditContainer, {id: id}),
       document.getElementById('app')
-    )
+    );
   }
 });
 

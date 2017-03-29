@@ -23,7 +23,7 @@ class DegreeDetail extends React.Component {
 
     return(
       <div className="row">
-        <div className="col-sm-5 col-sm-offset-1 degree-detail-contain">
+        <div className="col-sm-8 col-sm-offset-2 degree-detail-contain">
           <div className="degree-detail-title">
             <h1>Average Salary</h1>
             <p>of 20 schools for the selected major 10 years after entry</p>
@@ -72,12 +72,21 @@ class DegreeDetail extends React.Component {
           </div>
         </div>
         <div className="col-sm-5 col-sm-offset-1">
-          <div className="school-list-contain">
+          <div className="school-contain">
             <div className="list-title">
-              <h1>Schools</h1>
-              <p>Schools that the salary data is coming from</p>
+              <h1>Associate School Data</h1>
+              <p>These are schools that the salary data is coming from</p>
             </div>
-            <SchoolList ascData={ this.props.ascData } />
+            <AscSchoolList ascData={ this.props.ascData } />
+          </div>
+        </div>
+        <div className="col-sm-5 col-sm-offset-1">
+          <div className="school-contain">
+            <div className="list-title">
+              <h1>Bachelor School Data</h1>
+              <p>These are schools that the salary data is coming from</p>
+            </div>
+            <BacSchoolList bacData={ this.props.bacData } />
           </div>
         </div>
       </div>
@@ -85,13 +94,13 @@ class DegreeDetail extends React.Component {
   }
 }
 
-class SchoolList extends React.Component {
+class AscSchoolList extends React.Component {
   constructor(props) {
     super(props);
 
   }
   render(){
-    console.log("list", this.props.ascData)
+
     var schoolList;
 
     if(this.props.ascData) {
@@ -127,11 +136,62 @@ class SchoolList extends React.Component {
 
 
     return(
-      <div className="school-list">
-        <ul>
+      <div className="school-list-contain">
+        <ul className="school-list">
           {schoolList}
         </ul>
       </div>
+    )
+  }
+}
+
+class BacSchoolList extends React.Component {
+  constructor(props){
+    super(props);
+
+  }
+  render(){
+    var bacSchoolList;
+
+    if(this.props.bacData) {
+      bacSchoolList = this.props.bacData.map((data, index) => {
+
+        return(
+          <li key={index}>
+            <div className="school">
+              <h5>{data['school.name']}</h5>
+            </div>
+            <div className="school-data">
+              <div className="school-salary">
+                <label>Average Salary:</label>
+                <span>{data['2012.earnings.10_yrs_after_entry.median']}</span>
+              </div>
+              <div className="school-cost">
+                <label>Average Cost:</label>
+                <span>{data['2014.cost.avg_net_price.overall']}</span>
+              </div>
+              <div className="grad-rate">
+                <label>Graduation Rate:</label>
+                <span>{data['2014.completion.rate_suppressed.overall']}</span>
+              </div>
+              <div className="school-size">
+                <label>School Size:</label>
+                <span>{data['2014.student.size']}</span>
+              </div>
+            </div>
+          </li>
+        )
+      })
+    }
+
+
+    return(
+      <div className="school-list-contain">
+        <ul className="school-list">
+          {bacSchoolList}
+        </ul>
+      </div>
+
     )
   }
 }

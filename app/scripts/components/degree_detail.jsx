@@ -106,6 +106,8 @@ class AscSchoolList extends React.Component {
     if(this.props.ascData) {
       schoolList = this.props.ascData.map((data, index) => {
 
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+
         return(
           <li key={index}>
             <div className="school">
@@ -114,15 +116,15 @@ class AscSchoolList extends React.Component {
             <div className="school-data">
               <div className="school-salary">
                 <label>Average Salary:</label>
-                <span>{data['2012.earnings.10_yrs_after_entry.median']}</span>
+                <span>{'$' + data['2012.earnings.10_yrs_after_entry.median']}</span>
               </div>
               <div className="school-cost">
                 <label>Average Cost:</label>
-                <span>{data['2014.cost.avg_net_price.overall']}</span>
+                <span>{'$' + data['2014.cost.avg_net_price.overall']}</span>
               </div>
               <div className="grad-rate">
                 <label>Graduation Rate:</label>
-                <span>{data['2014.completion.rate_suppressed.overall']}</span>
+                <span>{gradRate + '%'}</span>
               </div>
               <div className="school-size">
                 <label>School Size:</label>
@@ -156,6 +158,8 @@ class BacSchoolList extends React.Component {
     if(this.props.bacData) {
       bacSchoolList = this.props.bacData.map((data, index) => {
 
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+
         return(
           <li key={index}>
             <div className="school">
@@ -164,15 +168,15 @@ class BacSchoolList extends React.Component {
             <div className="school-data">
               <div className="school-salary">
                 <label>Average Salary:</label>
-                <span>{data['2012.earnings.10_yrs_after_entry.median']}</span>
+                <span>{'$' + data['2012.earnings.10_yrs_after_entry.median']}</span>
               </div>
               <div className="school-cost">
                 <label>Average Cost:</label>
-                <span>{data['2014.cost.avg_net_price.overall']}</span>
+                <span>{'$' + data['2014.cost.avg_net_price.overall']}</span>
               </div>
               <div className="grad-rate">
                 <label>Graduation Rate:</label>
-                <span>{data['2014.completion.rate_suppressed.overall']}</span>
+                <span>{gradRate + '%'}</span>
               </div>
               <div className="school-size">
                 <label>School Size:</label>

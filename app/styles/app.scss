@@ -13,7 +13,7 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 body{
-  padding-top: 50px;
+  padding-top: 70px;
 }
 
 img {
@@ -41,11 +41,8 @@ img {
 * Home/top navbar styling
 */
 
-.home-nav{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid #74AFAD;
+.header-nav{
+  padding: 10px;
 
   li{
     list-style: none;
@@ -54,6 +51,27 @@ img {
   li  a{
     color: #D9853B;
   }
+}
+
+.logo{
+  display: inline-block;
+  max-height: 35px;
+}
+
+li.nav-mobile {
+  @media screen and (min-width: 500px) {
+    display: none;
+  }
+}
+
+li.nav-desktop {
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+}
+
+.home-banner{
+  margin-top: 10px;
 }
 
 .mission-statement{
@@ -99,6 +117,10 @@ img {
   border-radius: 20px;
   margin-top: 50px;
   padding: 50px;
+
+  h1{
+    margin-bottom: 30px;
+  }
 }
 
 .img-preview{

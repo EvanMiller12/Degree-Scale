@@ -24,19 +24,23 @@ class HeaderNav extends React.Component{
   render(){
     // console.log(User.current('user'));
     return(
-      <div className="row dark-teal-bkgrnd">
-        <nav className="navbar-fixed-top row dark-teal-bkgrnd">
-          <ul className="home-nav nav col-sm-10 col-sm-offset-1">
-            <li>
-              <a className="navbar-brand" href="#">DegreeScale</a>
-            </li>
-            <li role="presentation" className="active"><a href="#">Home</a></li>
-            <li role="presentation" ><a href="#review/create/">Leave Review</a></li>
-            <li role="presentation" ><a href="#review/">Find Review</a></li>
-            {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
-          </ul>
-        </nav>
-      </div>
+      <nav className="header-nav navbar-fixed-top row dark-teal-bkgrnd">
+        <a className="navbar-brand navbar-logo" href="#">
+          <img src="images/degree-scale-logo.png" className="logo" />
+        </a>
+        <ul className="nav nav-pills pull-right">
+          <li role="presentation" >
+            <a href="#">Home</a>
+          </li>
+          <li role="presentation" className="nav-desktop">
+            <a href="#review/create/">Leave Review</a>
+          </li>
+          <li role="presentation" className="nav-desktop" >
+            <a href="#review/">Find Review</a>
+          </li>
+          {User.current() ? <LoggedInNavItem /> : <SignupNavItem />}
+        </ul>
+      </nav>
     )
   }
 }
@@ -80,10 +84,10 @@ class LoggedInNavItem extends React.Component{
     var user = User.current()
 
     return(
-      <NavDropdown className="dropdown" title={user.get('username')} id="nav-dropdown">
-        <MenuItem className="dropdown-item" href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
-        <MenuItem className="dropdown-item" href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
-        <MenuItem className="dropdown-item" onClick={this.handleLogout}>Logout</MenuItem>
+      <NavDropdown title={user.get('username')} id="nav-dropdown">
+        <MenuItem href={'#profile/' + this.state.profileId + '/'}>View Profile</MenuItem>
+        <MenuItem href={ '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'}>{ this.state.profileId ? 'Edit Profile' : 'Create Profile' }</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
       </NavDropdown>
     )
   }
@@ -94,13 +98,10 @@ class Footer extends React.Component{
     return(
       <div className="row light-gray-bkgrnd">
         <footer className="footer dark-teal-bkgrnd">
+          <img src="images/degree-scale-logo.png" className="logo navbar-logo" />
           <ul className="footer-nav">
             <li>
-              <img src="images/degree-scale-logo.png" className="navbar-brand" />
               <span>an app built by <a href="#">Evan Miller</a></span>
-            </li>
-            <li>
-              <a href="#">Home</a>
             </li>
           </ul>
         </footer>

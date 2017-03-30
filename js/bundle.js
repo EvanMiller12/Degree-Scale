@@ -335,6 +335,8 @@ class AscSchoolList extends React.Component {
     if(this.props.ascData) {
       schoolList = this.props.ascData.map((data, index) => {
 
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+
         return(
           React.createElement("li", {key: index}, 
             React.createElement("div", {className: "school"}, 
@@ -343,15 +345,15 @@ class AscSchoolList extends React.Component {
             React.createElement("div", {className: "school-data"}, 
               React.createElement("div", {className: "school-salary"}, 
                 React.createElement("label", null, "Average Salary:"), 
-                React.createElement("span", null, data['2012.earnings.10_yrs_after_entry.median'])
+                React.createElement("span", null, '$' + data['2012.earnings.10_yrs_after_entry.median'])
               ), 
               React.createElement("div", {className: "school-cost"}, 
                 React.createElement("label", null, "Average Cost:"), 
-                React.createElement("span", null, data['2014.cost.avg_net_price.overall'])
+                React.createElement("span", null, '$' + data['2014.cost.avg_net_price.overall'])
               ), 
               React.createElement("div", {className: "grad-rate"}, 
                 React.createElement("label", null, "Graduation Rate:"), 
-                React.createElement("span", null, data['2014.completion.rate_suppressed.overall'])
+                React.createElement("span", null, gradRate + '%')
               ), 
               React.createElement("div", {className: "school-size"}, 
                 React.createElement("label", null, "School Size:"), 
@@ -385,6 +387,8 @@ class BacSchoolList extends React.Component {
     if(this.props.bacData) {
       bacSchoolList = this.props.bacData.map((data, index) => {
 
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+
         return(
           React.createElement("li", {key: index}, 
             React.createElement("div", {className: "school"}, 
@@ -393,15 +397,15 @@ class BacSchoolList extends React.Component {
             React.createElement("div", {className: "school-data"}, 
               React.createElement("div", {className: "school-salary"}, 
                 React.createElement("label", null, "Average Salary:"), 
-                React.createElement("span", null, data['2012.earnings.10_yrs_after_entry.median'])
+                React.createElement("span", null, '$' + data['2012.earnings.10_yrs_after_entry.median'])
               ), 
               React.createElement("div", {className: "school-cost"}, 
                 React.createElement("label", null, "Average Cost:"), 
-                React.createElement("span", null, data['2014.cost.avg_net_price.overall'])
+                React.createElement("span", null, '$' + data['2014.cost.avg_net_price.overall'])
               ), 
               React.createElement("div", {className: "grad-rate"}, 
                 React.createElement("label", null, "Graduation Rate:"), 
-                React.createElement("span", null, data['2014.completion.rate_suppressed.overall'])
+                React.createElement("span", null, gradRate + '%')
               ), 
               React.createElement("div", {className: "school-size"}, 
                 React.createElement("label", null, "School Size:"), 
@@ -760,7 +764,7 @@ var User = require('../../models/user.js').User;
 class BaseLayout extends React.Component {
   render(){
     return(
-      React.createElement("div", {className: "container-fluid light-gray-bkgrnd"}, 
+      React.createElement("div", {className: "container-fluid app-wrapper"}, 
         React.createElement(HeaderNav, null), 
           this.props.children, 
         React.createElement(Footer, null)
@@ -773,7 +777,7 @@ class HeaderNav extends React.Component{
   render(){
     // console.log(User.current('user'));
     return(
-      React.createElement("nav", {className: "header-nav navbar-fixed-top row dark-teal-bkgrnd"}, 
+      React.createElement("nav", {className: "header-nav navbar-fixed-top"}, 
         React.createElement("a", {className: "navbar-brand navbar-logo", href: "#"}, 
           React.createElement("img", {src: "images/degree-scale-logo.png", className: "logo"})
         ), 
@@ -845,8 +849,8 @@ class LoggedInNavItem extends React.Component{
 class Footer extends React.Component{
   render(){
     return(
-      React.createElement("div", {className: "row light-gray-bkgrnd"}, 
-        React.createElement("footer", {className: "footer dark-teal-bkgrnd"}, 
+      React.createElement("div", {className: "row footer-contain"}, 
+        React.createElement("footer", {className: "footer"}, 
           React.createElement("img", {src: "images/degree-scale-logo.png", className: "logo navbar-logo"}), 
           React.createElement("ul", {className: "footer-nav"}, 
             React.createElement("li", null, 
@@ -883,8 +887,8 @@ class HomeLayout extends React.Component {
 class Banner extends React.Component{
   render(){
     return(
-      React.createElement("div", {className: "row light-gray-bkgrnd"}, 
-        React.createElement("div", {className: "jumbotron home-banner dark-teal-bkgrnd"}, 
+      React.createElement("div", {className: "row banner-contain"}, 
+        React.createElement("div", {className: "jumbotron home-banner"}, 
           React.createElement("div", {className: "mission-statement"}, 
             React.createElement("img", {src: "images/degree-scale-logo.png"}), 
             React.createElement("h1", null, "Discover The Value of an Education")
@@ -1046,8 +1050,8 @@ class ProfileDetailContainer extends React.Component{
               React.createElement("div", {className: "row"}, 
                 React.createElement("div", {className: "user-profile-details"}, 
                   React.createElement("div", {className: "user-name"}, 
-                    React.createElement("span", null, profile.get('first_name'), " "), 
-                    React.createElement("span", null, profile.get('last_name'))
+                    profile.get('first_name') + ' ', 
+                    profile.get('last_name')
                   ), 
                   React.createElement("div", {className: "location"}, 
                     React.createElement("label", null, "Location: "), 

@@ -35,7 +35,7 @@ class HomeContainer extends React.Component {
               <div className="col-sm-6 col-md-6">
                 <div className="description">
                   <h3>Find Degrees</h3>
-                  <p>Review the average salary information by degree for the top 20 schools with the highest salaries.</p>
+                  <p>Review the average salary by degree from government data, as well as a list of schools where the information came from for the selected field of study.</p>
                   <div className="find-degree-btn">
                     <a href={degreeSelectNav} className="btn btn-primary" role="button">Find Degrees</a>
                   </div>

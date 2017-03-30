@@ -93,9 +93,51 @@ img {
 * Profile create edit styling
 */
 
+
+.profile-form-contain{
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-top: 50px;
+  padding: 50px;
+}
+
 .img-preview{
   width: 200px;
   height: 200px;
+}
+
+.add-degree-contain{
+  margin-top: 25px;
+  margin-bottom: 25px;
+
+  button{
+    background-color: #5C974C;
+
+    span{
+      color: white;
+    }
+  }
+}
+
+.user-degree-list{
+  font-size: 16px;
+  margin-top: 20px;
+  list-style: square;
+
+  button{
+    float: right;
+    background-color: inherit;
+  }
+
+  button > span{
+    background-color: inherit;
+    color: red;
+  }
+}
+
+.save-profile{
+  display: inline-block;
+  margin-right: 15px;
 }
 
 

@@ -125,14 +125,16 @@ render() {
   var user = User.current();
   var degrees = this.state.degrees.map((degree) => {
     return (
-      <li key={degree.cid}>
-        { degree.get('school') + '' }
-        { degree.get('degree') + '' }
+      <li key={degree.cid} >
+
+        { degree.get('school') + ' ' }
+        { degree.get('degree') + '  ' }
         { degree.get('major') }
         <button onClick={(e)=>{e.preventDefault(); this.deleteDegree(degree)}}
           type="button" className="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+
       </li>
     )
   })
@@ -140,13 +142,13 @@ render() {
     <BaseLayout>
       <div className="row">
         <div className="col-sm-8 col-sm-offset-2">
+          <div className="profile-form-contain">
           <form onSubmit={ this.updateProfile } className="profile-form">
-            <div className="row">
+
               <h1>{ user.isNew() ? 'Create' : 'Edit' } Profile</h1>
               <div className="col-xs-4 col-md-3">
                   <p>click below to add image</p>
-                    <Dropzone
-                      onChange={ this.updateImage }
+                    <Dropzone onChange={ this.updateImage }
                       onDrop={ this.onDrop }
                     >
                       <img className="img-preview" src={ this.state.preview } />
@@ -154,32 +156,61 @@ render() {
                 </div>
               <div className="col-md-6 col-md-offset-1">
                 <div className="form-group">
-                  <input onChange={ this.updateFirstName } value={ this.state.first_name } className="form-control" type="text" placeholder="First Name"/>
-                  <input onChange={ this.updateLastName } value={ this.state.last_name } className="form-control" type="text" placeholder="Last Name"/>
+                  <input onChange={ this.updateFirstName }
+                        value={ this.state.first_name }
+                        className="form-control" type="text"
+                        placeholder="First Name"
+                  />
+                  <input onChange={ this.updateLastName }
+                         value={ this.state.last_name }
+                         className="form-control"
+                         type="text"
+                         placeholder="Last Name"
+                  />
                 </div>
                 <div className="form-group">
-                  <input onChange={ this.updateLocation } value={ this.state.location } className="form-control" type="text" placeholder="Location (state)"/>
+                  <input onChange={ this.updateLocation }
+                         value={ this.state.location }
+                         className="form-control"
+                         type="text"
+                         placeholder="Location (state)"
+                  />
                 </div>
               </div>
-            </div>
+
             <div className='row'>
-              <div className="col-xs-10 col-md-8">
-                <input onChange={ this.updateSchool } value={ this.state.school } type="text" placeholder="School"/>
-                <input onChange={ this.updateDegree } value={ this.state.degree } type="text" placeholder="Associate or Bachelor"/>
-                <input onChange={ this.updateMajor } value={ this.state.major } type="text" placeholder="Major"/>
+              <div className="add-degree-contain col-xs-10 col-md-8-offset-1">
+                <input onChange={ this.updateSchool }
+                      value={ this.state.school }
+                      type="text"
+                      placeholder="School"
+                />
+                <input onChange={ this.updateDegree }
+                      value={ this.state.degree }
+                      type="text"
+                      placeholder="Associate or Bachelor"
+                />
+                <input onChange={ this.updateMajor }
+                       value={ this.state.major }
+                       type="text"
+                       placeholder="Major"
+                />
                 <span>
                   <button onClick={ this.addDegree } type="button" name="button">
                     <span className="glyphicon glyphicon-plus"></span>
                   </button>
                 </span>
-                <ul>
+                <ul className="user-degree-list">
                   { degrees }
                 </ul>
               </div>
             </div>
-            <input className="btn btn-success" type="submit" value='Save' />
+            <div className="save-profile">
+              <input className="btn btn-success" type="submit" value='Save' />
+            </div>
             <a className="btn btn-danger" href="#" >Skip for Now</a>
           </form>
+          </div>
         </div>
       </div>
     </BaseLayout>

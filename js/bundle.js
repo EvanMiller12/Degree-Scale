@@ -287,18 +287,8 @@ class DegreeDetail extends React.Component {
           React.createElement(BarChart, {
             ascAverage:  this.props.ascAverage, 
             bacAverage:  this.props.bacAverage}
-          ), 
-
-          React.createElement("div", {className: "job-satisfaction-contain"}, 
-            React.createElement("div", {className: "job-satisfaction"}, 
-              React.createElement("label", null, "Job Satisfaction: "), 
-              React.createElement("span", null, "rating")
-            ), 
-            React.createElement("div", {className: "rate"}, 
-              React.createElement("label", null, "Rate: "), 
-              React.createElement("span", null, "Clickable star rating system")
-            )
           )
+
         ), 
         React.createElement("div", {className: "col-sm-5 col-sm-offset-1"}, 
           React.createElement("div", {className: "school-contain"}, 
@@ -703,7 +693,7 @@ class HomeContainer extends React.Component {
                 React.createElement("div", {className: "description"}, 
                   React.createElement("h3", null, "Find Reviews"), 
                   React.createElement("p", null, 
-                    "Find information includin salary, jobsatisfaction," + ' ' +
+                    "Find information including salary, job placement," + ' ' +
                     "and much more from reviews written by people who have earned" + ' ' +
                     "a degree in the particular field of study."
                   ), 
@@ -889,12 +879,10 @@ class Banner extends React.Component{
     return(
       React.createElement("div", {className: "row banner-contain"}, 
         React.createElement("div", {className: "jumbotron home-banner"}, 
-          React.createElement("div", {className: "mission-statement"}, 
-            React.createElement("img", {src: "images/degree-scale-logo.png"}), 
+          React.createElement("img", {src: "images/degree-scale-logo.png"}), 
+          React.createElement("div", {className: "mission-statement col-md-offset-4"}, 
             React.createElement("h1", null, "Discover The Value of an Education")
-          ), 
-          React.createElement("div", {className: "col-md-6 col-md-offset-1"}), 
-            React.createElement("p", null, "From government statistics to real peoples opinions")
+          )
         )
       )
 
@@ -1367,12 +1355,13 @@ class ResultsList extends React.Component {
 
   }
   render(){
-    var user = User.current();
+
     var reviews = this.props.reviewCollection.map((review) => {
+
       return(
         React.createElement("div", {key:  review.cid, className: "review-contain"}, 
           React.createElement("div", {className: "review-owner"}, 
-            React.createElement("span", null,  user.get('username') ), 
+            React.createElement("span", null, "anonymous"), 
             React.createElement("p", null,  review.get('timestamp') )
           ), 
           React.createElement("div", {className: "review-major"}, 

@@ -5796,7 +5796,12 @@ app container styling
   .header-nav li {
     list-style: none; }
   .header-nav li a {
+    color: #FFF; }
+  .header-nav li a:hover {
     color: #D9853B; }
+
+.dropdown-menu {
+  background-color: #74AFAD; }
 
 .logo {
   display: inline-block;
@@ -5819,6 +5824,9 @@ app container styling
 
 .mission-statement {
   color: #ECECEA; }
+  .mission-statement h1 {
+    font-size: 25px;
+    padding-left: 45px; }
 
 .description h3 {
   font-size: 35px;
@@ -5965,12 +5973,16 @@ app container styling
   margin-bottom: 50px; }
 
 .review-contain {
+  background-color: #74AFAD;
   border: 1px solid #000;
   border-radius: 20px;
   padding: 30px;
   margin-bottom: 30px; }
   .review-contain label {
+    font-size: 18px;
     padding-right: 10px; }
+  .review-contain span {
+    font-size: 18px; }
 
 .my-reviews-title h2 {
   font-size: 25px; }
@@ -6049,7 +6061,10 @@ app container styling
   text-align: center;
   border: 1px solid #000;
   margin-bottom: 30px; }
+  .dif-in-salaries label {
+    font-size: 14px; }
   .dif-in-salaries span {
+    font-size: 18px;
     color: red;
     padding-left: 10px; }
 
@@ -6057,6 +6072,8 @@ app container styling
   text-align: center;
   border: 1px solid #000;
   margin-bottom: 30px; }
+  .avg-salary h5 {
+    font-size: 20px; }
 
 .degree-select-nav {
   text-align: right; }

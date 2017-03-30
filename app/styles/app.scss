@@ -6,20 +6,6 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body{
-  padding-top: 70px;
-}
-
-img {
-  max-width: 100%;
-}
-
 /*
 background color variables
 */
@@ -52,6 +38,23 @@ nav link and button color variable
 
 $burnt-orange: #D9853B;
 
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body{
+  color: $light-grey;
+  padding-top: 70px;
+}
+
+img {
+  max-width: 100%;
+}
+
+
 /*
 app container styling
 */
@@ -59,6 +62,7 @@ app container styling
 
 .app-wrapper{
   background-color: $light-grey-bkgrnd;
+  background: linear-gradient(to right bottom, black, $light-teal-bkgrnd);
 }
 
 
@@ -67,6 +71,7 @@ app container styling
 */
 
 .header-nav{
+  // background-color: black;
   background-color: $dark-teal-bkgrnd;
   padding: 10px;
 
@@ -106,10 +111,12 @@ li.nav-desktop {
 
 .banner-contain{
   background-color: $dark-teal-bkgrnd;
+  // background-color: black;
 }
 
 .home-banner{
   background-color: $dark-teal-bkgrnd;
+  // background-color: black;
   margin-top: 10px;
 }
 
@@ -126,11 +133,13 @@ li.nav-desktop {
   h3{
     font-size: 35px;
     font-weight: bold;
-    color: $dark-teal;
+    color: $light-grey;
+    // color: $dark-teal;
   }
   p{
     font-size: 25px;
-    color: $light-teal;
+    color: $light-grey;
+    // color: $light-teal;
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -158,6 +167,8 @@ li.nav-desktop {
 
 
 .profile-form-contain{
+  color: $dark-teal;
+  background: $light-grey-bkgrnd;
   border: 1px solid $black-border;
   border-radius: 20px;
   margin-top: 50px;
@@ -213,6 +224,8 @@ li.nav-desktop {
 */
 
 .user-profile-contain{
+  color: black;
+  background-color: $light-teal;
   border: 1px solid $black-border;
   border-radius: 20px;
   padding: 25px;
@@ -277,6 +290,8 @@ li.nav-desktop {
 */
 
 .review-form-contain{
+  color: $dark-teal;
+  background-color: $light-grey;
   border: 1px solid $black-border;
   border-radius: 20px;
   padding: 50px;
@@ -328,6 +343,7 @@ li.nav-desktop {
 }
 
 .review-contain{
+  color: black;
   background-color: $light-teal-bkgrnd;
   border: 1px solid $black-border;
   border-radius: 20px;
@@ -406,6 +422,8 @@ li.nav-desktop {
 */
 
 .degree-select-contain{
+  color: $dark-teal;
+  background-color: $light-grey;
   border: 1px solid $black-border;
   border-radius: 20px;
   padding: 50px;
@@ -427,6 +445,8 @@ li.nav-desktop {
 */
 
 .degree-detail-contain{
+  color: $dark-teal;
+  background-color: $light-grey;
   border: 1px solid $black-border;
   padding: 50px;
   margin-top: 100px;
@@ -475,7 +495,19 @@ li.nav-desktop {
 }
 
 .school-list{
-  list-style: decimal;
+  list-style: none;
+  padding-left: 0px;
+
+  li{
+    background: $light-teal-bkgrnd;
+    border: 3px solid $light-grey;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  h5{
+    color: #334544;
+  }
 
   label{
     padding-right: 5px;

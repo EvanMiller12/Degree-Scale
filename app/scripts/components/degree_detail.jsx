@@ -40,9 +40,9 @@ class DegreeDetail extends React.Component {
             <div className="col-sm-3 col-sm-offset-1">
               <div className="dif-in-salaries">
                 <label>Difference in Salaries = </label>
-                <span>{ '-' + '$' + difference }</span>
+                <span>{ '$' + difference }</span>
                 <label>Difference after 10 years = </label>
-                <span>{ '-' + '$' + difAfterTen }</span>
+                <span>{ '$' + difAfterTen }</span>
               </div>
             </div>
             <div className="col-sm-3 col-sm-offset-1">
@@ -99,7 +99,7 @@ class AscSchoolList extends React.Component {
       var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
 
         return(
-          <li key={index}>
+          <li key={index} className="list-item">
             <div className="school">
               <h5>{data['school.name']}</h5>
             </div>
@@ -151,26 +151,26 @@ class BacSchoolList extends React.Component {
       var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
 
         return(
-          <li key={index}>
+          <li key={index} className="list-item">
             <div className="school">
-              <h5>{data['school.name']}</h5>
+              <h5>{ data['school.name'] }</h5>
             </div>
             <div className="school-data">
               <div className="school-salary">
                 <label>Average Salary:</label>
-                <span>{'$' + data['2012.earnings.10_yrs_after_entry.median']}</span>
+                <span>{ '$' + data['2012.earnings.10_yrs_after_entry.median'] }</span>
               </div>
               <div className="school-cost">
                 <label>Average Cost:</label>
-                <span>{'$' + data['2014.cost.avg_net_price.overall']}</span>
+                <span>{ '$' + data['2014.cost.avg_net_price.overall'] }</span>
               </div>
               <div className="grad-rate">
                 <label>Graduation Rate:</label>
-                <span>{gradRate + '%'}</span>
+                <span>{ gradRate + '%' }</span>
               </div>
               <div className="school-size">
                 <label>School Size:</label>
-                <span>{data['2014.student.size']}</span>
+                <span>{ data['2014.student.size'] }</span>
               </div>
             </div>
           </li>

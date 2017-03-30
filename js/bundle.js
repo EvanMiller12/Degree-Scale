@@ -670,7 +670,7 @@ class HomeContainer extends React.Component {
               React.createElement("div", {className: "col-sm-6 col-md-6"}, 
                 React.createElement("div", {className: "description"}, 
                   React.createElement("h3", null, "Find Degrees"), 
-                  React.createElement("p", null, "Review the average salary information by degree for the top 20 schools with the highest salaries."), 
+                  React.createElement("p", null, "Review the average salary by degree from government data, as well as a list of schools where the information came from for the selected field of study."), 
                   React.createElement("div", {className: "find-degree-btn"}, 
                     React.createElement("a", {href: degreeSelectNav, className: "btn btn-primary", role: "button"}, "Find Degrees")
                   )

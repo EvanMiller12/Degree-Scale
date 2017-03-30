@@ -5764,7 +5764,7 @@ button.close {
   box-sizing: border-box; }
 
 body {
-  padding-top: 50px; }
+  padding-top: 70px; }
 
 img {
   max-width: 100%; }
@@ -5784,21 +5784,27 @@ img {
 /*
 * Home/top navbar styling
 */
-.home-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  border-bottom: 2px solid #74AFAD; }
-  .home-nav li {
+.header-nav {
+  padding: 10px; }
+  .header-nav li {
     list-style: none; }
-  .home-nav li a {
+  .header-nav li a {
     color: #D9853B; }
+
+.logo {
+  display: inline-block;
+  max-height: 35px; }
+
+@media screen and (min-width: 500px) {
+  li.nav-mobile {
+    display: none; } }
+
+@media screen and (max-width: 500px) {
+  li.nav-desktop {
+    display: none; } }
+
+.home-banner {
+  margin-top: 10px; }
 
 .mission-statement {
   color: #ECECEA; }
@@ -5828,9 +5834,40 @@ img {
 /*
 * Profile create edit styling
 */
+.profile-form-contain {
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-top: 50px;
+  padding: 50px; }
+  .profile-form-contain h1 {
+    margin-bottom: 30px; }
+
 .img-preview {
   width: 200px;
   height: 200px; }
+
+.add-degree-contain {
+  margin-top: 25px;
+  margin-bottom: 25px; }
+  .add-degree-contain button {
+    background-color: #5C974C; }
+    .add-degree-contain button span {
+      color: white; }
+
+.user-degree-list {
+  font-size: 16px;
+  margin-top: 20px;
+  list-style: square; }
+  .user-degree-list button {
+    float: right;
+    background-color: inherit; }
+  .user-degree-list button > span {
+    background-color: inherit;
+    color: red; }
+
+.save-profile {
+  display: inline-block;
+  margin-right: 15px; }
 
 /*
 *Profile details styling

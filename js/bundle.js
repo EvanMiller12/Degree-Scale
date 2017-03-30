@@ -128,13 +128,15 @@ render() {
   var degrees = this.state.degrees.map((degree) => {
     return (
       React.createElement("li", {key: degree.cid}, 
-         degree.get('school') + '', 
-         degree.get('degree') + '', 
+
+         degree.get('school') + ' ', 
+         degree.get('degree') + '  ', 
          degree.get('major'), 
         React.createElement("button", {onClick: (e)=>{e.preventDefault(); this.deleteDegree(degree)}, 
           type: "button", className: "close", "aria-label": "Close"}, 
           React.createElement("span", {"aria-hidden": "true"}, "×")
         )
+
       )
     )
   })
@@ -142,13 +144,13 @@ render() {
     React.createElement(BaseLayout, null, 
       React.createElement("div", {className: "row"}, 
         React.createElement("div", {className: "col-sm-8 col-sm-offset-2"}, 
+          React.createElement("div", {className: "profile-form-contain"}, 
           React.createElement("form", {onSubmit:  this.updateProfile, className: "profile-form"}, 
-            React.createElement("div", {className: "row"}, 
+
               React.createElement("h1", null,  user.isNew() ? 'Create' : 'Edit', " Profile"), 
               React.createElement("div", {className: "col-xs-4 col-md-3"}, 
                   React.createElement("p", null, "click below to add image"), 
-                    React.createElement(Dropzone, {
-                      onChange:  this.updateImage, 
+                    React.createElement(Dropzone, {onChange:  this.updateImage, 
                       onDrop:  this.onDrop
                     }, 
                       React.createElement("img", {className: "img-preview", src:  this.state.preview})
@@ -156,31 +158,60 @@ render() {
                 ), 
               React.createElement("div", {className: "col-md-6 col-md-offset-1"}, 
                 React.createElement("div", {className: "form-group"}, 
-                  React.createElement("input", {onChange:  this.updateFirstName, value:  this.state.first_name, className: "form-control", type: "text", placeholder: "First Name"}), 
-                  React.createElement("input", {onChange:  this.updateLastName, value:  this.state.last_name, className: "form-control", type: "text", placeholder: "Last Name"})
+                  React.createElement("input", {onChange:  this.updateFirstName, 
+                        value:  this.state.first_name, 
+                        className: "form-control", type: "text", 
+                        placeholder: "First Name"}
+                  ), 
+                  React.createElement("input", {onChange:  this.updateLastName, 
+                         value:  this.state.last_name, 
+                         className: "form-control", 
+                         type: "text", 
+                         placeholder: "Last Name"}
+                  )
                 ), 
                 React.createElement("div", {className: "form-group"}, 
-                  React.createElement("input", {onChange:  this.updateLocation, value:  this.state.location, className: "form-control", type: "text", placeholder: "Location (state)"})
+                  React.createElement("input", {onChange:  this.updateLocation, 
+                         value:  this.state.location, 
+                         className: "form-control", 
+                         type: "text", 
+                         placeholder: "Location (state)"}
+                  )
                 )
-              )
-            ), 
+              ), 
+
             React.createElement("div", {className: "row"}, 
-              React.createElement("div", {className: "col-xs-10 col-md-8"}, 
-                React.createElement("input", {onChange:  this.updateSchool, value:  this.state.school, type: "text", placeholder: "School"}), 
-                React.createElement("input", {onChange:  this.updateDegree, value:  this.state.degree, type: "text", placeholder: "Associate or Bachelor"}), 
-                React.createElement("input", {onChange:  this.updateMajor, value:  this.state.major, type: "text", placeholder: "Major"}), 
+              React.createElement("div", {className: "add-degree-contain col-xs-10 col-md-8-offset-1"}, 
+                React.createElement("input", {onChange:  this.updateSchool, 
+                      value:  this.state.school, 
+                      type: "text", 
+                      placeholder: "School"}
+                ), 
+                React.createElement("input", {onChange:  this.updateDegree, 
+                      value:  this.state.degree, 
+                      type: "text", 
+                      placeholder: "Associate or Bachelor"}
+                ), 
+                React.createElement("input", {onChange:  this.updateMajor, 
+                       value:  this.state.major, 
+                       type: "text", 
+                       placeholder: "Major"}
+                ), 
                 React.createElement("span", null, 
                   React.createElement("button", {onClick:  this.addDegree, type: "button", name: "button"}, 
                     React.createElement("span", {className: "glyphicon glyphicon-plus"})
                   )
                 ), 
-                React.createElement("ul", null, 
+                React.createElement("ul", {className: "user-degree-list"}, 
                    degrees 
                 )
               )
             ), 
-            React.createElement("input", {className: "btn btn-success", type: "submit", value: "Save"}), 
+            React.createElement("div", {className: "save-profile"}, 
+              React.createElement("input", {className: "btn btn-success", type: "submit", value: "Save"})
+            ), 
             React.createElement("a", {className: "btn btn-danger", href: "#"}, "Skip for Now")
+          )
           )
         )
       )
@@ -742,17 +773,21 @@ class HeaderNav extends React.Component{
   render(){
     // console.log(User.current('user'));
     return(
-      React.createElement("div", {className: "row dark-teal-bkgrnd"}, 
-        React.createElement("nav", {className: "navbar-fixed-top row dark-teal-bkgrnd"}, 
-          React.createElement("ul", {className: "home-nav nav col-sm-10 col-sm-offset-1"}, 
-            React.createElement("li", null, 
-              React.createElement("a", {className: "navbar-brand", href: "#"}, "DegreeScale")
-            ), 
-            React.createElement("li", {role: "presentation", className: "active"}, React.createElement("a", {href: "#"}, "Home")), 
-            React.createElement("li", {role: "presentation"}, React.createElement("a", {href: "#review/create/"}, "Leave Review")), 
-            React.createElement("li", {role: "presentation"}, React.createElement("a", {href: "#review/"}, "Find Review")), 
-            User.current() ? React.createElement(LoggedInNavItem, null) : React.createElement(SignupNavItem, null)
-          )
+      React.createElement("nav", {className: "header-nav navbar-fixed-top row dark-teal-bkgrnd"}, 
+        React.createElement("a", {className: "navbar-brand navbar-logo", href: "#"}, 
+          React.createElement("img", {src: "images/degree-scale-logo.png", className: "logo"})
+        ), 
+        React.createElement("ul", {className: "nav nav-pills pull-right"}, 
+          React.createElement("li", {role: "presentation"}, 
+            React.createElement("a", {href: "#"}, "Home")
+          ), 
+          React.createElement("li", {role: "presentation", className: "nav-desktop"}, 
+            React.createElement("a", {href: "#review/create/"}, "Leave Review")
+          ), 
+          React.createElement("li", {role: "presentation", className: "nav-desktop"}, 
+            React.createElement("a", {href: "#review/"}, "Find Review")
+          ), 
+          User.current() ? React.createElement(LoggedInNavItem, null) : React.createElement(SignupNavItem, null)
         )
       )
     )
@@ -798,10 +833,10 @@ class LoggedInNavItem extends React.Component{
     var user = User.current()
 
     return(
-      React.createElement(NavDropdown, {className: "dropdown", title: user.get('username'), id: "nav-dropdown"}, 
-        React.createElement(MenuItem, {className: "dropdown-item", href: '#profile/' + this.state.profileId + '/'}, "View Profile"), 
-        React.createElement(MenuItem, {className: "dropdown-item", href:  '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'},  this.state.profileId ? 'Edit Profile' : 'Create Profile'), 
-        React.createElement(MenuItem, {className: "dropdown-item", onClick: this.handleLogout}, "Logout")
+      React.createElement(NavDropdown, {title: user.get('username'), id: "nav-dropdown"}, 
+        React.createElement(MenuItem, {href: '#profile/' + this.state.profileId + '/'}, "View Profile"), 
+        React.createElement(MenuItem, {href:  '#profile/' + (this.state.profileId ? 'edit/' + this.state.profileId : 'create') + '/'},  this.state.profileId ? 'Edit Profile' : 'Create Profile'), 
+        React.createElement(MenuItem, {onClick: this.handleLogout}, "Logout")
       )
     )
   }
@@ -812,13 +847,10 @@ class Footer extends React.Component{
     return(
       React.createElement("div", {className: "row light-gray-bkgrnd"}, 
         React.createElement("footer", {className: "footer dark-teal-bkgrnd"}, 
+          React.createElement("img", {src: "images/degree-scale-logo.png", className: "logo navbar-logo"}), 
           React.createElement("ul", {className: "footer-nav"}, 
             React.createElement("li", null, 
-              React.createElement("img", {src: "images/degree-scale-logo.png", className: "navbar-brand"}), 
               React.createElement("span", null, "an app built by ", React.createElement("a", {href: "#"}, "Evan Miller"))
-            ), 
-            React.createElement("li", null, 
-              React.createElement("a", {href: "#"}, "Home")
             )
           )
         )

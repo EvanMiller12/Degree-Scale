@@ -269,9 +269,9 @@ class DegreeDetail extends React.Component {
             React.createElement("div", {className: "col-sm-3 col-sm-offset-1"}, 
               React.createElement("div", {className: "dif-in-salaries"}, 
                 React.createElement("label", null, "Difference in Salaries = "), 
-                React.createElement("span", null,  '-' + '$' + difference), 
+                React.createElement("span", null,  '$' + difference), 
                 React.createElement("label", null, "Difference after 10 years = "), 
-                React.createElement("span", null,  '-' + '$' + difAfterTen)
+                React.createElement("span", null,  '$' + difAfterTen)
               )
             ), 
             React.createElement("div", {className: "col-sm-3 col-sm-offset-1"}, 
@@ -328,7 +328,7 @@ class AscSchoolList extends React.Component {
       var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
 
         return(
-          React.createElement("li", {key: index}, 
+          React.createElement("li", {key: index, className: "list-item"}, 
             React.createElement("div", {className: "school"}, 
               React.createElement("h5", null, data['school.name'])
             ), 
@@ -380,26 +380,26 @@ class BacSchoolList extends React.Component {
       var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
 
         return(
-          React.createElement("li", {key: index}, 
+          React.createElement("li", {key: index, className: "list-item"}, 
             React.createElement("div", {className: "school"}, 
-              React.createElement("h5", null, data['school.name'])
+              React.createElement("h5", null,  data['school.name'] )
             ), 
             React.createElement("div", {className: "school-data"}, 
               React.createElement("div", {className: "school-salary"}, 
                 React.createElement("label", null, "Average Salary:"), 
-                React.createElement("span", null, '$' + data['2012.earnings.10_yrs_after_entry.median'])
+                React.createElement("span", null,  '$' + data['2012.earnings.10_yrs_after_entry.median'])
               ), 
               React.createElement("div", {className: "school-cost"}, 
                 React.createElement("label", null, "Average Cost:"), 
-                React.createElement("span", null, '$' + data['2014.cost.avg_net_price.overall'])
+                React.createElement("span", null,  '$' + data['2014.cost.avg_net_price.overall'])
               ), 
               React.createElement("div", {className: "grad-rate"}, 
                 React.createElement("label", null, "Graduation Rate:"), 
-                React.createElement("span", null, gradRate + '%')
+                React.createElement("span", null,  gradRate + '%')
               ), 
               React.createElement("div", {className: "school-size"}, 
                 React.createElement("label", null, "School Size:"), 
-                React.createElement("span", null, data['2014.student.size'])
+                React.createElement("span", null,  data['2014.student.size'] )
               )
             )
           )

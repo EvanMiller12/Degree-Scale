@@ -5758,17 +5758,6 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
-*,
-*::before,
-*::after {
-  box-sizing: border-box; }
-
-body {
-  padding-top: 70px; }
-
-img {
-  max-width: 100%; }
-
 /*
 background color variables
 */
@@ -5781,11 +5770,25 @@ border color variables
 /*
 nav link and button color variable
 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+body {
+  color: #ECECEA;
+  padding-top: 70px; }
+
+img {
+  max-width: 100%; }
+
 /*
 app container styling
 */
 .app-wrapper {
-  background-color: #ECECEA; }
+  background-color: #ECECEA;
+  background: -webkit-linear-gradient(left top, black, #74AFAD);
+  background: linear-gradient(to right bottom, black, #74AFAD); }
 
 /*
 * Home/top navbar styling
@@ -5831,10 +5834,10 @@ app container styling
 .description h3 {
   font-size: 35px;
   font-weight: bold;
-  color: #558C89; }
+  color: #ECECEA; }
 .description p {
   font-size: 25px;
-  color: #74AFAD;
+  color: #ECECEA;
   padding-top: 30px;
   padding-bottom: 30px; }
 
@@ -5855,6 +5858,8 @@ app container styling
 * Profile create edit styling
 */
 .profile-form-contain {
+  color: #558C89;
+  background: #ECECEA;
   border: 1px solid #000;
   border-radius: 20px;
   margin-top: 50px;
@@ -5893,6 +5898,8 @@ app container styling
 *Profile details styling
 */
 .user-profile-contain {
+  color: black;
+  background-color: #74AFAD;
   border: 1px solid #000;
   border-radius: 20px;
   padding: 25px;
@@ -5938,6 +5945,8 @@ app container styling
 * Review create edit styling
 */
 .review-form-contain {
+  color: #558C89;
+  background-color: #ECECEA;
   border: 1px solid #000;
   border-radius: 20px;
   padding: 50px; }
@@ -5973,6 +5982,7 @@ app container styling
   margin-bottom: 50px; }
 
 .review-contain {
+  color: black;
   background-color: #74AFAD;
   border: 1px solid #000;
   border-radius: 20px;
@@ -6026,6 +6036,8 @@ app container styling
 * Degree select styling
 */
 .degree-select-contain {
+  color: #558C89;
+  background-color: #ECECEA;
   border: 1px solid #000;
   border-radius: 20px;
   padding: 50px;
@@ -6043,6 +6055,8 @@ app container styling
 * Degree detail styling
 */
 .degree-detail-contain {
+  color: #558C89;
+  background-color: #ECECEA;
   border: 1px solid #000;
   padding: 50px;
   margin-top: 100px; }
@@ -6079,7 +6093,15 @@ app container styling
   text-align: right; }
 
 .school-list {
-  list-style: decimal; }
+  list-style: none;
+  padding-left: 0px; }
+  .school-list li {
+    background: #74AFAD;
+    border: 3px solid #ECECEA;
+    margin-bottom: 20px;
+    padding: 20px; }
+  .school-list h5 {
+    color: #334544; }
   .school-list label {
     padding-right: 5px; }
 
@@ -6117,4 +6139,5 @@ app container styling
       padding-left: 20px; }
     .footer-nav li a {
       color: #D9853B; }
+
 /*# sourceMappingURL=app.css.map */

@@ -77,12 +77,13 @@ class ResultsList extends React.Component {
 
   }
   render(){
-    var user = User.current();
+
     var reviews = this.props.reviewCollection.map((review) => {
+
       return(
         <div key={ review.cid } className="review-contain">
           <div className="review-owner">
-            <span>{ user.get('username') }</span>
+            <span>anonymous</span>
             <p>{ review.get('timestamp') }</p>
           </div>
           <div className="review-major">

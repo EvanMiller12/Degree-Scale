@@ -75,8 +75,16 @@ app container styling
   }
 
   li  a{
+    color: $white;
+  }
+
+  li a:hover{
     color: $burnt-orange;
   }
+}
+
+.dropdown-menu{
+  background-color: $light-teal-bkgrnd;
 }
 
 .logo{
@@ -107,6 +115,11 @@ li.nav-desktop {
 
 .mission-statement{
   color: $light-grey;
+
+  h1{
+    font-size: 25px;
+    padding-left: 45px;
+  }
 }
 
 .description{
@@ -315,13 +328,19 @@ li.nav-desktop {
 }
 
 .review-contain{
+  background-color: $light-teal-bkgrnd;
   border: 1px solid $black-border;
   border-radius: 20px;
   padding: 30px;
   margin-bottom: 30px;
 
   label{
+    font-size: 18px;
     padding-right: 10px;
+  }
+
+  span{
+    font-size: 18px;
   }
 }
 
@@ -430,7 +449,12 @@ li.nav-desktop {
   border: 1px solid $black-border;
   margin-bottom: 30px;
 
+  label{
+    font-size: 14px;
+  }
+
   span{
+    font-size: 18px;
     color: red;
     padding-left: 10px;
   }
@@ -440,6 +464,10 @@ li.nav-desktop {
   text-align: center;
   border: 1px solid $black-border;
   margin-bottom: 30px;
+
+  h5{
+    font-size: 20px;
+  }
 }
 
 .degree-select-nav{

@@ -58,7 +58,7 @@ class HomeContainer extends React.Component {
                 <div className="description">
                   <h3>Find Reviews</h3>
                   <p>
-                    Find information includin salary, jobsatisfaction,
+                    Find information including salary, job placement,
                     and much more from reviews written by people who have earned
                     a degree in the particular field of study.
                   </p>

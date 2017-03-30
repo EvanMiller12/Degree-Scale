@@ -60,16 +60,6 @@ class DegreeDetail extends React.Component {
             bacAverage={ this.props.bacAverage }
           />
 
-          <div className="job-satisfaction-contain">
-            <div className="job-satisfaction">
-              <label>Job Satisfaction: </label>
-              <span>rating</span>
-            </div>
-            <div className="rate">
-              <label>Rate: </label>
-              <span>Clickable star rating system</span>
-            </div>
-          </div>
         </div>
         <div className="col-sm-5 col-sm-offset-1">
           <div className="school-contain">

@@ -11,7 +11,7 @@ var User = require('../../models/user.js').User;
 class BaseLayout extends React.Component {
   render(){
     return(
-      <div className="container-fluid light-gray-bkgrnd">
+      <div className="container-fluid app-wrapper">
         <HeaderNav />
           {this.props.children}
         <Footer />
@@ -24,7 +24,7 @@ class HeaderNav extends React.Component{
   render(){
     // console.log(User.current('user'));
     return(
-      <nav className="header-nav navbar-fixed-top row dark-teal-bkgrnd">
+      <nav className="header-nav navbar-fixed-top">
         <a className="navbar-brand navbar-logo" href="#">
           <img src="images/degree-scale-logo.png" className="logo" />
         </a>
@@ -96,8 +96,8 @@ class LoggedInNavItem extends React.Component{
 class Footer extends React.Component{
   render(){
     return(
-      <div className="row light-gray-bkgrnd">
-        <footer className="footer dark-teal-bkgrnd">
+      <div className="row footer-contain">
+        <footer className="footer">
           <img src="images/degree-scale-logo.png" className="logo navbar-logo" />
           <ul className="footer-nav">
             <li>

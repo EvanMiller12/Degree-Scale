@@ -40,8 +40,8 @@ class ProfileDetailContainer extends React.Component{
               <div className="row">
                 <div className="user-profile-details">
                   <div className="user-name">
-                    <span>{profile.get('first_name')} </span>
-                    <span>{profile.get('last_name')}</span>
+                    {profile.get('first_name') + ' ' }
+                    {profile.get('last_name')}
                   </div>
                   <div className="location">
                     <label>Location: </label>

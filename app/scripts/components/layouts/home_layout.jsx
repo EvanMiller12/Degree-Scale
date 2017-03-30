@@ -16,8 +16,8 @@ class HomeLayout extends React.Component {
 class Banner extends React.Component{
   render(){
     return(
-      <div className="row light-gray-bkgrnd">
-        <div className="jumbotron home-banner dark-teal-bkgrnd">
+      <div className="row banner-contain">
+        <div className="jumbotron home-banner">
           <div className="mission-statement">
             <img src="images/degree-scale-logo.png" />
             <h1>Discover The Value of an Education</h1>

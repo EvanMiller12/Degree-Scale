@@ -20,28 +20,54 @@ img {
   max-width: 100%;
 }
 
-
 /*
-* Background colors
+background color variables
 */
 
-.dark-teal-bkgrnd{
-  background-color: #558C89;
+$dark-teal-bkgrnd: #558C89;
+$light-teal-bkgrnd: #74AFAD;
+$light-grey-bkgrnd: #ECECEA;
+
+
+/*
+font color variables
+*/
+
+$white: #FFF;
+$dark-teal: #558C89;
+$light-teal: #74AFAD;
+$light-grey: #ECECEA;
+
+
+/*
+border color variables
+*/
+
+$black-border: #000;
+
+
+/*
+nav link and button color variable
+*/
+
+$burnt-orange: #D9853B;
+
+/*
+app container styling
+*/
+
+
+.app-wrapper{
+  background-color: $light-grey-bkgrnd;
 }
 
-.light-teal-bkgrnd{
-  background-color: #74AFAD;
-}
-
-.light-gray-bkgrnd{
-  background-color: #ECECEA;
-}
 
 /*
 * Home/top navbar styling
 */
 
 .header-nav{
+  background-color: $dark-teal-bkgrnd;
   padding: 10px;
 
   li{
@@ -49,7 +75,7 @@ img {
   }
 
   li  a{
-    color: #D9853B;
+    color: $burnt-orange;
   }
 }
 
@@ -70,23 +96,28 @@ li.nav-desktop {
   }
 }
 
+.banner-contain{
+  background-color: $dark-teal-bkgrnd;
+}
+
 .home-banner{
+  background-color: $dark-teal-bkgrnd;
   margin-top: 10px;
 }
 
 .mission-statement{
-  color: #ECECEA;
+  color: $light-grey;
 }
 
 .description{
   h3{
     font-size: 35px;
     font-weight: bold;
-    color: #558C89;
+    color: $dark-teal;
   }
   p{
     font-size: 25px;
-    color: #74AFAD;
+    color: $light-teal;
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -94,10 +125,11 @@ li.nav-desktop {
 
 .btn-primary{
   font-size: 20px;
-  background-color: #D9853B;
+  background-color: $burnt-orange;
 }
 
 .leave-rev-contain{
+  margin-top: 40px;
   margin-bottom: 30px;
 }
 
@@ -113,7 +145,7 @@ li.nav-desktop {
 
 
 .profile-form-contain{
-  border: 1px solid black;
+  border: 1px solid $black-border;
   border-radius: 20px;
   margin-top: 50px;
   padding: 50px;
@@ -136,7 +168,7 @@ li.nav-desktop {
     background-color: #5C974C;
 
     span{
-      color: white;
+      color: $white;
     }
   }
 }
@@ -168,7 +200,7 @@ li.nav-desktop {
 */
 
 .user-profile-contain{
-  border: 1px solid black;
+  border: 1px solid $black-border;
   border-radius: 20px;
   padding: 25px;
   margin-top: 50px;
@@ -180,16 +212,6 @@ li.nav-desktop {
 
   label{
     padding-right: 8px;
-  }
-}
-
-.user-name{
-  margin-bottom: 20px;
-
-  span{
-    font-size: 20px;
-    font-weight: bold;
-    border-bottom: 1px solid black;
   }
 }
 
@@ -207,6 +229,14 @@ li.nav-desktop {
 .user-profile-details{
   text-align: center;
   padding-top: 20px;
+
+  label{
+    font-size: 20px;
+  }
+
+  span{
+    font-size: 18px;
+  }
 }
 
 .user-degrees{
@@ -219,12 +249,22 @@ li.nav-desktop {
   padding-bottom: 20px;
 }
 
+.user-name{
+  margin-bottom: 20px;
+
+  span{
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid $black-border;
+  }
+}
+
 /*
 * Review create edit styling
 */
 
 .review-form-contain{
-  border: 1px solid black;
+  border: 1px solid $black-border;
   border-radius: 20px;
   padding: 50px;
 
@@ -275,7 +315,7 @@ li.nav-desktop {
 }
 
 .review-contain{
-  border: 1px solid black;
+  border: 1px solid $black-border;
   border-radius: 20px;
   padding: 30px;
   margin-bottom: 30px;
@@ -298,7 +338,7 @@ li.nav-desktop {
 }
 
 .review-owner{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $black-border;
   margin-bottom: 30px;
 
   span{
@@ -311,7 +351,7 @@ li.nav-desktop {
 }
 
 .review-major{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $black-border;
   margin-bottom: 20px;
 }
 
@@ -320,18 +360,18 @@ li.nav-desktop {
 }
 
 .review-rating{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $black-border;
   margin-bottom: 20px;
 }
 
 .review-employ{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $black-border;
   margin-bottom: 20px;
 }
 
 .review-experience{
   margin-bottom: 20px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $black-border;
 }
 
 .review-submit{
@@ -347,7 +387,7 @@ li.nav-desktop {
 */
 
 .degree-select-contain{
-  border: 1px solid black;
+  border: 1px solid $black-border;
   border-radius: 20px;
   padding: 50px;
   margin-top: 50px;
@@ -368,7 +408,7 @@ li.nav-desktop {
 */
 
 .degree-detail-contain{
-  border: 1px solid black;
+  border: 1px solid $black-border;
   padding: 50px;
   margin-top: 100px;
 }
@@ -387,7 +427,7 @@ li.nav-desktop {
 
 .dif-in-salaries{
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid $black-border;
   margin-bottom: 30px;
 
   span{
@@ -398,7 +438,7 @@ li.nav-desktop {
 
 .avg-salary{
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid $black-border;
   margin-bottom: 30px;
 }
 
@@ -436,7 +476,7 @@ li.nav-desktop {
 */
 
 .footer{
-  border-top: 1px solid #EEEEEE;
+  background-color: $dark-teal-bkgrnd;
   padding: 50px;
   margin-top: 50px;
 }
@@ -455,7 +495,7 @@ li.nav-desktop {
     }
 
     a{
-      color: #D9853B;
+      color: $burnt-orange;
     }
   }
 }

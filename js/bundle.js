@@ -1361,7 +1361,7 @@ class ResultsList extends React.Component {
       return(
         React.createElement("div", {key:  review.cid, className: "review-contain"}, 
           React.createElement("div", {className: "review-owner"}, 
-            React.createElement("span", null, "anonymous"), 
+            React.createElement("span", null, "Example"), 
             React.createElement("p", null,  review.get('timestamp') )
           ), 
           React.createElement("div", {className: "review-major"}, 

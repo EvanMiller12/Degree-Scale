@@ -26,7 +26,7 @@ class HeaderNav extends React.Component{
     return(
       <nav className="header-nav navbar-fixed-top">
         <a className="navbar-brand navbar-logo" href="#">
-          <img src="images/degree-scale-logo.png" className="logo" />
+          <img src="images/degree-scale.png" className="logo" />
         </a>
         <ul className="nav nav-pills pull-right">
           <li role="presentation" >
@@ -98,7 +98,7 @@ class Footer extends React.Component{
     return(
       <div className="row footer-contain">
         <footer className="footer">
-          <img src="images/degree-scale-logo.png" className="logo navbar-logo" />
+          <img src="images/degree-scale.png" className="logo navbar-logo" />
           <ul className="footer-nav">
             <li>
               <span>an app built by <a href="#">Evan Miller</a></span>

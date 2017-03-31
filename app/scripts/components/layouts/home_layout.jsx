@@ -18,7 +18,7 @@ class Banner extends React.Component{
     return(
       <div className="row banner-contain">
         <div className="jumbotron home-banner">
-          <img src="images/degree-scale-logo.png" />
+          <img src="images/degree-scale.png" />
           <div className="mission-statement col-md-offset-4">
             <h1>Discover The Value of an Education</h1>
           </div>

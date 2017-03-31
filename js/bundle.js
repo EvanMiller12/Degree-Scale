@@ -769,7 +769,7 @@ class HeaderNav extends React.Component{
     return(
       React.createElement("nav", {className: "header-nav navbar-fixed-top"}, 
         React.createElement("a", {className: "navbar-brand navbar-logo", href: "#"}, 
-          React.createElement("img", {src: "images/degree-scale-logo.png", className: "logo"})
+          React.createElement("img", {src: "images/degree-scale.png", className: "logo"})
         ), 
         React.createElement("ul", {className: "nav nav-pills pull-right"}, 
           React.createElement("li", {role: "presentation"}, 
@@ -841,7 +841,7 @@ class Footer extends React.Component{
     return(
       React.createElement("div", {className: "row footer-contain"}, 
         React.createElement("footer", {className: "footer"}, 
-          React.createElement("img", {src: "images/degree-scale-logo.png", className: "logo navbar-logo"}), 
+          React.createElement("img", {src: "images/degree-scale.png", className: "logo navbar-logo"}), 
           React.createElement("ul", {className: "footer-nav"}, 
             React.createElement("li", null, 
               React.createElement("span", null, "an app built by ", React.createElement("a", {href: "#"}, "Evan Miller"))
@@ -879,7 +879,7 @@ class Banner extends React.Component{
     return(
       React.createElement("div", {className: "row banner-contain"}, 
         React.createElement("div", {className: "jumbotron home-banner"}, 
-          React.createElement("img", {src: "images/degree-scale-logo.png"}), 
+          React.createElement("img", {src: "images/degree-scale.png"}), 
           React.createElement("div", {className: "mission-statement col-md-offset-4"}, 
             React.createElement("h1", null, "Discover The Value of an Education")
           )

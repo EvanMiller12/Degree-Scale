@@ -247,8 +247,8 @@ class DegreeDetail extends React.Component {
     console.log('det', this.props.ascData)
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
     var difAfterTen = difference * 10;
-    var associateAvg = parseInt(this.props.ascAverage).toFixed(2);
-    var bachelorsAvg = parseInt(this.props.bacAverage).toFixed(2);
+    var associateAvg = parseInt(this.props.ascAverage).toFixed(0);
+    var bachelorsAvg = parseInt(this.props.bacAverage).toFixed(0);
 
     return(
       React.createElement("div", {className: "row"}, 

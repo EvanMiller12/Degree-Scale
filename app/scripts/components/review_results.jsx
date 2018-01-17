@@ -44,7 +44,7 @@ class ReviewResultsContainer extends React.Component {
 
     return(
       <BaseLayout>
-        <div className="row">
+        <div className="row results-contain">
           <div className="col-sm-10 col-sm-offset-1">
             <div className="col-sm-5 search-title">
               <h2>Search for A Major To See Reviews</h2>
@@ -63,7 +63,7 @@ class ReviewResultsContainer extends React.Component {
               </div>
               <ResultsList reviewCollection={ this.state.reviewCollection }/>
             </div>
-            <UserReviewContainer />
+            { this.props.userReviews ? <UserReviewContainer /> : null}
           </div>
         </div>
       </BaseLayout>

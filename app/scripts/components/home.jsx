@@ -2,7 +2,7 @@ var React = require('react');
 
 var User = require('../models/user.js').User;
 
-var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
+var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 var ExBarChart = require('./ex_bar_chart.jsx').ExBarChart;
 
 
@@ -12,7 +12,8 @@ class HomeContainer extends React.Component {
     var degreeSelectNav = User.current() ? "#degree/" : "#auth/";
 
     return(
-      <HomeLayout>
+      <BaseLayout>
+        <Banner />
         <div className="light-gray-bkgrnd row">
           <div className="col-sm-10 col-sm-offset-1">
             <div className="row leave-rev-contain">
@@ -70,9 +71,24 @@ class HomeContainer extends React.Component {
             </div>
           </div>
         </div>
-      </HomeLayout>
-
+      </BaseLayout>
     );
+  }
+}
+
+class Banner extends React.Component{
+  render(){
+    return(
+      <div className="row banner-contain">
+        <div className="jumbotron home-banner">
+          <img src="images/degree-scale.png" />
+          <div className="mission-statement col-md-offset-4">
+            <h1>Discover The Value of an Education</h1>
+          </div>
+        </div>
+      </div>
+
+    )
   }
 }
 

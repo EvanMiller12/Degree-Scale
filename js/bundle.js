@@ -240,11 +240,22 @@ class DegreeDetail extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      showResults: true
+    }
   }
 
-  render() {
-    console.log('det', this.props.ascData)
+    componentDidMount() {
+      setTimeout(() => this.setState({ showResults: false }), 1000);
+    }
+   
+  render(){
+    const { showResults } = this.state;
+
+    if( showResults ) {
+      return null;
+    }
+
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
     var difAfterTen = difference * 10;
     var associateAvg = parseInt(this.props.ascAverage).toFixed(0);
@@ -296,7 +307,9 @@ class DegreeDetail extends React.Component {
               React.createElement("h1", null, "Associate School Data"), 
               React.createElement("p", null, "These are schools that the salary data is coming from")
             ), 
-            React.createElement(AscSchoolList, {ascData:  this.props.ascData})
+            React.createElement(AscSchoolList, {
+              ascData:  this.props.ascData}
+              )
           )
         ), 
         React.createElement("div", {className: "col-sm-5 col-sm-offset-1"}, 
@@ -316,16 +329,33 @@ class DegreeDetail extends React.Component {
 class AscSchoolList extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      showResults: true
+    }
   }
+
+    componentDidMount() {
+      setTimeout(() => this.setState({ showResults: false }), 1500);
+    }
+   
   render(){
+    const { showResults } = this.state;
+
+    if( showResults ) {
+      return null;
+    }
 
     var schoolList;
 
     if(this.props.ascData) {
       schoolList = this.props.ascData.map((data, index) => {
-
-      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+      
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) == 0 ?
+                            "No data recorded" :
+                            (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) + "%";
+      var averageSalary = data['2012.earnings.10_yrs_after_entry.median'] == null ?
+                            "No data recorded" :
+                            "$" + data['2012.earnings.10_yrs_after_entry.median'];  
 
         return(
           React.createElement("li", {key: index, className: "list-item"}, 
@@ -335,7 +365,7 @@ class AscSchoolList extends React.Component {
             React.createElement("div", {className: "school-data"}, 
               React.createElement("div", {className: "school-salary"}, 
                 React.createElement("label", null, "Average Salary:"), 
-                React.createElement("span", null, '$' + data['2012.earnings.10_yrs_after_entry.median'])
+                React.createElement("span", null, averageSalary)
               ), 
               React.createElement("div", {className: "school-cost"}, 
                 React.createElement("label", null, "Average Cost:"), 
@@ -343,7 +373,7 @@ class AscSchoolList extends React.Component {
               ), 
               React.createElement("div", {className: "grad-rate"}, 
                 React.createElement("label", null, "Graduation Rate:"), 
-                React.createElement("span", null, gradRate + '%')
+                React.createElement("span", null, gradRate)
               ), 
               React.createElement("div", {className: "school-size"}, 
                 React.createElement("label", null, "School Size:"), 
@@ -367,17 +397,35 @@ class AscSchoolList extends React.Component {
 }
 
 class BacSchoolList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-
+    this.state = {
+      showResults: true
+    }
   }
+
+    componentDidMount() {
+      setTimeout(() => this.setState({ showResults: false }), 1000);
+    }
+   
   render(){
+    const { showResults } = this.state;
+
+    if( showResults ) {
+      return null;
+    }
+
     var bacSchoolList;
 
     if(this.props.bacData) {
       bacSchoolList = this.props.bacData.map((data, index) => {
 
-      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) == 0 ?
+                      "No data recorded" :
+                      (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) + "%";
+      var averageSalary = data['2012.earnings.10_yrs_after_entry.median'] == null ?
+                            "No data recorded" :
+                            "$" + data['2012.earnings.10_yrs_after_entry.median'];  
 
         return(
           React.createElement("li", {key: index, className: "list-item"}, 
@@ -387,7 +435,7 @@ class BacSchoolList extends React.Component {
             React.createElement("div", {className: "school-data"}, 
               React.createElement("div", {className: "school-salary"}, 
                 React.createElement("label", null, "Average Salary:"), 
-                React.createElement("span", null,  '$' + data['2012.earnings.10_yrs_after_entry.median'])
+                React.createElement("span", null,  averageSalary )
               ), 
               React.createElement("div", {className: "school-cost"}, 
                 React.createElement("label", null, "Average Cost:"), 
@@ -395,7 +443,7 @@ class BacSchoolList extends React.Component {
               ), 
               React.createElement("div", {className: "grad-rate"}, 
                 React.createElement("label", null, "Graduation Rate:"), 
-                React.createElement("span", null,  gradRate + '%')
+                React.createElement("span", null,  gradRate )
               ), 
               React.createElement("div", {className: "school-size"}, 
                 React.createElement("label", null, "School Size:"), 
@@ -498,7 +546,7 @@ class DegreeResultsContainer extends React.Component {
     e.preventDefault();
     var selectedMajor = e.target.value;
 
-    this.setState({ selectedMajor: selectedMajor, showResults: true });
+    this.setState({ selectedMajor: selectedMajor });
 
     this.updateResults(selectedMajor)
   }
@@ -515,6 +563,7 @@ class DegreeResultsContainer extends React.Component {
       })
     })
   }
+
   render(){
     return(
       React.createElement(BaseLayout, null, 
@@ -752,7 +801,23 @@ var ProfileCollection = require('../../models/profile').ProfileCollection;
 var User = require('../../models/user.js').User;
 
 class BaseLayout extends React.Component {
+  constructor(props) {
+    super(props)
+
+      this.state = {
+      loading: true
+    }
+  }
+
+  componentDidMount(){
+    setTimeout(() => this.setState({ loading: false }), 1000);
+  }
   render(){
+    const { loading } = this.state;
+
+    if(loading) {
+      return null;
+    }
     return(
       React.createElement("div", {className: "container-fluid app-wrapper"}, 
         React.createElement(HeaderNav, null), 

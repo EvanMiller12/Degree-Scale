@@ -39,7 +39,7 @@ class DegreeResultsContainer extends React.Component {
     e.preventDefault();
     
     setTimeout(()=>{
-      this.setState({ showResults: true})
+      this.setState({ showResults: true })
     }, 1000)
   }
 
@@ -56,11 +56,11 @@ class DegreeResultsContainer extends React.Component {
     this.state.degreeCollection.urlSetter('assoc', selectedMajor);
     this.state.degreeCollection.fetch().done((data) => {
       console.log('asc school array', data.results);
-      this.setState({showResults: true, ascAverage: this.state.degreeCollection.average(data), ascData: data.results});
+      this.setState({isLoading: true, showResults: true, ascAverage: this.state.degreeCollection.average(data), ascData: data.results});
       this.state.degreeCollection.urlSetter('bachelors', selectedMajor);
       this.state.degreeCollection.fetch().done((data) => {
         console.log('bac school array', data);
-        this.setState({showResults: true, bacAverage: this.state.degreeCollection.average(data), bacData: data.results});
+        this.setState({isLoading: true, showResults: true, bacAverage: this.state.degreeCollection.average(data), bacData: data.results});
       })
     })
   }

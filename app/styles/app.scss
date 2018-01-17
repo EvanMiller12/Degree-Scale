@@ -77,6 +77,18 @@ app container styling
   animation: load8 1.1s infinite linear;
 }
 
+.loading {
+  position: absolute;
+  top: calc(60% - 3em);
+  left: calc(50% - 4em);
+  width: 5em;
+  height: 5em;
+  border: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #FFF;
+  border-radius: 50%;
+  animation: load8 1.1s infinite linear;
+}
+
 @keyframes load8 {
   0% {
     transform: rotate(0deg);

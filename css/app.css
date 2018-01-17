@@ -5781,7 +5781,7 @@ app container styling
   background: -webkit-linear-gradient(left top, black, #74AFAD);
   background: linear-gradient(to right bottom, black, #74AFAD); }
 
-.app:empty {
+.load {
   position: absolute;
   top: calc(50% - 4em);
   left: calc(50% - 4em);
@@ -5789,6 +5789,18 @@ app container styling
   height: 6em;
   border: 1.1em solid rgba(0, 0, 0, 0.2);
   border-left: 1.1em solid #000000;
+  border-radius: 50%;
+  -webkit-animation: load8 1.1s infinite linear;
+          animation: load8 1.1s infinite linear; }
+
+.loading {
+  position: absolute;
+  top: calc(60% - 3em);
+  left: calc(50% - 4em);
+  width: 5em;
+  height: 5em;
+  border: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #FFF;
   border-radius: 50%;
   -webkit-animation: load8 1.1s infinite linear;
           animation: load8 1.1s infinite linear; }
@@ -5876,12 +5888,13 @@ app container styling
 * Profile create edit styling
 */
 .profile-form-contain {
+  min-height: 69vh;
+  margin-top: 50px;
+  padding: 50px;
   color: #558C89;
   background: #ECECEA;
   border: 1px solid #000;
-  border-radius: 20px;
-  margin-top: 50px;
-  padding: 50px; }
+  border-radius: 20px; }
   .profile-form-contain h1 {
     margin-bottom: 30px; }
 
@@ -5963,6 +5976,7 @@ app container styling
 * Review create edit styling
 */
 .review-form-contain {
+  height: 68vh;
   color: #558C89;
   background-color: #ECECEA;
   border: 1px solid #000;
@@ -5996,6 +6010,9 @@ app container styling
 /*
 * Review Results styling
 */
+.results-contain {
+  height: 75vh; }
+
 .review-search {
   margin-bottom: 50px; }
 

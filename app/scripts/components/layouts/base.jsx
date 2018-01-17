@@ -9,7 +9,23 @@ var ProfileCollection = require('../../models/profile').ProfileCollection;
 var User = require('../../models/user.js').User;
 
 class BaseLayout extends React.Component {
+  constructor(props) {
+    super(props)
+
+      this.state = {
+      loading: true
+    }
+  }
+
+  componentDidMount(){
+    setTimeout(() => this.setState({ loading: false }), 1000);
+  }
   render(){
+    const { loading } = this.state;
+
+    if(loading) {
+      return null;
+    }
     return(
       <div className="container-fluid app-wrapper">
         <HeaderNav />

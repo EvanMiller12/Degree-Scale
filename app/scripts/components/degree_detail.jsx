@@ -11,11 +11,22 @@ class DegreeDetail extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      showResults: true
+    }
   }
 
-  render() {
-    console.log('det', this.props.ascData)
+    componentDidMount() {
+      setTimeout(() => this.setState({ showResults: false }), 1000);
+    }
+   
+  render(){
+    const { showResults } = this.state;
+
+    if( showResults ) {
+      return null;
+    }
+
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
     var difAfterTen = difference * 10;
     var associateAvg = parseInt(this.props.ascAverage).toFixed(0);
@@ -67,7 +78,9 @@ class DegreeDetail extends React.Component {
               <h1>Associate School Data</h1>
               <p>These are schools that the salary data is coming from</p>
             </div>
-            <AscSchoolList ascData={ this.props.ascData } />
+            <AscSchoolList 
+              ascData={ this.props.ascData } 
+              />
           </div>
         </div>
         <div className="col-sm-5 col-sm-offset-1">
@@ -87,16 +100,33 @@ class DegreeDetail extends React.Component {
 class AscSchoolList extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      showResults: true
+    }
   }
+
+    componentDidMount() {
+      setTimeout(() => this.setState({ showResults: false }), 1500);
+    }
+   
   render(){
+    const { showResults } = this.state;
+
+    if( showResults ) {
+      return null;
+    }
 
     var schoolList;
 
     if(this.props.ascData) {
       schoolList = this.props.ascData.map((data, index) => {
-
-      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+      
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) == 0 ?
+                            "No data recorded" :
+                            (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) + "%";
+      var averageSalary = data['2012.earnings.10_yrs_after_entry.median'] == null ?
+                            "No data recorded" :
+                            "$" + data['2012.earnings.10_yrs_after_entry.median'];  
 
         return(
           <li key={index} className="list-item">
@@ -106,7 +136,7 @@ class AscSchoolList extends React.Component {
             <div className="school-data">
               <div className="school-salary">
                 <label>Average Salary:</label>
-                <span>{'$' + data['2012.earnings.10_yrs_after_entry.median']}</span>
+                <span>{averageSalary}</span>
               </div>
               <div className="school-cost">
                 <label>Average Cost:</label>
@@ -114,7 +144,7 @@ class AscSchoolList extends React.Component {
               </div>
               <div className="grad-rate">
                 <label>Graduation Rate:</label>
-                <span>{gradRate + '%'}</span>
+                <span>{gradRate}</span>
               </div>
               <div className="school-size">
                 <label>School Size:</label>
@@ -138,17 +168,35 @@ class AscSchoolList extends React.Component {
 }
 
 class BacSchoolList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-
+    this.state = {
+      showResults: true
+    }
   }
+
+    componentDidMount() {
+      setTimeout(() => this.setState({ showResults: false }), 1000);
+    }
+   
   render(){
+    const { showResults } = this.state;
+
+    if( showResults ) {
+      return null;
+    }
+
     var bacSchoolList;
 
     if(this.props.bacData) {
       bacSchoolList = this.props.bacData.map((data, index) => {
 
-      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0)
+      var gradRate = (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) == 0 ?
+                      "No data recorded" :
+                      (data['2014.completion.rate_suppressed.overall'] * 100).toFixed(0) + "%";
+      var averageSalary = data['2012.earnings.10_yrs_after_entry.median'] == null ?
+                            "No data recorded" :
+                            "$" + data['2012.earnings.10_yrs_after_entry.median'];  
 
         return(
           <li key={index} className="list-item">
@@ -158,7 +206,7 @@ class BacSchoolList extends React.Component {
             <div className="school-data">
               <div className="school-salary">
                 <label>Average Salary:</label>
-                <span>{ '$' + data['2012.earnings.10_yrs_after_entry.median'] }</span>
+                <span>{ averageSalary }</span>
               </div>
               <div className="school-cost">
                 <label>Average Cost:</label>
@@ -166,7 +214,7 @@ class BacSchoolList extends React.Component {
               </div>
               <div className="grad-rate">
                 <label>Graduation Rate:</label>
-                <span>{ gradRate + '%' }</span>
+                <span>{ gradRate }</span>
               </div>
               <div className="school-size">
                 <label>School Size:</label>

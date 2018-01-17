@@ -18,13 +18,13 @@ class BaseLayout extends React.Component {
   }
 
   componentDidMount(){
-    setTimeout(() => this.setState({ loading: false }), 1000);
+    setTimeout(() => this.setState({ loading: false }), 500);
   }
   render(){
     const { loading } = this.state;
 
     if(loading) {
-      return null;
+      return <div className="load"></div>;
     }
     return(
       <div className="container-fluid app-wrapper">

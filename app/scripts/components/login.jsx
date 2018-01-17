@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 
 var User = require('../models/user.js').User;
 
-var HomeLayout = require('./layouts/home_layout.jsx').HomeLayout;
+var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class LoginContainer extends React.Component {
   constructor(props){
@@ -25,7 +25,7 @@ class LoginContainer extends React.Component {
   }
   render() {
     return (
-      <HomeLayout>
+      <BaseLayout>
           <LoginForm
             action={this.login}
             submitBtn='Login'
@@ -36,7 +36,7 @@ class LoginContainer extends React.Component {
             submitBtn='Signup'
             title = 'Signup for Free'
             />
-      </HomeLayout>
+      </BaseLayout>
     );
   }
 }

@@ -65,7 +65,7 @@ app container styling
   background: linear-gradient(to right bottom, black, $light-teal-bkgrnd);
 }
 
-.app:empty {
+.load {
   position: absolute;
   top: calc(50% - 4em);
   left: calc(50% - 4em);

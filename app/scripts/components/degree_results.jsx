@@ -13,11 +13,11 @@ class DegreeResultsContainer extends React.Component {
     super(props);
 
     var degreeCollection = new DegreeCollection();
-
+    
+    this.handleHideResults = this.handleHideResults.bind(this);
     this.handleShowResults = this.handleShowResults.bind(this);
     this.updateSelection = this.updateSelection.bind(this);
     this.updateResults = this.updateResults.bind(this);
-
 
     this.state = {
       showResults: false,
@@ -29,15 +29,25 @@ class DegreeResultsContainer extends React.Component {
       bacAverage: null
     }
   }
+  handleHideResults(e) {
+    e.preventDefault();
+
+    this.setState({ showResults: false })
+  }
+
   handleShowResults(e){
     e.preventDefault();
-    this.setState({ showResults: !this.state.showResults})
+    
+    setTimeout(()=>{
+      this.setState({ showResults: true})
+    }, 1000)
   }
+
   updateSelection(e){
     e.preventDefault();
     var selectedMajor = e.target.value;
 
-    this.setState({ selectedMajor: selectedMajor });
+    this.setState({ selectedMajor });
 
     this.updateResults(selectedMajor)
   }
@@ -46,24 +56,27 @@ class DegreeResultsContainer extends React.Component {
     this.state.degreeCollection.urlSetter('assoc', selectedMajor);
     this.state.degreeCollection.fetch().done((data) => {
       console.log('asc school array', data.results);
-      this.setState({ascAverage: this.state.degreeCollection.average(data), ascData: data.results});
+      this.setState({showResults: true, ascAverage: this.state.degreeCollection.average(data), ascData: data.results});
       this.state.degreeCollection.urlSetter('bachelors', selectedMajor);
       this.state.degreeCollection.fetch().done((data) => {
         console.log('bac school array', data);
-        this.setState({bacAverage: this.state.degreeCollection.average(data), bacData: data.results});
+        this.setState({showResults: true, bacAverage: this.state.degreeCollection.average(data), bacData: data.results});
       })
     })
   }
 
   render(){
+    const { showResults } = this.state;
+
     return(
       <BaseLayout>
         <DegreeSelect
+          handleHideResults={ this.handleHideResults }
           handleShowResults={ this.handleShowResults }
           selectedMajor={ this.state.selectedMajor }
           updateSelection={ this.updateSelection }
           />
-        { this.state.showResults ? <DegreeDetail
+        { showResults ? <DegreeDetail
           selectedMajor={ this.state.selectedMajor }
           ascAverage={ this.state.ascAverage }
           ascData={ this.state.ascData }

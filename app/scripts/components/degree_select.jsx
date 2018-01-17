@@ -22,11 +22,13 @@ class DegreeSelect extends React.Component {
                 Select degree to view Salary:
               </span>
               <select
-                onClick={ this.props.handleShowResults }
+                onClick={ this.props.handleHideResults }
                 onChange={ this.props.updateSelection }
                 value={ this.props.selectedMajor }
                 className="degree-select form-control" name="degree-select">
-                <option value="Degree">Select Degree Program</option>
+                <option
+                 onClick={ this.props.handleShowResults }
+                 value="Degree">Select Degree Program</option>
                   { programs }
               </select>
               </div>

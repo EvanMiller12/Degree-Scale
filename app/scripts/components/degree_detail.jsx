@@ -9,23 +9,7 @@ var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 
 class DegreeDetail extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showResults: true
-    }
-  }
-
-    componentDidMount() {
-      setTimeout(() => this.setState({ showResults: false }), 1000);
-    }
-   
   render(){
-    const { showResults } = this.state;
-
-    if( showResults ) {
-      return null;
-    }
 
     var difference = parseInt(this.props.bacAverage) - parseInt(this.props.ascAverage);
     var difAfterTen = difference * 10;

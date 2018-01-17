@@ -107,7 +107,7 @@ class ReviewCreateEditContainer extends React.Component {
     });
     return (
       <BaseLayout>
-        <div className="row">
+        <div className="row create-edit-contain">
           <div className="col-sm-8 col-sm-offset-2">
             <div className="review-form-title">
               <h1>Leave A Review of Your Degree Below</h1>

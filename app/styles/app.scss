@@ -188,12 +188,16 @@ li.nav-desktop {
 
 
 .profile-form-contain{
-  color: $dark-teal;
-  background: $light-grey-bkgrnd;
-  border: 1px solid $black-border;
-  border-radius: 20px;
+  min-height: 69vh;
+
   margin-top: 50px;
   padding: 50px;
+  
+  color: $dark-teal;
+  background: $light-grey-bkgrnd;
+  
+  border: 1px solid $black-border;
+  border-radius: 20px;
 
   h1{
     margin-bottom: 30px;
@@ -311,10 +315,14 @@ li.nav-desktop {
 */
 
 .review-form-contain{
+  height: 68vh;
+
   color: $dark-teal;
   background-color: $light-grey;
+
   border: 1px solid $black-border;
   border-radius: 20px;
+
   padding: 50px;
 
   p{
